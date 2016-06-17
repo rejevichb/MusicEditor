@@ -81,7 +81,7 @@ public class MusicPieceModel implements IMusicModel {
     public String getVisualRepresentation() {
         int octaveLo = getOctaveLo();
         int octaveHi = getOctaveHi();
-        int absolutePitchLo = 119;  // lowest pitch in lowest octave.
+        int absolutePitchLo = 127;  // lowest pitch in lowest octave.
         int absolutePitchHi = 0;   // highest pitch in highest octave.
 
         Collections.sort(this.notes);

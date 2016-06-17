@@ -1,6 +1,17 @@
 package cs3500.music.model;
 
-import static cs3500.music.model.Pitch.*;
+import static cs3500.music.model.Pitch.A;
+import static cs3500.music.model.Pitch.As;
+import static cs3500.music.model.Pitch.B;
+import static cs3500.music.model.Pitch.C;
+import static cs3500.music.model.Pitch.Cs;
+import static cs3500.music.model.Pitch.D;
+import static cs3500.music.model.Pitch.Ds;
+import static cs3500.music.model.Pitch.E;
+import static cs3500.music.model.Pitch.F;
+import static cs3500.music.model.Pitch.Fs;
+import static cs3500.music.model.Pitch.G;
+import static cs3500.music.model.Pitch.Gs;
 
 /**
  * Class to represent a note.
@@ -14,7 +25,7 @@ public class Note implements Comparable<Note> {
     int volume;
 
     public Note(Pitch pitch, int octave, int startBeat, int duration) {
-        if (octave > 10 || octave < 1 || startBeat < 0 || startBeat > 10000 || duration < 0) {
+        if (octave > 10 || octave < 0 || startBeat < 0 || startBeat > 10000 || duration < 0) {
             throw new IllegalArgumentException("Please pass in valid parameter values");
         }
         this.duration = duration;
@@ -78,6 +89,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * getter method to return a defensive the duration of this note
+     *
      * @return this note's duration
      */
     public int getDuration() {
@@ -88,6 +100,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * getter method to return a defensive copy start beat of this note
+     *
      * @return this note's start beat
      */
     public int getStartBeat() {
@@ -97,6 +110,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * getter method to return a defensive copy of this note's instrument
+     *
      * @return an int representing this note's instrument in midi
      */
     public int getInstrument() {
@@ -107,6 +121,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * getter method to return a defensive copy of this note's volume
+     *
      * @return an int representing the notes volume in midi
      */
     public int getVolume() {
@@ -134,24 +149,26 @@ public class Note implements Comparable<Note> {
     public static int octaveFromAbsP(int absPitch) {
         int ret = 0;
         if (absPitch <= 11 && absPitch >= 0) {
-            ret = 1;
+            ret = 0;
         } else if (absPitch > 11 && absPitch <= 23) {
-            ret = 2;
+            ret = 1;
         } else if (absPitch > 23 && absPitch <= 35) {
-            ret = 3;
+            ret = 2;
         } else if (absPitch > 35 && absPitch <= 47) {
-            ret = 4;
+            ret = 3;
         } else if (absPitch > 47 && absPitch <= 59) {
-            ret = 5;
+            ret = 4;
         } else if (absPitch > 59 && absPitch <= 71) {
-            ret = 6;
+            ret = 5;
         } else if (absPitch > 71 && absPitch <= 83) {
-            ret = 7;
+            ret = 6;
         } else if (absPitch > 83 && absPitch <= 95) {
-            ret = 8;
+            ret = 7;
         } else if (absPitch > 95 && absPitch <= 107) {
-            ret = 9;
+            ret = 8;
         } else if (absPitch > 107 && absPitch <= 119) {
+            ret = 9;
+        } else if (absPitch > 119 && absPitch <= 127) {
             ret = 10;
         } else if (absPitch > 119 || absPitch < 0) {
             throw new IllegalArgumentException("That is not a valid absolute pitch value");
