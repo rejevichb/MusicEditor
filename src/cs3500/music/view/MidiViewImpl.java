@@ -1,5 +1,6 @@
 package cs3500.music.view;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.sound.midi.InvalidMidiDataException;
@@ -57,22 +58,28 @@ public class MidiViewImpl implements IMusicPieceView {
 
     public void playNote() throws InvalidMidiDataException {
 
+        Collections.sort(this.notes, Collections.reverseOrder());
+
+        if (synth.getMicrosecondPosition() == -1 ) {
+            throw new RuntimeException("MIDI device does not support timing");
+        }
+
         for (Note n : this.notes) {
             MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(),
                     n.getAbsPitch(), n.getVolume());
             MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(),
                     n.getAbsPitch(), n.getVolume());
-            this.receiver.send(start, n.getStartBeat() * model.getTempo());
+            this.receiver.send(start, synth.getMicrosecondPosition() + (n.getStartBeat()  * model.getTempo()));
 
             try {
-                Thread.sleep(n.getDuration() * model.getTempo());
+                Thread.sleep(700);
             } catch (InterruptedException e) {
                 //Cannot run the sleep if this is thrown and therefore no sound will be heard.
             }
 
             // need to implement swing timer
             // look at tutorial and make sure it works
-            this.receiver.send(stop, (n.getStartBeat() + n.getDuration()) * model.getTempo());
+            this.receiver.send(stop, synth.getMicrosecondPosition() + ((n.getStartBeat() + n.getDuration())  * model.getTempo()));
         }
     }
 
