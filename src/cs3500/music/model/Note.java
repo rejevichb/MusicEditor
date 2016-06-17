@@ -30,7 +30,7 @@ public class Note implements Comparable<Note> {
         }
         this.duration = duration;
         this.startBeat = startBeat;
-        this.absPitch = ((octave - 1) * 12) + pitch.getIntValue();
+        this.absPitch = ((octave * 12) + pitch.getIntValue());
         this.volume = 64;
         this.instrument = 0;
     }
@@ -170,7 +170,7 @@ public class Note implements Comparable<Note> {
             ret = 9;
         } else if (absPitch > 119 && absPitch <= 127) {
             ret = 10;
-        } else if (absPitch > 119 || absPitch < 0) {
+        } else if (absPitch > 127 || absPitch < 0) {
             throw new IllegalArgumentException("That is not a valid absolute pitch value");
         }
         return ret;
