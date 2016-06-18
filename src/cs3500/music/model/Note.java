@@ -1,17 +1,6 @@
 package cs3500.music.model;
 
-import static cs3500.music.model.Pitch.A;
-import static cs3500.music.model.Pitch.As;
-import static cs3500.music.model.Pitch.B;
-import static cs3500.music.model.Pitch.C;
-import static cs3500.music.model.Pitch.Cs;
-import static cs3500.music.model.Pitch.D;
-import static cs3500.music.model.Pitch.Ds;
-import static cs3500.music.model.Pitch.E;
-import static cs3500.music.model.Pitch.F;
-import static cs3500.music.model.Pitch.Fs;
-import static cs3500.music.model.Pitch.G;
-import static cs3500.music.model.Pitch.Gs;
+import static cs3500.music.model.Pitch.*;
 
 /**
  * Class to represent a note.

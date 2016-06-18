@@ -41,14 +41,13 @@ public class ConcreteGuiViewPanel extends JPanel {
             }
         }
 
-        //FIXME reverse pitch labels
         //drawing pitch labels
-        for (int i = absolutePitchLo; i <= absolutePitchHi + 1; i++) {
+        for (int i = absolutePitchHi; i >= absolutePitchLo; i--) {
             graphics.setColor(Color.BLACK);
             graphics.setFont(new Font("Cambria", Font.BOLD, 12));
-            if (i <= absolutePitchHi) {
+            if (i >= absolutePitchLo) {
                 String display = new String(Note.getPitchFromInt(Note.pitchFromAbs(i)).toString() + Note.octaveFromAbsP(i));
-                graphics.drawString(display, 10, (((i - absolutePitchLo) * BOX_OFFSET) + 65));
+                graphics.drawString(display, 10, ((Math.abs(i - absolutePitchHi) * BOX_OFFSET) + 65));
             }
         }
 
