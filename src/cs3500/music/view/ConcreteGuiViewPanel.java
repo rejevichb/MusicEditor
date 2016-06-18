@@ -64,7 +64,6 @@ public class ConcreteGuiViewPanel extends JPanel {
         graphics.translate(40, 50);
 
 
-        //FIXME finish the measure that the last beat is in
         //rows
         for (int i = absolutePitchLo; i <= absolutePitchHi + 1; i++) {
             graphics.setStroke(new BasicStroke(1.5f));
@@ -98,11 +97,10 @@ public class ConcreteGuiViewPanel extends JPanel {
             }
         }
 
-        //FIXME finish the measure that the last beat is in.
         //columns
-        for (int j = 0; j < (model.getTotNumBeats() / 4) + 1; j++) {
+        for (int j = 0; j < (model.getTotNumBeats() / 4) + completeMeasure(); j++) {
             graphics.setColor(Color.BLACK);
-            graphics.drawLine(j * MEASURE_OFFSET, 0, j * MEASURE_OFFSET, BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
+            graphics.drawLine(j * MEASURE_OFFSET, 0, (j) * MEASURE_OFFSET, BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
         }
     }
 
