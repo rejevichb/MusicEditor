@@ -17,7 +17,7 @@ public class MusicPieceModel implements IMusicModel {
     public MusicPieceModel() {
         this.notes = new ArrayList<>();
         this.totalNumBeats = 0;
-        this.tempo = 10000;
+        this.tempo = 200000;
     }
 
     public void addNote(Note n) {

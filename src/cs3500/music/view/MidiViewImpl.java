@@ -28,27 +28,27 @@ public class MidiViewImpl implements IMusicPieceView {
     private IMusicModel model;
     private List<Note> notes;
 
-    private Sequencer seq;
+    private Sequencer seqR;
     private Transmitter seqTrans;
     private final Synthesizer synth;
     private final Receiver receiver;
 
 
     public MidiViewImpl() {
-        Sequencer tempSeq = null;
+        Sequencer tempSeqR = null;
         Transmitter tempSeqTrans = null;
         Synthesizer tempSynth = null;
         Receiver tempReceiver = null;
         try {
-            tempSeq = MidiSystem.getSequencer();
-            tempSeqTrans = tempSeq.getTransmitter();
+            tempSeqR = MidiSystem.getSequencer();
+            tempSeqTrans = tempSeqR.getTransmitter();
             tempSynth = MidiSystem.getSynthesizer();
             tempReceiver = tempSynth.getReceiver();
             tempSynth.open();
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
         }
-        this.seq = tempSeq;
+        this.seqR = tempSeqR;
         this.seqTrans = tempSeqTrans;
         this.synth = tempSynth;
         this.receiver = tempReceiver;
@@ -65,19 +65,20 @@ public class MidiViewImpl implements IMusicPieceView {
 
     public Sequence modelToSequence() throws InvalidMidiDataException {
         Sequence ret = null;
-        try {    //FIXME 20 = resolution specified in ticks per beat
-            ret = new Sequence(Sequence.PPQ, 20, 1);
+        try {
+            ret = new Sequence(Sequence.PPQ, 50);
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
         ret.createTrack();
         Track track = ret.getTracks()[0];
+        long offset = seqR.getMicrosecondPosition();
 
         for (Note n : this.notes) {
             MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(), n.getAbsPitch(), n.getVolume());
             MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(), n.getAbsPitch(), n.getVolume());
-            MidiEvent start = new MidiEvent(noteOn, 200);  //FIXME calculate timeStamp
-            MidiEvent stop = new MidiEvent(noteOff, 200);  //FIXME calculate timeStamp
+            MidiEvent start = new MidiEvent(noteOn,  (n.getStartBeat()));  //FIXME calculate timeStamp
+            MidiEvent stop = new MidiEvent(noteOff,  ((n.getStartBeat() + n.getDuration())));  //FIXME calculate timeStamp
             track.add(start);
             track.add(stop);
 //            this.receiver.send(start, synth.getMicrosecondPosition() + (n.getStartBeat()  * model.getTempo()));
@@ -139,12 +140,39 @@ public class MidiViewImpl implements IMusicPieceView {
 
 
     public void initialize() {
+        try {
+            seqR.setSequence(modelToSequence());
+            //seqR.setMasterSyncMode();
+        }
+        catch (InvalidMidiDataException e){
+            e.printStackTrace();
+        }
+
+        System.out.print(seqR.getTickLength());
 
         try {
-            this.playNote();
-        } catch (InvalidMidiDataException e) {
-            //play note exception caught
+            seqR.open();
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
         }
+
+        seqR.start();
+        //seqR.stop();
+
+
+
+
+//        try {
+//            this.playNote();
+//        } catch (InvalidMidiDataException e) {
+//            //play note exception caught
+//        }
+
+
+
+
+
+
         this.receiver.close(); // Only call this once you're done playing *all* notes
     }
 
