@@ -9,8 +9,10 @@ import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Receiver;
+import javax.sound.midi.Sequencer;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Synthesizer;
+import javax.sound.midi.Transmitter;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
@@ -22,23 +24,32 @@ public class MidiViewImpl implements IMusicPieceView {
 
     private IMusicModel model;
     private List<Note> notes;
+
+    private Sequencer seq;
+    private Transmitter seqTrans;
     private final Synthesizer synth;
     private final Receiver receiver;
 
 
     public MidiViewImpl() {
-        Synthesizer temp = null;
-        Receiver tempA = null;
+        Sequencer tempSeq = null;
+        Transmitter tempSeqTrans = null;
+        Synthesizer tempSynth = null;
+        Receiver tempReceiver = null;
         try {
-            temp = MidiSystem.getSynthesizer();
-            tempA = temp.getReceiver();
-            temp.open();
+            tempSeq = MidiSystem.getSequencer();
+            tempSeqTrans = tempSeq.getTransmitter();
+            tempSynth = MidiSystem.getSynthesizer();
+            tempReceiver = tempSynth.getReceiver();
+            tempSynth.open();
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
-
         }
-        this.synth = temp;
-        this.receiver = tempA;
+        this.seq = tempSeq;
+        this.seqTrans = tempSeqTrans;
+        this.synth = tempSynth;
+        this.receiver = tempReceiver;
+        this.seqTrans.setReceiver(this.receiver);
     }
 
 
@@ -55,7 +66,8 @@ public class MidiViewImpl implements IMusicPieceView {
      * @see <a href="https://en.wikipedia.org/wiki/General_MIDI"> https://en.wikipedia.org/wiki/General_MIDI
      * </a>
      */
-
+    //FIXME USE SEQUENCER instead of Thread.sleep for the timing.
+    //TODO also look at ShortMessage (start and stop) parameter value calculations from model
     public void playNote() throws InvalidMidiDataException {
 
         Collections.sort(this.notes, Collections.reverseOrder());
