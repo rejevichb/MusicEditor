@@ -41,6 +41,7 @@ public class ConcreteGuiViewPanel extends JPanel {
             }
         }
 
+        //FIXME reverse pitch labels
         //drawing pitch labels
         for (int i = absolutePitchLo; i <= absolutePitchHi + 1; i++) {
             graphics.setColor(Color.BLACK);
@@ -76,6 +77,7 @@ public class ConcreteGuiViewPanel extends JPanel {
 
         Collections.sort(this.notes, Collections.reverseOrder());
 
+        //FIXME reverse pitch from *** from low to high *** to *** from hi to lo ***
         //draw all the notes on this layout
         for (int beat = 0; beat < model.getTotNumBeats() + 1; beat++) {
             for (int absPitch = absolutePitchLo; absPitch <= absolutePitchHi; absPitch++) {
