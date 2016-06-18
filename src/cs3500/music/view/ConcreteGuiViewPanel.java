@@ -64,6 +64,7 @@ public class ConcreteGuiViewPanel extends JPanel {
         graphics.translate(40, 50);
 
 
+        //FIXME finish the measure that the last beat is in
         //rows
         for (int i = absolutePitchLo; i <= absolutePitchHi + 1; i++) {
             graphics.setStroke(new BasicStroke(1.5f));
@@ -71,15 +72,15 @@ public class ConcreteGuiViewPanel extends JPanel {
                 graphics.setStroke(new BasicStroke(2.65f));
             }
             graphics.drawLine(0, (i - absolutePitchLo) * BOX_OFFSET,
-                    model.getTotNumBeats() * BOX_OFFSET, (i - absolutePitchLo) * BOX_OFFSET);
+                    (model.getTotNumBeats() + completeMeasure()) * BOX_OFFSET, (i - absolutePitchLo) * BOX_OFFSET);
         }
 
         Collections.sort(this.notes, Collections.reverseOrder());
 
-        //FIXME reverse pitch from *** from low to high *** to *** from hi to lo ***
+
         //draw all the notes on this layout
         for (int beat = 0; beat < model.getTotNumBeats() + 1; beat++) {
-            for (int absPitch = absolutePitchLo; absPitch <= absolutePitchHi; absPitch++) {
+            for (int absPitch = absolutePitchHi; absPitch >= absolutePitchLo; absPitch--) {
 
                 for (Note n : notes) {
                     if (n.getStartBeat() < beat
@@ -87,21 +88,28 @@ public class ConcreteGuiViewPanel extends JPanel {
                             && n.getAbsPitch() == absPitch) {
                         graphics.setColor(Color.green);
                         //graphics.clearRect(beat * BOX_OFFSET, (absPitch - absolutePitchLo) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
-                        graphics.fillRect(beat * BOX_OFFSET, (absPitch - absolutePitchLo) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
+                        graphics.fillRect(beat * BOX_OFFSET, (Math.abs(absPitch - absolutePitchHi)) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
                     } else if (n.getStartBeat() == beat && n.getAbsPitch() == absPitch) {
                         graphics.setColor(Color.BLACK);
                         //graphics.clearRect(beat * BOX_OFFSET, (absPitch - absolutePitchLo) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
-                        graphics.fillRect(beat * BOX_OFFSET, (absPitch - absolutePitchLo) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
+                        graphics.fillRect(beat * BOX_OFFSET, (Math.abs(absPitch - absolutePitchHi)) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
                     }
                 }
             }
         }
 
+        //FIXME finish the measure that the last beat is in.
         //columns
         for (int j = 0; j < (model.getTotNumBeats() / 4) + 1; j++) {
             graphics.setColor(Color.BLACK);
             graphics.drawLine(j * MEASURE_OFFSET, 0, j * MEASURE_OFFSET, BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
         }
+    }
+
+
+    private int completeMeasure() {
+        int end = this.model.getTotNumBeats() % 4;
+        return 4 - end;
     }
 
 }
