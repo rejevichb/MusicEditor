@@ -5,13 +5,16 @@ import java.util.List;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Receiver;
+import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Synthesizer;
+import javax.sound.midi.Track;
 import javax.sound.midi.Transmitter;
 
 import cs3500.music.model.IMusicModel;
@@ -49,8 +52,47 @@ public class MidiViewImpl implements IMusicPieceView {
         this.seqTrans = tempSeqTrans;
         this.synth = tempSynth;
         this.receiver = tempReceiver;
-        this.seqTrans.setReceiver(this.receiver);
+        if (this.seqTrans != null && this.receiver != null) {
+            this.seqTrans.setReceiver(this.receiver);
+        }
     }
+
+    /*
+    To play music, a device generally receives MidiMessages through a Receiver,
+    which in turn has usually received them from a Transmitter that belongs to a Sequencer.
+    The device that owns this Receiver is a Synthesizer, which will generate audio directly.
+     */
+
+    public Sequence modelToSequence() throws InvalidMidiDataException {
+        Sequence ret = null;
+        try {    //FIXME 20 = resolution specified in ticks per beat
+            ret = new Sequence(Sequence.PPQ, 20, 1);
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+        ret.createTrack();
+        Track track = ret.getTracks()[0];
+
+        for (Note n : this.notes) {
+            MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(), n.getAbsPitch(), n.getVolume());
+            MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(), n.getAbsPitch(), n.getVolume());
+            MidiEvent start = new MidiEvent(noteOn, 200);  //FIXME calculate timeStamp
+            MidiEvent stop = new MidiEvent(noteOff, 200);  //FIXME calculate timeStamp
+            track.add(start);
+            track.add(stop);
+//            this.receiver.send(start, synth.getMicrosecondPosition() + (n.getStartBeat()  * model.getTempo()));
+//            this.receiver.send(stop, synth.getMicrosecondPosition() + ((n.getStartBeat() + n.getDuration())  * model.getTempo()));
+        }
+        return ret;
+    }
+
+    /*
+    getMicrosecondsPosition()
+
+    ticksPerSecond = resolution * (currentTempoInBeatsPerMinute / 60.0);
+    tickSize = 1.0 / ticksPerSecond;
+     */
+
 
 
     /**
@@ -91,7 +133,7 @@ public class MidiViewImpl implements IMusicPieceView {
 
             // need to implement swing timer
             // look at tutorial and make sure it works
-            this.receiver.send(stop, synth.getMicrosecondPosition() + ((n.getStartBeat() + n.getDuration())  * model.getTempo()));
+            this.receiver.send(stop, synth.getMicrosecondPosition() + ((n.getStartBeat() + n.getDuration()) * model.getTempo()));
         }
     }
 
