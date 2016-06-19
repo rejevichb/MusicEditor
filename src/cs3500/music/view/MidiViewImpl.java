@@ -104,7 +104,7 @@ public class MidiViewImpl implements IMusicPieceView {
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
-
+        
         try {
             seqR.open();
         } catch (MidiUnavailableException e) {

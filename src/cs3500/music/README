@@ -3,3 +3,53 @@ Jameson O'Connor (jameson7)
 19 June 2016
 Object Oriented Design
 
+cs3500.music
+
+Files
+    - Interface: IMusicModel - interface providing operations that all music models should implement
+    -            CompositionBuilder - specifies methods for building a composition.
+    -            IMusicPieceView - specifies common operations that every view must support.
+
+    - Class:     MusicPieceModel - standard generic implementation of IMusicModel.
+    -            Note - final class to represent a note.
+    -            CompositionBuilderImpl - implements the composition builder specified by
+                                          IMusicModel and MusicPieceModel.
+    -            MusicReader - given complete class in starter code - has not been modified
+    -            FactoryView - a view factory, creating views based on string args.
+    -            ConsoleViewFrame - prints the notes in the model in console string form.
+    -            MidiViewImpl - plays the music using MIDIDevice specifications.
+    -            ConcreteGuiViewPanel - contains model data and draws a viewPanel. This class
+                                        extends JPanel.
+    -            GuiViewFrame - contains a ConcreteGuiViewPanel and initializes it and calls its
+                                overridden paintComponent(Graphics g) method. This class extends
+                                JFrame
+    - Enum:      Pitch - can be one of 12 pitch values
+
+
+--  --  -- Introduction -- -- -- --
+We used an ArrayList to represent a list of notes in the MusicPieceModel. It also has an int that
+represents the total number of beats. When an element is added or removed via the addNote(Note n)
+or removeNote(Note n) methods, then the total number of beats for the model is adjusted when
+necessary. Likewise, editNote(Note find, Note replace) calls both addNote and removeNote so the
+total number of beats is always only as big as necessary. The controller has a model and a view,
+and the view is selected from the main method and passing the string args to the FactoryView. The \
+only method in the controller void Controller.modelToView() which calls
+IMusicPieceView.setModelToView(model). The set model in the view interface makes a defensive copy
+and then sets the defensive copy (via copy constructor) of the controller model to the model
+instance variable that each of the views has. In this way, the implementation details are preserved
+and cannot be modified by the views, instead they are given copies.
+
+
+-- -- -- -- Important Specifications/Notes -- -- -- --
+
+
+
+
+-- -- -- --  Final Thoughts / Summary -- -- -- --
+Abstraction, encapsulation, and coding to the interface were topics that we payed
+much attention to. Our model is open for extension, and closed for modification. We have tested
+thoroughly, and have provided javadoc for the model interface, and additional javadoc for the
+private methods of our implementation in the MusicPieceModel class.
+
+
+
