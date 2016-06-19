@@ -27,7 +27,6 @@ public class MusicEditor {
         MusicController controller = new MusicController(model, view);
 
         controller.modelToView();
-
         view.initialize();
     }
 }
