@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import cs3500.music.model.IMusicModel;
+import cs3500.music.model.MusicPieceModel;
 
 // Possibly of interest for handling mouse events
 
@@ -46,9 +47,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView 
     }
 
     @Override
-    public void setModelToView(IMusicModel model) {
-        this.displayPanel.model = model;
-        this.displayPanel.notes = model.getNotes();
+    public void setModelToView(IMusicModel m) {
+        IMusicModel defence = new MusicPieceModel(m);
+        this.displayPanel.model = defence;
+        this.displayPanel.notes = defence.getNotes();
     }
 
     @Override
@@ -59,6 +61,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView 
 
     @Override
     public void paint(Graphics g) {
+
         this.displayPanel.paintComponent(g);
 
     }

@@ -6,10 +6,11 @@ import java.util.List;
 import javax.sound.midi.*;
 
 import cs3500.music.model.IMusicModel;
+import cs3500.music.model.MusicPieceModel;
 import cs3500.music.model.Note;
 
 /**
- * A skeleton for MIDI playback.
+ * A class for MIDI playback.
  */
 public class MidiViewImpl implements IMusicPieceView {
 
@@ -95,6 +96,10 @@ public class MidiViewImpl implements IMusicPieceView {
      */
 
 
+    /**
+     * Creates and sets a Sequence to the Sequencer. Opens the Sequencer, sets it's tempo,
+     * and starts playing.
+     */
     public void initialize() {
 
         try {
@@ -102,9 +107,6 @@ public class MidiViewImpl implements IMusicPieceView {
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
-
-        System.out.println(seqR.getTickLength());
-        System.out.println(seqR.getMicrosecondLength());
 
         try {
             seqR.open();
@@ -122,8 +124,9 @@ public class MidiViewImpl implements IMusicPieceView {
         }
     }
 
-    public void setModelToView(IMusicModel model) {
-        this.model = model;
-        this.notes = model.getNotes();
+    public void setModelToView(IMusicModel m) {
+        IMusicModel defence = new MusicPieceModel(m);
+        this.model = defence;
+        this.notes = defence.getNotes();
     }
 }

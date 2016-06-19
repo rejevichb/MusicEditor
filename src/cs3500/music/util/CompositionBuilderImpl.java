@@ -5,7 +5,7 @@ import cs3500.music.model.MusicPieceModel;
 import cs3500.music.model.Note;
 
 /**
- *
+ *  Used for creating and populating a model from a file that was read in.
  */
 public class CompositionBuilderImpl implements CompositionBuilder<IMusicModel> {
 

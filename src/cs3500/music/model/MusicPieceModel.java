@@ -20,6 +20,13 @@ public class MusicPieceModel implements IMusicModel {
         this.tempo = 200000;
     }
 
+    //Copy constructor
+    public MusicPieceModel(IMusicModel model) {
+        this.notes = (ArrayList<Note>) model.getNotes();
+        this.totalNumBeats = model.getTotNumBeats();
+        this.tempo = model.getTempo();
+    }
+
     public void addNote(Note n) {
         this.notes.add(n);
         Collections.sort(this.notes);

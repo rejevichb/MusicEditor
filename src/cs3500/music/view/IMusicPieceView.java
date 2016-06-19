@@ -4,7 +4,6 @@ import cs3500.music.model.IMusicModel;
 
 /**
  * Interface for the three views being implemented.  Console view, Gui view and Midi.
- *
  */
 public interface IMusicPieceView {
 
@@ -18,6 +17,11 @@ public interface IMusicPieceView {
      */
     void initialize();
 
+
+    /**
+     * Sets this.model in whichever view to the model passed in.
+     * @param model
+     */
     void setModelToView(IMusicModel model);
 
 }

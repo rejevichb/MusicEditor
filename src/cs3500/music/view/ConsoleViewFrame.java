@@ -3,10 +3,11 @@ package cs3500.music.view;
 import javax.swing.*;
 
 import cs3500.music.model.IMusicModel;
+import cs3500.music.model.MusicPieceModel;
 
 /**
  * Created by brendanrejevich on 6/14/16.
- * This class represents the console view of the music composition
+ * This class represents the console view of the music composition, as in the first assignment.
  */
 public class ConsoleViewFrame implements IMusicPieceView {
 
@@ -26,10 +27,9 @@ public class ConsoleViewFrame implements IMusicPieceView {
     }
 
     @Override
-    public void setModelToView(IMusicModel model) {
-        this.model = model;
+    public void setModelToView(IMusicModel m) {
+        IMusicModel defence = new MusicPieceModel(m);
+        this.model = defence;
     }
-
-
 }
 

@@ -20,23 +20,11 @@ public class MusicController {
         this.view = view;
     }
 
-    //defensive copies - get notes from model.
-    public List<Note> getNotes() {
-        List<Note> n = model.getNotes();
-        return n;
-    }
-
-    public void notesToView() {
+    /**
+     * Sends the model in the controller to the view in the controller
+     */
+    public void modelToView() {
         view.setModelToView(this.model);
     }
-
-    public List<Note> getNotesAtBeat(int b) {
-        return model.getNotesAtBeat(b);
-    }
-
-    public int getTotNumBeats() {
-        return model.getTotNumBeats();
-    }
-
 
 }

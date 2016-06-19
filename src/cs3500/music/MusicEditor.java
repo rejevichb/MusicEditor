@@ -18,7 +18,6 @@ import cs3500.music.view.IMusicPieceView;
 public class MusicEditor {
     public static void main(String[] args) throws IOException, InvalidMidiDataException {
         IMusicPieceView view = FactoryView.create(args[0]); //I changed this for user input
-        //MidiViewImpl view = new MidiViewImpl();
         CompositionBuilder builder = new CompositionBuilderImpl();
         Readable f = new FileReader(new File(args[1]));
 
@@ -26,10 +25,8 @@ public class MusicEditor {
 
         MusicController controller = new MusicController(model, view);
 
-        controller.notesToView();
+        controller.modelToView();
 
         view.initialize();
-        //view.getPreferredSize();
-        //view.setSize(400, 400);
     }
 }
