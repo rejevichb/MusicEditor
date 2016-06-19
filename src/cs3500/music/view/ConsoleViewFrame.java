@@ -22,7 +22,7 @@ public class ConsoleViewFrame implements IMusicPieceView {
 
     @Override
     public void initialize() {
-        System.out.print(model.getVisualRepresentation());
+        System.out.format(model.getVisualRepresentation());
 
     }
 
@@ -30,6 +30,11 @@ public class ConsoleViewFrame implements IMusicPieceView {
     public void setModelToView(IMusicModel m) {
         IMusicModel defence = new MusicPieceModel(m);
         this.model = defence;
+    }
+
+    @Override
+    public String toString() {
+        return model.getVisualRepresentation();
     }
 }
 
