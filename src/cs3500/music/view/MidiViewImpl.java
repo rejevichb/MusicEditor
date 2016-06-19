@@ -104,7 +104,7 @@ public class MidiViewImpl implements IMusicPieceView {
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
-        
+
         try {
             seqR.open();
         } catch (MidiUnavailableException e) {
@@ -115,9 +115,15 @@ public class MidiViewImpl implements IMusicPieceView {
 
         seqR.start();
 
-        if (! seqR.isRunning()) {
+
+        //TODO quit applet when done playing track
+        if (synth.getMicrosecondPosition() >= seqR.getMicrosecondLength()) {
             seqR.stop();
             this.receiver.close(); // Only call this once you're done playing *all* notes
+            this.seqTrans.close();
+            this.synth.close();
+            this.seqR.close();
+            System.exit(69);
         }
     }
 

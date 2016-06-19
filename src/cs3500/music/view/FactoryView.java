@@ -1,8 +1,8 @@
 package cs3500.music.view;
 
 /**
- * Created by brendanrejevich on 6/14/16.
- *
+ * Factory class for creating different implementations of IMusicPieceView based on an input
+ * string.
  */
 public class FactoryView {
 
