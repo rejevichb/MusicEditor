@@ -17,7 +17,6 @@ public class ConcreteGuiViewPanel extends JPanel {
     java.util.List<Note> notes;
     int BOX_OFFSET = 20;
     int MEASURE_OFFSET = BOX_OFFSET * 4;
-    int endScale;
 
     public ConcreteGuiViewPanel() {
         super();
@@ -102,15 +101,20 @@ public class ConcreteGuiViewPanel extends JPanel {
         }
 
         //columns
-        for (int j = 0; j < (model.getTotNumBeats() / 4) + completeMeasure(); j++) {
+        for (int j = 0; j < ((model.getTotNumBeats() / 4) + completeMeasure() - 2); j++) {
             graphics.setColor(Color.BLACK);
             graphics.drawLine(j * MEASURE_OFFSET, 0, (j) * MEASURE_OFFSET, BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
         }
-
-
     }
 
 
+    /**
+     * this method is used as a inverse mod so that the measure always end on a full beat measure
+     * for the gui view.  This is a helper for paintComponent and make sure that every note is in a
+     * beat measure.
+     *
+     * @return int representing the number of beats to complete the measure that the last beat is in
+     */
     private int completeMeasure() {
         int end = this.model.getTotNumBeats() % 4;
         return 4 - end;
