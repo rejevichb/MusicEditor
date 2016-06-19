@@ -26,7 +26,12 @@ Files
     - Enum:      Pitch - can be one of 12 pitch values
 
 
+
+
+
+
 --  --  -- Introduction -- -- -- --
+
 We used an ArrayList to represent a list of notes in the MusicPieceModel. It also has an int that
 represents the total number of beats. When an element is added or removed via the addNote(Note n)
 or removeNote(Note n) methods, then the total number of beats for the model is adjusted when
@@ -40,12 +45,45 @@ instance variable that each of the views has. In this way, the implementation de
 and cannot be modified by the views, instead they are given copies.
 
 
+
+
+
+
 -- -- -- -- Important Specifications/Notes -- -- -- --
+
+
+** USE OF SEQUENCER **
+
+In our MidiView, we chose to to load a Sequence (generated from desired notes) into the Sequencer,
+which transmits to the receiver of the Synthesizer. In the MIDIView, initialize() has a
+primary purpose of playing the notes as audio from the computer speakers. It has a helper method,
+modelToSequencer(), which takes the notes from this model, creates a new Sequence containing one
+track of all notes in the model, and sets the sequence to the Sequencer. The resolution of the
+sequence is initially set to the model tempo, but will be overridden later by calling setTempoInMPQ
+and passing it the microseconds per quarter note.
+
+
+** MusicPieceModel.appendMusic(IMusicModel m) **
+
+We creating and adding a new note p to go into this object's new list from the given
+list, however due to the overridden equals method in Note, if the following call is made
+       >>  musicPieceModel1.appendMusic(musicPieceModel2)   <<
+then the user can still edit and combine notes in the resulting new list of objects now in
+musicPieceModel1 that were previously in musicPieceModel2 by instantiating a new note (either
+manually, or to a call to musicPieceModel1.getNotes().get(someIndex). In our representation,
+after the call to musicPieceModel2, the internal states of the notes from musicPieceModel2
+that are now in musicPieceModel1 have been changed, and therefore it is not acceptable
+to allow the note to be mutated, leaving the notes in musicPieceModel2 unchanged, and instead
+creating new ones that go in musicPieceModel1 - the note class is final.
+
+
 
 
 
 
 -- -- -- --  Final Thoughts / Summary -- -- -- --
+
+
 Abstraction, encapsulation, and coding to the interface were topics that we payed
 much attention to. Our model is open for extension, and closed for modification. We have tested
 thoroughly, and have provided javadoc for the model interface, and additional javadoc for the
