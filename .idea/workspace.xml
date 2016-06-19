@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/cs3500/music/view/FactoryViewTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/MusicEditor.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/MusicEditor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/MusicController.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/MusicController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/model/MusicPieceModel.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/model/MusicPieceModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/ConcreteGuiViewPanel.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/ConcreteGuiViewPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/ConsoleViewFrame.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/ConsoleViewFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/GuiViewFrame.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/GuiViewFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiViewImpl.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiViewImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/MusicEditor.java" afterPath="$PROJECT_DIR$/src/cs3500/music/MusicEditor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/model/MusicPieceModel.java" afterPath="$PROJECT_DIR$/src/cs3500/music/model/MusicPieceModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilderImpl.java" afterPath="$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilderImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/ConsoleViewFrame.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/ConsoleViewFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/IMusicPieceView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/IMusicPieceView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" />
     </list>
     <ignored path="MusicAssignments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -928,7 +912,7 @@
       <workItem from="1466194927438" duration="1065000" />
       <workItem from="1466204913658" duration="3089000" />
       <workItem from="1466217754820" duration="11858000" />
-      <workItem from="1466281614867" duration="13025000" />
+      <workItem from="1466281614867" duration="13764000" />
     </task>
     <task id="LOCAL-00001" summary="made the MIDI playback slightly better - the song is now distinguishable by ear but also has a few noticeable flaws involving pitch and timing">
       <created>1466207084302</created>
@@ -986,7 +970,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466300245181</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added tests for factory views.  Cleaned up, commented, and reformatted other code. Added copy constructor to model to be used in view.setModelToView(IMusicModel m) in order to hide implementation details and not allow for access to the original model's data, in other words, now the model instance variable in each of the view classes is a disposable copy of the original.">
+      <created>1466303538319</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1466303538319</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1010,7 +1001,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32673000" />
+    <option name="totallyTimeSpent" value="33412000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1023,7 +1014,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1439" height="800" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1032,9 +1023,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.50290275" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4081921" sideWeight="0.49745825" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4081921" sideWeight="0.49745825" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2542373" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19774011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19774011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24910523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1072,7 +1063,8 @@
     <MESSAGE value="help" />
     <MESSAGE value="fixed MIDI impl. need to clean up" />
     <MESSAGE value="Cleaned up MIDI primary method." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up MIDI primary method." />
+    <MESSAGE value="Added tests for factory views.  Cleaned up, commented, and reformatted other code. Added copy constructor to model to be used in view.setModelToView(IMusicModel m) in order to hide implementation details and not allow for access to the original model's data, in other words, now the model instance variable in each of the view classes is a disposable copy of the original." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tests for factory views.  Cleaned up, commented, and reformatted other code. Added copy constructor to model to be used in view.setModelToView(IMusicModel m) in order to hide implementation details and not allow for access to the original model's data, in other words, now the model instance variable in each of the view classes is a disposable copy of the original." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
