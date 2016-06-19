@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.sound.midi.*;
-
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
 import cs3500.music.model.Note;
@@ -46,13 +45,11 @@ public class MidiViewImpl implements IMusicPieceView {
         }
     }
 
-
     /**
      * Takes the notes from this model, creates a new Sequence containing one track of all notes
      * in the model, and sets the sequence to the Sequencer. The resolution of the sequence is initially
      * set to the model tempo, but will be overridden later by calling setTempoInMPQ and passing it
      * the microseconds per quarter note.
-     * the Sequence is initially set to
      * @throws InvalidMidiDataException
      */
     public void modelToSequencer() throws InvalidMidiDataException {
