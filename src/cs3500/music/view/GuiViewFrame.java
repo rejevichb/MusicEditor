@@ -24,25 +24,24 @@ public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView 
         super();
         this.displayPanel = new ConcreteGuiViewPanel();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        //this.getContentPane().add(displayPanel);
         this.setTitle("Music Viewer v1.1        Authors: Jameson O'Connor, Brendan Rejevich");
-        BorderLayout bdl = new BorderLayout();
-        //scrollPane.setLayout(new ScrollPaneLayout());
-        this.setLayout(bdl);
 
-
-        JScrollPane scrollPane = new JScrollPane(displayPanel);
+        JScrollPane scrollPane = new JScrollPane(displayPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        //scrollPane.createHorizontalScrollBar();
+        //scrollPane.setViewportView(displayPanel);
+        scrollPane.setSize(getPreferredSize());
         this.add(scrollPane);
-        this.add(displayPanel, bdl.CENTER);
-        scrollPane.createHorizontalScrollBar();
-        //TODO make sure we are initializing in the right place
-        //this.initialize();
+        this.setSize(new Dimension(900, 750));
 
-        this.pack();
+        //this.pack();
     }
 
     @Override
     public void initialize() {
+        //BorderLayout bdl = new BorderLayout();
+        //this.setLayout(bdl);
+
         this.setVisible(true);
     }
 
@@ -61,9 +60,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView 
 
     @Override
     public void paint(Graphics g) {
-
         this.displayPanel.paintComponent(g);
-
     }
 }
 
