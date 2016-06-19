@@ -17,11 +17,14 @@ public class ConcreteGuiViewPanel extends JPanel {
     java.util.List<Note> notes;
     int BOX_OFFSET = 20;
     int MEASURE_OFFSET = BOX_OFFSET * 4;
+    int endScale;
 
     public ConcreteGuiViewPanel() {
         super();
 
+
     }
+
 
     @Override
     public void paintComponent(Graphics g) {
@@ -31,7 +34,7 @@ public class ConcreteGuiViewPanel extends JPanel {
 
         Collections.sort(this.notes);
 
-        int absolutePitchLo = 110;  // lowest pitch in lowest octave.
+        int absolutePitchLo = 127;  // lowest pitch in lowest octave.
         int absolutePitchHi = 0;   // highest pitch in highest octave.
 
         for (Note n : notes) {
