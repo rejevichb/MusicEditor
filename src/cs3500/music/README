@@ -6,11 +6,11 @@ Object Oriented Design
 cs3500.music
 
 Files
-    - Interface: IMusicModel - interface providing operations that all music models should implement
+  - Interface:   IMusicModel - interface providing operations that all music models should implement
     -            CompositionBuilder - specifies methods for building a composition.
     -            IMusicPieceView - specifies common operations that every view must support.
 
-    - Class:     MusicPieceModel - standard generic implementation of IMusicModel.
+  - Class:       MusicPieceModel - standard generic implementation of IMusicModel.
     -            Note - final class to represent a note.
     -            CompositionBuilderImpl - implements the composition builder specified by
                                           IMusicModel and MusicPieceModel.
@@ -23,7 +23,8 @@ Files
     -            GuiViewFrame - contains a ConcreteGuiViewPanel and initializes it and calls its
                                 overridden paintComponent(Graphics g) method. This class extends
                                 JFrame
-    - Enum:      Pitch - can be one of 12 pitch values
+
+  - Enum:        Pitch - can be one of 12 pitch values
 
 
 
