@@ -24,17 +24,12 @@ public class MusicEditor {
 
         IMusicModel model = MusicReader.parseFile(f, builder);
 
-
-
         MusicController controller = new MusicController(model, view);
-
-
 
         controller.notesToView();
 
         view.initialize();
         //view.getPreferredSize();
         //view.setSize(400, 400);
-        // You probably need to connect these views to your model, too...
     }
 }

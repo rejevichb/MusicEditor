@@ -3,19 +3,7 @@ package cs3500.music.view;
 import java.util.Collections;
 import java.util.List;
 
-import javax.sound.midi.InvalidMidiDataException;
-import javax.sound.midi.MidiChannel;
-import javax.sound.midi.MidiEvent;
-import javax.sound.midi.MidiMessage;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.MidiUnavailableException;
-import javax.sound.midi.Receiver;
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Sequencer;
-import javax.sound.midi.ShortMessage;
-import javax.sound.midi.Synthesizer;
-import javax.sound.midi.Track;
-import javax.sound.midi.Transmitter;
+import javax.sound.midi.*;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
@@ -57,25 +45,30 @@ public class MidiViewImpl implements IMusicPieceView {
         }
     }
 
-    /*
-    To play music, a device generally receives MidiMessages through a Receiver,
-    which in turn has usually received them from a Transmitter that belongs to a Sequencer.
-    The device that owns this Receiver is a Synthesizer, which will generate audio directly.
-     */
 
-    public void modelToSequence() throws InvalidMidiDataException {
+    /**
+     * Takes the notes from this model, creates a new Sequence containing one track of all notes
+     * in the model, and sets the sequence to the Sequencer. The resolution of the sequence is initially
+     * set to the model tempo, but will be overridden later by calling setTempoInMPQ and passing it
+     * the microseconds per quarter note.
+     * the Sequence is initially set to
+     * @throws InvalidMidiDataException
+     */
+    public void modelToSequencer() throws InvalidMidiDataException {
         Sequence ret = null;
         try {
             ret = new Sequence(Sequence.PPQ, model.getTempo());
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
+
         ret.createTrack();
         Track track = ret.getTracks()[0];
-        long currentTickPos;
+
 
         Collections.sort(this.notes, Collections.reverseOrder());
 
+        //populates Sequence's track with delta-time stamped MIDI messages
         for (Note n : this.notes) {
             MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(), n.getAbsPitch(), n.getVolume());
             MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(), n.getAbsPitch(), n.getVolume());
@@ -85,81 +78,27 @@ public class MidiViewImpl implements IMusicPieceView {
             track.add(stop);
         }
 
-
+        //set the generated Sequence to the Sequencer
         try {
-            seqR.setSequence(ret);
+            this.seqR.setSequence(ret);
         }
         catch (InvalidMidiDataException e){
             e.printStackTrace();
         }
-
     }
 
     /*
-
     getMicrosecondLength()
-
-
-    long timeStamp = synth.getMicrosecondPosition();
-        long tick = seq.getTickPosition();
-        event = new MidiEvent(myMsg, tick);
-
-
     getMicrosecondsPosition()
-
     ticksPerSecond = resolution * (currentTempoInBeatsPerMinute / 60.0);
     tickSize = 1.0 / ticksPerSecond;
      */
 
 
-
-//    /**
-//     * Relevant classes and methods from the javax.sound.midi library: <ul> <li>{@link
-//     * MidiSystem#getSynthesizer()}</li> <li>{@link Synthesizer} <ul> <li>{@link
-//     * Synthesizer#open()}</li> <li>{@link Synthesizer#getReceiver()}</li> <li>{@link
-//     * Synthesizer#getChannels()}</li> </ul> </li> <li>{@link Receiver} <ul> <li>{@link
-//     * Receiver#send(MidiMessage, long)}</li> <li>{@link Receiver#close()}</li> </ul> </li>
-//     * <li>{@link MidiMessage}</li> <li>{@link ShortMessage}</li> <li>{@link MidiChannel} <ul>
-//     * <li>{@link MidiChannel#getProgram()}</li> <li>{@link MidiChannel#programChange(int)}</li>
-//     * </ul> </li> </ul>
-//     *
-//     * @see <a href="https://en.wikipedia.org/wiki/General_MIDI"> https://en.wikipedia.org/wiki/General_MIDI
-//     * </a>
-//     */
-//    //FIXME USE SEQUENCER instead of Thread.sleep for the timing.
-//    //TODO also look at ShortMessage (start and stop) parameter value calculations from model
-//    public void playNote() throws InvalidMidiDataException {
-//
-//        Collections.sort(this.notes, Collections.reverseOrder());
-//
-//        if (synth.getMicrosecondPosition() == -1 ) {
-//            throw new RuntimeException("MIDI device does not support timing");
-//        }
-//
-//        for (Note n : this.notes) {
-//            MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(),
-//                    n.getAbsPitch(), n.getVolume());
-//            MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(),
-//                    n.getAbsPitch(), n.getVolume());
-//            this.receiver.send(start, synth.getMicrosecondPosition() + (n.getStartBeat()  * model.getTempo()));
-//
-//            try {
-//                Thread.sleep(700);
-//            } catch (InterruptedException e) {
-//                //Cannot run the sleep if this is thrown and therefore no sound will be heard.
-//            }
-//
-//            // need to implement swing timer
-//            // look at tutorial and make sure it works
-//            this.receiver.send(stop, synth.getMicrosecondPosition() + ((n.getStartBeat() + n.getDuration()) * model.getTempo()));
-//        }
-//    }
-
-
     public void initialize() {
 
         try {
-            modelToSequence();
+            modelToSequencer();
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
@@ -177,23 +116,10 @@ public class MidiViewImpl implements IMusicPieceView {
 
         seqR.start();
 
-
-
-
-
-//        try {
-//            this.playNote();
-//        } catch (InvalidMidiDataException e) {
-//            //play note exception caught
-//        }
-
-
-
-
-
-
-        //this.receiver.close(); // Only call this once you're done playing *all* notes
-
+        if (! seqR.isRunning()) {
+            seqR.stop();
+            this.receiver.close(); // Only call this once you're done playing *all* notes
+        }
     }
 
     public void setModelToView(IMusicModel model) {

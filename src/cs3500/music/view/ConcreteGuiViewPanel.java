@@ -80,17 +80,14 @@ public class ConcreteGuiViewPanel extends JPanel {
         //draw all the notes on this layout
         for (int beat = 0; beat < model.getTotNumBeats() + 1; beat++) {
             for (int absPitch = absolutePitchHi; absPitch >= absolutePitchLo; absPitch--) {
-
                 for (Note n : notes) {
                     if (n.getStartBeat() < beat
                             && (n.getStartBeat() + n.getDuration()) >= beat
                             && n.getAbsPitch() == absPitch) {
                         graphics.setColor(Color.green);
-                        //graphics.clearRect(beat * BOX_OFFSET, (absPitch - absolutePitchLo) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
                         graphics.fillRect(beat * BOX_OFFSET, (Math.abs(absPitch - absolutePitchHi)) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
                     } else if (n.getStartBeat() == beat && n.getAbsPitch() == absPitch) {
                         graphics.setColor(Color.BLACK);
-                        //graphics.clearRect(beat * BOX_OFFSET, (absPitch - absolutePitchLo) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
                         graphics.fillRect(beat * BOX_OFFSET, (Math.abs(absPitch - absolutePitchHi)) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
                     }
                 }

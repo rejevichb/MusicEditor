@@ -59,7 +59,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView 
 
     @Override
     public void paint(Graphics g) {
-
         this.displayPanel.paintComponent(g);
 
     }
