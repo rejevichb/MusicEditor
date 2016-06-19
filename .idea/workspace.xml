@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="finished CompositionBuilder implementation tests, and created a new MidiView test file.">
+    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="Cleaned up GuiViewFrame, still need to implement scroll bars.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/GuiViewFrame.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/GuiViewFrame.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
     </list>
     <ignored path="MusicAssignments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,7 +95,7 @@
     <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1439" />
-    <option name="height" value="803" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -873,7 +873,7 @@
       <workItem from="1466204913658" duration="3089000" />
       <workItem from="1466217754820" duration="11858000" />
       <workItem from="1466281614867" duration="13764000" />
-      <workItem from="1466304105895" duration="6386000" />
+      <workItem from="1466304105895" duration="7018000" />
     </task>
     <task id="LOCAL-00001" summary="made the MIDI playback slightly better - the song is now distinguishable by ear but also has a few noticeable flaws involving pitch and timing">
       <created>1466207084302</created>
@@ -952,7 +952,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466312425453</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Cleaned up GuiViewFrame, still need to implement scroll bars.">
+      <created>1466338040683</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1466338040683</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -988,7 +995,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39798000" />
+    <option name="totallyTimeSpent" value="40430000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1000,7 +1007,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="23" width="1439" height="803" extended-state="0" />
+    <frame x="1" y="23" width="1439" height="800" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1010,7 +1017,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.50290275" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45007032" sideWeight="0.49745825" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4519774" sideWeight="0.49745825" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25316456" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1954993" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1053,7 +1060,8 @@
     <MESSAGE value="Added tests for factory views.  Cleaned up, commented, and reformatted other code. Added copy constructor to model to be used in view.setModelToView(IMusicModel m) in order to hide implementation details and not allow for access to the original model's data, in other words, now the model instance variable in each of the view classes is a disposable copy of the original." />
     <MESSAGE value="finished factory view tests" />
     <MESSAGE value="finished CompositionBuilder implementation tests, and created a new MidiView test file." />
-    <option name="LAST_COMMIT_MESSAGE" value="finished CompositionBuilder implementation tests, and created a new MidiView test file." />
+    <MESSAGE value="Cleaned up GuiViewFrame, still need to implement scroll bars." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up GuiViewFrame, still need to implement scroll bars." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
