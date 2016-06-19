@@ -63,31 +63,48 @@ public class MidiViewImpl implements IMusicPieceView {
     The device that owns this Receiver is a Synthesizer, which will generate audio directly.
      */
 
-    public Sequence modelToSequence() throws InvalidMidiDataException {
+    public void modelToSequence() throws InvalidMidiDataException {
         Sequence ret = null;
         try {
-            ret = new Sequence(Sequence.PPQ, 50);
+            ret = new Sequence(Sequence.PPQ, model.getTempo());
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
         ret.createTrack();
         Track track = ret.getTracks()[0];
-        long offset = seqR.getMicrosecondPosition();
+        long currentTickPos;
+
+        Collections.sort(this.notes, Collections.reverseOrder());
 
         for (Note n : this.notes) {
             MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(), n.getAbsPitch(), n.getVolume());
             MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(), n.getAbsPitch(), n.getVolume());
-            MidiEvent start = new MidiEvent(noteOn,  (n.getStartBeat()));  //FIXME calculate timeStamp
-            MidiEvent stop = new MidiEvent(noteOff,  ((n.getStartBeat() + n.getDuration())));  //FIXME calculate timeStamp
+            MidiEvent start = new MidiEvent(noteOn,   (n.getStartBeat()) * (ret.getResolution()));
+            MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration()) * ret.getResolution()));
             track.add(start);
             track.add(stop);
-//            this.receiver.send(start, synth.getMicrosecondPosition() + (n.getStartBeat()  * model.getTempo()));
-//            this.receiver.send(stop, synth.getMicrosecondPosition() + ((n.getStartBeat() + n.getDuration())  * model.getTempo()));
         }
-        return ret;
+
+
+        try {
+            seqR.setSequence(ret);
+        }
+        catch (InvalidMidiDataException e){
+            e.printStackTrace();
+        }
+
     }
 
     /*
+
+    getMicrosecondLength()
+
+
+    long timeStamp = synth.getMicrosecondPosition();
+        long tick = seq.getTickPosition();
+        event = new MidiEvent(myMsg, tick);
+
+
     getMicrosecondsPosition()
 
     ticksPerSecond = resolution * (currentTempoInBeatsPerMinute / 60.0);
@@ -96,59 +113,59 @@ public class MidiViewImpl implements IMusicPieceView {
 
 
 
-    /**
-     * Relevant classes and methods from the javax.sound.midi library: <ul> <li>{@link
-     * MidiSystem#getSynthesizer()}</li> <li>{@link Synthesizer} <ul> <li>{@link
-     * Synthesizer#open()}</li> <li>{@link Synthesizer#getReceiver()}</li> <li>{@link
-     * Synthesizer#getChannels()}</li> </ul> </li> <li>{@link Receiver} <ul> <li>{@link
-     * Receiver#send(MidiMessage, long)}</li> <li>{@link Receiver#close()}</li> </ul> </li>
-     * <li>{@link MidiMessage}</li> <li>{@link ShortMessage}</li> <li>{@link MidiChannel} <ul>
-     * <li>{@link MidiChannel#getProgram()}</li> <li>{@link MidiChannel#programChange(int)}</li>
-     * </ul> </li> </ul>
-     *
-     * @see <a href="https://en.wikipedia.org/wiki/General_MIDI"> https://en.wikipedia.org/wiki/General_MIDI
-     * </a>
-     */
-    //FIXME USE SEQUENCER instead of Thread.sleep for the timing.
-    //TODO also look at ShortMessage (start and stop) parameter value calculations from model
-    public void playNote() throws InvalidMidiDataException {
-
-        Collections.sort(this.notes, Collections.reverseOrder());
-
-        if (synth.getMicrosecondPosition() == -1 ) {
-            throw new RuntimeException("MIDI device does not support timing");
-        }
-
-        for (Note n : this.notes) {
-            MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(),
-                    n.getAbsPitch(), n.getVolume());
-            MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(),
-                    n.getAbsPitch(), n.getVolume());
-            this.receiver.send(start, synth.getMicrosecondPosition() + (n.getStartBeat()  * model.getTempo()));
-
-            try {
-                Thread.sleep(700);
-            } catch (InterruptedException e) {
-                //Cannot run the sleep if this is thrown and therefore no sound will be heard.
-            }
-
-            // need to implement swing timer
-            // look at tutorial and make sure it works
-            this.receiver.send(stop, synth.getMicrosecondPosition() + ((n.getStartBeat() + n.getDuration()) * model.getTempo()));
-        }
-    }
+//    /**
+//     * Relevant classes and methods from the javax.sound.midi library: <ul> <li>{@link
+//     * MidiSystem#getSynthesizer()}</li> <li>{@link Synthesizer} <ul> <li>{@link
+//     * Synthesizer#open()}</li> <li>{@link Synthesizer#getReceiver()}</li> <li>{@link
+//     * Synthesizer#getChannels()}</li> </ul> </li> <li>{@link Receiver} <ul> <li>{@link
+//     * Receiver#send(MidiMessage, long)}</li> <li>{@link Receiver#close()}</li> </ul> </li>
+//     * <li>{@link MidiMessage}</li> <li>{@link ShortMessage}</li> <li>{@link MidiChannel} <ul>
+//     * <li>{@link MidiChannel#getProgram()}</li> <li>{@link MidiChannel#programChange(int)}</li>
+//     * </ul> </li> </ul>
+//     *
+//     * @see <a href="https://en.wikipedia.org/wiki/General_MIDI"> https://en.wikipedia.org/wiki/General_MIDI
+//     * </a>
+//     */
+//    //FIXME USE SEQUENCER instead of Thread.sleep for the timing.
+//    //TODO also look at ShortMessage (start and stop) parameter value calculations from model
+//    public void playNote() throws InvalidMidiDataException {
+//
+//        Collections.sort(this.notes, Collections.reverseOrder());
+//
+//        if (synth.getMicrosecondPosition() == -1 ) {
+//            throw new RuntimeException("MIDI device does not support timing");
+//        }
+//
+//        for (Note n : this.notes) {
+//            MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(),
+//                    n.getAbsPitch(), n.getVolume());
+//            MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(),
+//                    n.getAbsPitch(), n.getVolume());
+//            this.receiver.send(start, synth.getMicrosecondPosition() + (n.getStartBeat()  * model.getTempo()));
+//
+//            try {
+//                Thread.sleep(700);
+//            } catch (InterruptedException e) {
+//                //Cannot run the sleep if this is thrown and therefore no sound will be heard.
+//            }
+//
+//            // need to implement swing timer
+//            // look at tutorial and make sure it works
+//            this.receiver.send(stop, synth.getMicrosecondPosition() + ((n.getStartBeat() + n.getDuration()) * model.getTempo()));
+//        }
+//    }
 
 
     public void initialize() {
+
         try {
-            seqR.setSequence(modelToSequence());
-            //seqR.setMasterSyncMode();
-        }
-        catch (InvalidMidiDataException e){
+            modelToSequence();
+        } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
 
-        System.out.print(seqR.getTickLength());
+        System.out.println(seqR.getTickLength());
+        System.out.println(seqR.getMicrosecondLength());
 
         try {
             seqR.open();
@@ -156,8 +173,10 @@ public class MidiViewImpl implements IMusicPieceView {
             e.printStackTrace();
         }
 
+        seqR.setTempoInMPQ(model.getTempo());
+
         seqR.start();
-        //seqR.stop();
+
 
 
 
@@ -173,7 +192,8 @@ public class MidiViewImpl implements IMusicPieceView {
 
 
 
-        this.receiver.close(); // Only call this once you're done playing *all* notes
+        //this.receiver.close(); // Only call this once you're done playing *all* notes
+
     }
 
     public void setModelToView(IMusicModel model) {

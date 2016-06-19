@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="added instance variables for sequencer and transmitter, so that MIDI can be sequenced properly and then sent to the">
+    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/model/MusicPieceModel.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/model/MusicPieceModel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiViewImpl.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiViewImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/model/MusicPieceModel.java" afterPath="$PROJECT_DIR$/src/cs3500/music/model/MusicPieceModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" />
     </list>
     <ignored path="MusicAssignments.iws" />
@@ -81,8 +81,8 @@
       <file leaf-file-name="MidiViewImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="144" column="14" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="14" />
+            <state relative-caret-position="380">
+              <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -844,7 +844,7 @@
       <workItem from="1466194927438" duration="1065000" />
       <workItem from="1466204913658" duration="3089000" />
       <workItem from="1466217754820" duration="11858000" />
-      <workItem from="1466281614867" duration="4088000" />
+      <workItem from="1466281614867" duration="7694000" />
     </task>
     <task id="LOCAL-00001" summary="made the MIDI playback slightly better - the song is now distinguishable by ear but also has a few noticeable flaws involving pitch and timing">
       <created>1466207084302</created>
@@ -881,7 +881,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466223970701</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="help">
+      <created>1466287156051</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1466287156051</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -905,7 +912,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23736000" />
+    <option name="totallyTimeSpent" value="27342000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -918,7 +925,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1439" height="800" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -927,8 +934,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.50290275" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3056338" sideWeight="0.49745825" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3940678" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30508474" sideWeight="0.49745825" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2542373" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19859155" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -964,7 +971,8 @@
     <MESSAGE value="Fixed pitch labels . pitch labels now function 100% correctly." />
     <MESSAGE value="fixed drawing square images for beats at the proper pitch (reversed order of loop drawing)&#10;- added FIXME and began working on finishing the row and column rendering for the last MEASURE of the last beat." />
     <MESSAGE value="Finalized and perfected the drawing of GUI viewer by reversing both pitch labels and inverted the y coordinated of corresponding beat boxes (green and black). Also refined the loops drawing column and row grid lines to draw to the end of the last measure that the last beat was in. This was accomplished by implementing&#10;--   private int completeMeasure() that returned how many more beats are needed to make the number of beats cleanly divisible by 4, in other words, making the x2 coordinate (endpoint x coordinate) always is a multiple of four, ensuring that the piece does not cut off mid measure." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalized and perfected the drawing of GUI viewer by reversing both pitch labels and inverted the y coordinated of corresponding beat boxes (green and black). Also refined the loops drawing column and row grid lines to draw to the end of the last measure that the last beat was in. This was accomplished by implementing&#10;--   private int completeMeasure() that returned how many more beats are needed to make the number of beats cleanly divisible by 4, in other words, making the x2 coordinate (endpoint x coordinate) always is a multiple of four, ensuring that the piece does not cut off mid measure." />
+    <MESSAGE value="help" />
+    <option name="LAST_COMMIT_MESSAGE" value="help" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1272,8 +1280,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="144" column="14" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="14" />
+        <state relative-caret-position="380">
+          <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
           <folding />
         </state>
       </provider>
