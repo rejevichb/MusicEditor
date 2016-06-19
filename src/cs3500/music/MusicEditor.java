@@ -17,11 +17,12 @@ import cs3500.music.view.IMusicPieceView;
 
 public class MusicEditor {
     public static void main(String[] args) throws IOException, InvalidMidiDataException {
-        IMusicPieceView view = FactoryView.create(args[0]); //I changed this for user input
+
         CompositionBuilder builder = new CompositionBuilderImpl();
         Readable f = new FileReader(new File(args[1]));
 
         IMusicModel model = MusicReader.parseFile(f, builder);
+        IMusicPieceView view = FactoryView.create(args[0]); //I changed this for user input
 
         MusicController controller = new MusicController(model, view);
 

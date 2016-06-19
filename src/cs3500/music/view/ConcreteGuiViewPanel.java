@@ -18,12 +18,16 @@ public class ConcreteGuiViewPanel extends JPanel {
     int BOX_OFFSET = 20;
     int MEASURE_OFFSET = BOX_OFFSET * 4;
 
+    public ConcreteGuiViewPanel() {
+        super();
+
+    }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
         Graphics2D graphics = (Graphics2D) g;
-        this.notes = model.getNotes();
+
 
         Collections.sort(this.notes);
 
@@ -99,6 +103,8 @@ public class ConcreteGuiViewPanel extends JPanel {
             graphics.setColor(Color.BLACK);
             graphics.drawLine(j * MEASURE_OFFSET, 0, (j) * MEASURE_OFFSET, BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
         }
+
+
     }
 
 
