@@ -19,10 +19,10 @@ public class MusicEditor {
     public static void main(String[] args) throws IOException, InvalidMidiDataException {
 
         CompositionBuilder builder = new CompositionBuilderImpl();
-        Readable f = new FileReader(new File(args[1]));
+        Readable f = new FileReader(new File(args[0]));
 
         IMusicModel model = MusicReader.parseFile(f, builder);
-        IMusicPieceView view = FactoryView.create(args[0]); //I changed this for user input
+        IMusicPieceView view = FactoryView.create(args[1]); //I changed this for user input
 
         MusicController controller = new MusicController(model, view);
 

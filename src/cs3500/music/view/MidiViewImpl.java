@@ -16,7 +16,7 @@ public class MidiViewImpl implements IMusicPieceView {
     private IMusicModel model;
     private List<Note> notes;
 
-    private Sequencer seqR;
+    protected Sequencer seqR;
     private Transmitter seqTrans;
     private final Synthesizer synth;
     private final Receiver receiver;
@@ -85,12 +85,6 @@ public class MidiViewImpl implements IMusicPieceView {
         }
     }
 
-    /*
-    getMicrosecondLength()
-    getMicrosecondsPosition()
-    ticksPerSecond = resolution * (currentTempoInBeatsPerMinute / 60.0);
-    tickSize = 1.0 / ticksPerSecond;
-     */
 
 
     /**
@@ -116,7 +110,6 @@ public class MidiViewImpl implements IMusicPieceView {
         seqR.start();
 
 
-        //TODO quit applet when done playing track
         if (synth.getMicrosecondPosition() >= seqR.getMicrosecondLength()) {
             seqR.stop();
             this.receiver.close(); // Only call this once you're done playing *all* notes
