@@ -24,4 +24,5 @@ public interface IMusicPieceView {
      */
     void setModelToView(IMusicModel model);
 
+
 }

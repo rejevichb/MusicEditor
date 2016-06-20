@@ -20,7 +20,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     private ConcreteGuiViewPanel displayPanel;
     public IMusicModel model;
-    private long time;
+
 
     /**
      * Creates new GuiView
@@ -31,7 +31,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.setTitle("Music Viewer v1.6        Authors: Jameson O'Connor, Brendan Rejevich");
         this.setSize(new Dimension(400, 400));
         if (flag) {
-            this.displayPanel = new ComboConcreteGuiViewPanel(this.getTime()); //Extends ConcreteGuiViewPanel
+            this.displayPanel = new ComboConcreteGuiViewPanel(); //Extends ConcreteGuiViewPanel
         } else {
             this.displayPanel = new ConcreteGuiViewPanel();
         }
@@ -95,10 +95,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         // this should be just handled in the controller
     }
 
-
-    public long getTime() {
-        return time;
-    }
 
 
 }

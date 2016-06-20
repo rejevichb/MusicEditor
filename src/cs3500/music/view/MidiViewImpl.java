@@ -130,4 +130,8 @@ public class MidiViewImpl implements IMusicPieceView {
         this.notes = defence.getNotes();
     }
 
+    public long getMicrosecondsPosition() {
+        return this.getMicrosecondsPosition();
+    }
+
 }

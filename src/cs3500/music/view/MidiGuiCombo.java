@@ -23,12 +23,7 @@ public class MidiGuiCombo implements IGuiView {
 
     @Override
     public void initialize() {
-//        long pos = this.getMicrosecondsPosition();
-//        this.gui.getTime() = pos;
-
-
-
-
+        //long pos = midi.getMicrosecondsPosition();
     }
 
     @Override

@@ -7,12 +7,6 @@ import java.awt.*;
  */
 public class ComboConcreteGuiViewPanel extends ConcreteGuiViewPanel {
 
-    long time;
-
-    public ComboConcreteGuiViewPanel(long time) {
-        this.time = time;
-    }
-
 
     @Override
     public void paintComponent(Graphics g) {
