@@ -22,6 +22,7 @@ public class MidiGuiCombo implements IGuiView {
     @Override
     public void initialize() {
 
+
     }
 
     @Override
