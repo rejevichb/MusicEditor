@@ -47,7 +47,8 @@ public class MidiViewImpl implements IMusicPieceView {
 
     /**
      * Takes the notes from this model, creates a new Sequence containing one track of all notes
-     * in the model, and sets the sequence to the Sequencer. The resolution of the sequence is initially
+     * in the model, and sets the sequence to the Sequencer. The resolution of the sequence is
+     * initially
      * set to the model tempo, but will be overridden later by calling setTempoInMPQ and passing it
      * the microseconds per quarter note.
      * @throws InvalidMidiDataException
@@ -68,10 +69,13 @@ public class MidiViewImpl implements IMusicPieceView {
 
         //populates Sequence's track with delta-time stamped MIDI messages
         for (Note n : this.notes) {
-            MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(), n.getAbsPitch(), n.getVolume());
-            MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(), n.getAbsPitch(), n.getVolume());
+            MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(),
+                    n.getAbsPitch(), n.getVolume());
+            MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(),
+                    n.getAbsPitch(), n.getVolume());
             MidiEvent start = new MidiEvent(noteOn,   (n.getStartBeat()) * (ret.getResolution()));
-            MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration()) * ret.getResolution()));
+            MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration())
+                    * ret.getResolution()));
             track.add(start);
             track.add(stop);
         }
@@ -112,7 +116,7 @@ public class MidiViewImpl implements IMusicPieceView {
 
         if (synth.getMicrosecondPosition() >= seqR.getMicrosecondLength()) {
             seqR.stop();
-            this.receiver.close(); // Only call this once you're done playing *all* notes
+            this.receiver.close();
             this.seqTrans.close();
             this.synth.close();
             this.seqR.close();

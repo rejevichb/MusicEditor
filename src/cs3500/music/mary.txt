@@ -1,0 +1,475 @@
+Message #1
+TimeStamp: 0
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 72
+
+Message #2
+TimeStamp: 0
+Command: 144
+Instrument: 1
+Pitch: 55
+Vol: 70
+
+Message #3
+TimeStamp: 400000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 72
+
+Message #4
+TimeStamp: 400000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 72
+
+Message #5
+TimeStamp: 800000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 72
+
+Message #6
+TimeStamp: 800000
+Command: 144
+Instrument: 1
+Pitch: 60
+Vol: 71
+
+Message #7
+TimeStamp: 1200000
+Command: 128
+Instrument: 1
+Pitch: 60
+Vol: 71
+
+Message #8
+TimeStamp: 1200000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 79
+
+Message #9
+TimeStamp: 1400000
+Command: 128
+Instrument: 1
+Pitch: 55
+Vol: 70
+
+Message #10
+TimeStamp: 1600000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 79
+
+Message #11
+TimeStamp: 1600000
+Command: 144
+Instrument: 1
+Pitch: 55
+Vol: 79
+
+Message #12
+TimeStamp: 1600000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 85
+
+Message #13
+TimeStamp: 2000000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 85
+
+Message #14
+TimeStamp: 2000000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 78
+
+Message #15
+TimeStamp: 2400000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 78
+
+Message #16
+TimeStamp: 2400000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 74
+
+Message #17
+TimeStamp: 3000000
+Command: 128
+Instrument: 1
+Pitch: 55
+Vol: 79
+
+Message #18
+TimeStamp: 3000000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 74
+
+Message #19
+TimeStamp: 3200000
+Command: 144
+Instrument: 1
+Pitch: 55
+Vol: 77
+
+Message #20
+TimeStamp: 3200000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 75
+
+Message #21
+TimeStamp: 3600000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 75
+
+Message #22
+TimeStamp: 3600000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 77
+
+Message #23
+TimeStamp: 4000000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 77
+
+Message #24
+TimeStamp: 4000000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 75
+
+Message #25
+TimeStamp: 4800000
+Command: 128
+Instrument: 1
+Pitch: 55
+Vol: 77
+
+Message #26
+TimeStamp: 4800000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 75
+
+Message #27
+TimeStamp: 4800000
+Command: 144
+Instrument: 1
+Pitch: 55
+Vol: 79
+
+Message #28
+TimeStamp: 4800000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 82
+
+Message #29
+TimeStamp: 5200000
+Command: 128
+Instrument: 1
+Pitch: 55
+Vol: 79
+
+Message #30
+TimeStamp: 5200000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 82
+
+Message #31
+TimeStamp: 5200000
+Command: 144
+Instrument: 1
+Pitch: 67
+Vol: 84
+
+Message #32
+TimeStamp: 5600000
+Command: 128
+Instrument: 1
+Pitch: 67
+Vol: 84
+
+Message #33
+TimeStamp: 5600000
+Command: 144
+Instrument: 1
+Pitch: 67
+Vol: 75
+
+Message #34
+TimeStamp: 6400000
+Command: 128
+Instrument: 1
+Pitch: 67
+Vol: 75
+
+Message #35
+TimeStamp: 6400000
+Command: 144
+Instrument: 1
+Pitch: 55
+Vol: 78
+
+Message #36
+TimeStamp: 6400000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 73
+
+Message #37
+TimeStamp: 6800000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 73
+
+Message #38
+TimeStamp: 6800000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 69
+
+Message #39
+TimeStamp: 7200000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 69
+
+Message #40
+TimeStamp: 7200000
+Command: 144
+Instrument: 1
+Pitch: 60
+Vol: 71
+
+Message #41
+TimeStamp: 7600000
+Command: 128
+Instrument: 1
+Pitch: 60
+Vol: 71
+
+Message #42
+TimeStamp: 7600000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 80
+
+Message #43
+TimeStamp: 8000000
+Command: 128
+Instrument: 1
+Pitch: 55
+Vol: 78
+
+Message #44
+TimeStamp: 8000000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 80
+
+Message #45
+TimeStamp: 8000000
+Command: 144
+Instrument: 1
+Pitch: 55
+Vol: 79
+
+Message #46
+TimeStamp: 8000000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 84
+
+Message #47
+TimeStamp: 8400000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 84
+
+Message #48
+TimeStamp: 8400000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 76
+
+Message #49
+TimeStamp: 8800000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 76
+
+Message #50
+TimeStamp: 8800000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 74
+
+Message #51
+TimeStamp: 9200000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 74
+
+Message #52
+TimeStamp: 9200000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 77
+
+Message #53
+TimeStamp: 9600000
+Command: 128
+Instrument: 1
+Pitch: 55
+Vol: 79
+
+Message #54
+TimeStamp: 9600000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 77
+
+Message #55
+TimeStamp: 9600000
+Command: 144
+Instrument: 1
+Pitch: 55
+Vol: 78
+
+Message #56
+TimeStamp: 9600000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 75
+
+Message #57
+TimeStamp: 10000000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 75
+
+Message #58
+TimeStamp: 10000000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 74
+
+Message #59
+TimeStamp: 10400000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 74
+
+Message #60
+TimeStamp: 10400000
+Command: 144
+Instrument: 1
+Pitch: 64
+Vol: 81
+
+Message #61
+TimeStamp: 10800000
+Command: 128
+Instrument: 1
+Pitch: 64
+Vol: 81
+
+Message #62
+TimeStamp: 10800000
+Command: 144
+Instrument: 1
+Pitch: 62
+Vol: 70
+
+Message #63
+TimeStamp: 11200000
+Command: 128
+Instrument: 1
+Pitch: 55
+Vol: 78
+
+Message #64
+TimeStamp: 11200000
+Command: 128
+Instrument: 1
+Pitch: 62
+Vol: 70
+
+Message #65
+TimeStamp: 11200000
+Command: 144
+Instrument: 1
+Pitch: 52
+Vol: 72
+
+Message #66
+TimeStamp: 11200000
+Command: 144
+Instrument: 1
+Pitch: 60
+Vol: 73
+
+Message #67
+TimeStamp: 12800000
+Command: 128
+Instrument: 1
+Pitch: 52
+Vol: 72
+
+Message #68
+TimeStamp: 12800000
+Command: 128
+Instrument: 1
+Pitch: 60
+Vol: 73

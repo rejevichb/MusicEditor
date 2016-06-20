@@ -16,7 +16,7 @@ import cs3500.music.model.Note;
 public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView {
 
 
-    private ConcreteGuiViewPanel displayPanel;   // You may want to refine this to a subtype of JPanel
+    private ConcreteGuiViewPanel displayPanel;
     IMusicModel model;
 
     /**
@@ -25,7 +25,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView 
     public GuiViewFrame() {
         super();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setTitle("Music Viewer v1.1        Authors: Jameson O'Connor, Brendan Rejevich");
+        this.setTitle("Music Viewer v1.6        Authors: Jameson O'Connor, Brendan Rejevich");
         this.setSize(new Dimension(400, 400));
         this.displayPanel = new ConcreteGuiViewPanel();
 

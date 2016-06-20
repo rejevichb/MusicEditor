@@ -2,6 +2,9 @@ package cs3500.music.view;
 
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 
 import javax.sound.midi.MidiDevice;
@@ -15,10 +18,12 @@ import javax.sound.midi.Synthesizer;
 import javax.sound.midi.Track;
 import javax.sound.midi.Transmitter;
 
+import cs3500.music.controller.MusicController;
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
 import cs3500.music.util.CompositionBuilder;
 import cs3500.music.util.CompositionBuilderImpl;
+import cs3500.music.util.MusicReader;
 
 import static org.junit.Assert.*;
 
@@ -202,6 +207,26 @@ public class MidiViewImplTest {
                 "Pitch: 69\n" +
                 "Vol: 64\n" +
                 "\n", log.toString());
+    }
+
+
+    @Test
+    public void maryTest() {
+        CompositionBuilder builder = new CompositionBuilderImpl();
+        Readable f = null;
+        try {
+            f = new FileReader(new File("/Users/brendanrejevich/Desktop/hw/mary-little-lamb.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        IMusicModel model = MusicReader.parseFile(f, builder);
+        MockMidiView view = new MockMidiView(); //I changed this for user input
+
+        MusicController controller = new MusicController(model, view);
+
+        controller.modelToView();
+        System.out.println(view.logModelToSequence());
     }
 
 }

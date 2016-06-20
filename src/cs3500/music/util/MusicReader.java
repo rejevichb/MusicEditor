@@ -32,7 +32,8 @@ public class MusicReader {
                     try {
                         piece.setTempo(scanner.nextInt());
                     } catch (NoSuchElementException e) {
-                        throw new IllegalArgumentException("Malformed tempo line: " + scanner.nextLine());
+                        throw new IllegalArgumentException("Malformed tempo line: " +
+                                scanner.nextLine());
                     }
                     break;
                 case "note":
@@ -44,7 +45,8 @@ public class MusicReader {
                         int volume = scanner.nextInt();
                         piece.addNote(startBeat, endBeat, instrument, pitch, volume);
                     } catch (NoSuchElementException e) {
-                        throw new IllegalArgumentException("Malformed note line: " + scanner.nextLine());
+                        throw new IllegalArgumentException("Malformed note line: " +
+                                scanner.nextLine());
                     }
                     break;
                 default:

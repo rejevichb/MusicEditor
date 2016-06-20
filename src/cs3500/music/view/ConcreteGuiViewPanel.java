@@ -52,8 +52,10 @@ public class ConcreteGuiViewPanel extends JPanel {
             graphics.setColor(Color.BLACK);
             graphics.setFont(new Font("Cambria", Font.BOLD, 12));
             if (i >= absolutePitchLo) {
-                String display = new String(Note.getPitchFromInt(Note.pitchFromAbs(i)).toString() + Note.octaveFromAbsP(i));
-                graphics.drawString(display, 10, ((Math.abs(i - absolutePitchHi) * BOX_OFFSET) + 65));
+                String display = new String(Note.getPitchFromInt(Note.pitchFromAbs(i)).toString()
+                        + Note.octaveFromAbsP(i));
+                graphics.drawString(display, 10, ((Math.abs(i - absolutePitchHi) * BOX_OFFSET)
+                        + 65));
             }
         }
 
@@ -66,7 +68,6 @@ public class ConcreteGuiViewPanel extends JPanel {
             }
         }
 
-
         graphics.translate(40, 50);
 
 
@@ -77,7 +78,8 @@ public class ConcreteGuiViewPanel extends JPanel {
                 graphics.setStroke(new BasicStroke(2.65f));
             }
             graphics.drawLine(0, (i - absolutePitchLo) * BOX_OFFSET,
-                    (model.getTotNumBeats() + completeMeasure()) * BOX_OFFSET, (i - absolutePitchLo) * BOX_OFFSET);
+                    (model.getTotNumBeats() + completeMeasure()) * BOX_OFFSET,
+                    (i - absolutePitchLo) * BOX_OFFSET);
         }
 
         Collections.sort(this.notes, Collections.reverseOrder());
@@ -91,10 +93,12 @@ public class ConcreteGuiViewPanel extends JPanel {
                             && (n.getStartBeat() + n.getDuration()) >= beat
                             && n.getAbsPitch() == absPitch) {
                         graphics.setColor(Color.green);
-                        graphics.fillRect(beat * BOX_OFFSET, (Math.abs(absPitch - absolutePitchHi)) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
+                        graphics.fillRect(beat * BOX_OFFSET, (Math.abs(absPitch - absolutePitchHi))
+                                * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
                     } else if (n.getStartBeat() == beat && n.getAbsPitch() == absPitch) {
                         graphics.setColor(Color.BLACK);
-                        graphics.fillRect(beat * BOX_OFFSET, (Math.abs(absPitch - absolutePitchHi)) * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
+                        graphics.fillRect(beat * BOX_OFFSET, (Math.abs(absPitch - absolutePitchHi))
+                                * BOX_OFFSET, BOX_OFFSET, BOX_OFFSET);
                     }
                 }
             }
@@ -103,7 +107,8 @@ public class ConcreteGuiViewPanel extends JPanel {
         //columns
         for (int j = 0; j < ((model.getTotNumBeats() / 4) + completeMeasure() - 2); j++) {
             graphics.setColor(Color.BLACK);
-            graphics.drawLine(j * MEASURE_OFFSET, 0, (j) * MEASURE_OFFSET, BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
+            graphics.drawLine(j * MEASURE_OFFSET, 0, (j) * MEASURE_OFFSET, BOX_OFFSET *
+                    (absolutePitchHi - absolutePitchLo + 1));
         }
     }
 
@@ -113,7 +118,8 @@ public class ConcreteGuiViewPanel extends JPanel {
      * for the gui view.  This is a helper for paintComponent and make sure that every note is in a
      * beat measure.
      *
-     * @return int representing the number of beats to complete the measure that the last beat is in
+     * @return int representing the number of beats to complete the measure that the last beat is
+     * in
      */
     private int completeMeasure() {
         int end = this.model.getTotNumBeats() % 4;
