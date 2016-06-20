@@ -129,4 +129,5 @@ public class MidiViewImpl implements IMusicPieceView {
         this.model = defence;
         this.notes = defence.getNotes();
     }
+
 }

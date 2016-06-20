@@ -14,13 +14,19 @@ public class MidiGuiCombo implements IGuiView {
     private IGuiView gui;
     IMusicModel m;
 
+
     public MidiGuiCombo(IMusicPieceView midi, IGuiView gui) {
         this.midi = midi;
         this.gui = gui;
     }
 
+
     @Override
     public void initialize() {
+//        long pos = this.getMicrosecondsPosition();
+//        this.gui.getTime() = pos;
+
+
 
 
     }

@@ -14,9 +14,9 @@ public class FactoryView {
             out = new MidiViewImpl();
         }
         else if (v.equalsIgnoreCase("visual")) {
-            out = new GuiViewFrame();
+            out = new GuiViewFrame(false);
         } else if (v.equalsIgnoreCase("combo")) {
-            out = new MidiGuiCombo(new MidiViewImpl(), new GuiViewFrame());
+            out = new MidiGuiCombo(new MidiViewImpl(), new GuiViewFrame(true));
         } else {
             throw new IllegalArgumentException("Not a valid view type!");
         }

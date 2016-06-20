@@ -20,16 +20,21 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     private ConcreteGuiViewPanel displayPanel;
     public IMusicModel model;
+    private long time;
 
     /**
      * Creates new GuiView
      */
-    public GuiViewFrame() {
+    public GuiViewFrame(boolean flag) {
         super();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("Music Viewer v1.6        Authors: Jameson O'Connor, Brendan Rejevich");
         this.setSize(new Dimension(400, 400));
-        this.displayPanel = new ConcreteGuiViewPanel();
+        if (flag) {
+            this.displayPanel = new ComboConcreteGuiViewPanel(this.getTime()); //Extends ConcreteGuiViewPanel
+        } else {
+            this.displayPanel = new ConcreteGuiViewPanel();
+        }
 
     }
 
@@ -74,7 +79,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.displayPanel.model = defense;
         this.displayPanel.notes = defense.getNotes();
 
-
     }
 
     @Override
@@ -89,6 +93,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     public void removeMouseListener(MouseListener mouseListener) {
         //TODO implement after MouseHandlerImpl
         // this should be just handled in the controller
+    }
+
+
+    public long getTime() {
+        return time;
     }
 
 

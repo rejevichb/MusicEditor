@@ -9,11 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.*;
 import javax.swing.text.Keymap;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
 import cs3500.music.view.IMusicPieceView;
+import cs3500.music.view.MidiGuiCombo;
+import cs3500.music.view.MidiViewImpl;
 
 /**
  * Music Controller that coordinates communication between the model and the views.
@@ -22,6 +25,7 @@ public class MusicController implements ActionListener, KeyListener {
 
     IMusicPieceView view;
     IMusicModel model;
+
 
     public MusicController(IMusicModel model, IMusicPieceView view) {
         this.model = model;
