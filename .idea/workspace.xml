@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="HW06 Final Version">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/MusicAssignments_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cs3500/music/mary.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cs3500/music/mystery-1.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/util/CompositionBuilderImpl.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/util/CompositionBuilderImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/util/MusicReader.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/util/MusicReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/ConcreteGuiViewPanel.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/ConcreteGuiViewPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/GuiViewFrame.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/GuiViewFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiViewImpl.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiViewImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/MusicAssignments/cs3500/music/view/MidiViewImplTest.class" afterPath="$PROJECT_DIR$/out/test/MusicAssignments/cs3500/music/view/MidiViewImplTest.class" />
+    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="demo commit message">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/util/MusicReader.java" afterPath="$PROJECT_DIR$/src/cs3500/music/util/MusicReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/ConcreteGuiViewPanel.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/ConcreteGuiViewPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/cs3500/music/view/MidiViewImplTest.java" afterPath="$PROJECT_DIR$/test/cs3500/music/view/MidiViewImplTest.java" />
     </list>
     <ignored path="MusicAssignments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,22 +27,12 @@
     <favorites_list name="MusicAssignments" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CompositionBuilderImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilderImpl.java">
+    <leaf>
+      <file leaf-file-name="KeyboardHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MidiViewImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+            <state relative-caret-position="90">
+              <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,71 +40,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MusicEditor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/MusicEditor.java">
+      <file leaf-file-name="IGuiView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="29" column="26" selection-start-line="20" selection-start-column="7" selection-end-line="29" selection-end-column="26" />
+            <state relative-caret-position="105">
+              <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mystery-1.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/mystery-1.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26610">
-              <caret line="1774" column="4" selection-start-line="1774" selection-start-column="4" selection-end-line="1774" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MidiViewImplTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/cs3500/music/view/MidiViewImplTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3015">
-              <caret line="228" column="54" selection-start-line="228" selection-start-column="54" selection-end-line="228" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GuiViewFrame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GuiViewFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MusicPieceModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/model/MusicPieceModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MusicReader.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/MusicReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConcreteGuiViewPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/ConcreteGuiViewPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1725">
-              <caret line="121" column="7" selection-start-line="121" selection-start-column="7" selection-end-line="121" selection-end-column="7" />
+            <state relative-caret-position="752">
+              <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -138,9 +66,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -189,11 +117,13 @@
         <option value="$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilderImpl.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/util/MusicReader.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/view/ConcreteGuiViewPanel.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/mystery-1.txt" />
         <option value="$PROJECT_DIR$/test/cs3500/music/view/MidiViewImplTest.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/mary.txt" />
+        <option value="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
       </list>
     </option>
   </component>
@@ -207,7 +137,7 @@
     <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1439" />
-    <option name="height" value="803" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -234,9 +164,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1037,6 +967,8 @@
       <workItem from="1466367821083" duration="3957000" />
       <workItem from="1466378760103" duration="7922000" />
       <workItem from="1466392854224" duration="3000" />
+      <workItem from="1466439061473" duration="188000" />
+      <workItem from="1466440433942" duration="675000" />
     </task>
     <task id="LOCAL-00001" summary="made the MIDI playback slightly better - the song is now distinguishable by ear but also has a few noticeable flaws involving pitch and timing">
       <created>1466207084302</created>
@@ -1221,7 +1153,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60848000" />
+    <option name="totallyTimeSpent" value="62202000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1233,33 +1165,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="23" width="1439" height="803" extended-state="6" />
+    <frame x="1" y="23" width="1439" height="797" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32485875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.50290275" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31697056" sideWeight="0.49745825" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39124295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30780143" sideWeight="0.49745825" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5092199" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3903819" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24910523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24910523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40112993" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40112993" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32485875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51129943" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1307,21 +1239,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/model/Note.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="88" selection-start-line="28" selection-start-column="88" selection-end-line="28" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/FactoryView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/ConcreteGuiViewPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="885">
@@ -1351,7 +1268,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1401,7 +1318,7 @@
         <state relative-caret-position="1050">
           <caret line="83" column="5" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1574,10 +1491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
-          <folding>
-            <element signature="e#1511#1512#0" expanded="false" />
-            <element signature="e#1541#1542#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1603,27 +1516,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilderImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/ConcreteGuiViewPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1725">
-          <caret line="121" column="7" selection-start-line="121" selection-start-column="7" selection-end-line="121" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/mystery-1.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26610">
           <caret line="1774" column="4" selection-start-line="1774" selection-start-column="4" selection-end-line="1774" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1639,7 +1535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7110">
           <caret line="474" column="7" selection-start-line="474" selection-start-column="7" selection-end-line="474" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1664,7 +1559,7 @@
         <state relative-caret-position="750">
           <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1676,18 +1571,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/MusicReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
           <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilderImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/ConcreteGuiViewPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
           <folding />
         </state>
       </provider>
