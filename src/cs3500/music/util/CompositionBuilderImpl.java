@@ -27,7 +27,8 @@ public class CompositionBuilderImpl implements CompositionBuilder<IMusicModel> {
     }
 
     @Override
-    public CompositionBuilder<IMusicModel> addNote(int start, int end, int instrument, int pitch, int volume) {
+    public CompositionBuilder<IMusicModel> addNote(int start, int end, int instrument, int pitch,
+                                                   int volume) {
         Note p = new Note(pitch, start, end - start, instrument, volume);
         this.model.addNote(p);
         return this;
