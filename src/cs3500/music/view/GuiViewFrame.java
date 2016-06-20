@@ -1,6 +1,7 @@
 package cs3500.music.view;
 
 import java.awt.*;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ import cs3500.music.model.Note;
 /**
  * A skeleton Frame (i.e., a window) in Swing
  */
-public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView {
+public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
 
     private ConcreteGuiViewPanel displayPanel;
@@ -73,6 +74,16 @@ public class GuiViewFrame extends javax.swing.JFrame implements IMusicPieceView 
         this.displayPanel.notes = defense.getNotes();
 
 
+    }
+
+    @Override
+    public void addMouseListener(MouseListener mouseListener) {
+        //TODO implement after MouseHandlerImpl
+    }
+
+    @Override
+    public void removeMouseListener(MouseListener mouseListener) {
+        //TODO implement after MouseHandlerImpl
     }
 
 
