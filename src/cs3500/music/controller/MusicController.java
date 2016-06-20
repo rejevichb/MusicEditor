@@ -51,4 +51,16 @@ public class MusicController implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
+    class Init implements Runnable {
+        @Override
+        public void run() {
+            view.initialize();
+        }
+    }
+
+    //SOMEHOW READ KEYMAPS VIA FILE..????
+    //figure out which file to read based on which view i'm in
+    //      check somehow to see if we have the sub-view-interface IGuiView and if so perform
+    //      certain operations on the panel, playing music, etc.
 }

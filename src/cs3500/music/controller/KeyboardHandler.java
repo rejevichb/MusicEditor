@@ -18,14 +18,6 @@ public class KeyboardHandler implements KeyListener {
 
     }
 
-
-    class FunctionObjectA implements Runnable {
-        @Override
-        public void run() {
-
-        }
-    }
-
     /**
      * Set the map for key typed events. Key typed events in Java Swing are characters
      */
