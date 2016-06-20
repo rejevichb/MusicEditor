@@ -89,12 +89,9 @@ public class MusicController implements ActionListener, KeyListener {
             }
             return ret;
         }
-
     }
-
 
     public Map<Integer, Runnable> getMap(String s) {
         return MapFactory.create(s);
     }
-
 }

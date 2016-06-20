@@ -133,5 +133,4 @@ public class MidiViewImpl implements IMusicPieceView {
     public long getMicrosecondsPosition() {
         return this.getMicrosecondsPosition();
     }
-
 }
