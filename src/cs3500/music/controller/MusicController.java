@@ -1,6 +1,10 @@
 package cs3500.music.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import cs3500.music.model.IMusicModel;
@@ -10,7 +14,7 @@ import cs3500.music.view.IMusicPieceView;
 /**
  * Music Controller that coordinates communication between the model and the views.
  */
-public class MusicController {
+public class MusicController implements ActionListener, KeyListener {
 
     IMusicPieceView view;
     IMusicModel model;
@@ -28,4 +32,23 @@ public class MusicController {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
