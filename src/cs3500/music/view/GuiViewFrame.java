@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
+import cs3500.music.controller.MouseHandler;
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
 import cs3500.music.model.Note;
@@ -78,7 +79,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void addMouseListener(MouseListener mouseListener) {
-        //TODO implement after MouseHandlerImpl
+        //FIXME look at this...
+        this.displayPanel.addMouseListener(new MouseHandler());
     }
 
     @Override
