@@ -79,7 +79,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void addMouseListener(MouseListener mouseListener) {
-        //FIXME look at this...
+        //FIXME look at this... associate a name or number with each mouse handler??? how to know
+        // which one to remove?
         this.displayPanel.addMouseListener(new MouseHandler());
     }
 

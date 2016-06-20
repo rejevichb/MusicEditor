@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="Added MouseHandler skeleton to controller package.">
+    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="test mouse handler impl in GuiViewFrame">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/MouseHandler.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/MouseHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
     </list>
     <ignored path="MusicAssignments.iws" />
@@ -43,9 +42,11 @@
       <file leaf-file-name="MusicController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="297">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#595#596#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -63,8 +64,8 @@
       <file leaf-file-name="GuiViewFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="81" column="32" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="32" />
+            <state relative-caret-position="1110">
+              <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -73,8 +74,8 @@
       <file leaf-file-name="MouseHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MouseHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="60" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
+            <state relative-caret-position="165">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -143,10 +144,10 @@
         <option value="$PROJECT_DIR$/test/cs3500/music/view/MidiViewImplTest.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/mary.txt" />
         <option value="$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/music/controller/MouseHandler.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/music/controller/MouseHandler.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" />
       </list>
     </option>
   </component>
@@ -991,7 +992,7 @@
       <workItem from="1466378760103" duration="7922000" />
       <workItem from="1466392854224" duration="3000" />
       <workItem from="1466439061473" duration="188000" />
-      <workItem from="1466440433942" duration="2476000" />
+      <workItem from="1466440433942" duration="2692000" />
     </task>
     <task id="LOCAL-00001" summary="made the MIDI playback slightly better - the song is now distinguishable by ear but also has a few noticeable flaws involving pitch and timing">
       <created>1466207084302</created>
@@ -1154,7 +1155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466441401393</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="test mouse handler impl in GuiViewFrame">
+      <created>1466445572471</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1466445572471</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1190,7 +1198,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64003000" />
+    <option name="totallyTimeSpent" value="64219000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1264,7 +1272,8 @@
     <MESSAGE value="HW06 Final Version - Edited for 100 char limit." />
     <MESSAGE value="Created KeyboardHandler skeleton in controller.&#10;Created sub-view-interface IGuiView and refractored GuiViewFrame to implement it. &#10;need to implement add/remove mouse listeners." />
     <MESSAGE value="Added MouseHandler skeleton to controller package." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added MouseHandler skeleton to controller package." />
+    <MESSAGE value="test mouse handler impl in GuiViewFrame" />
+    <option name="LAST_COMMIT_MESSAGE" value="test mouse handler impl in GuiViewFrame" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1619,13 +1628,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MouseHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="60" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1641,24 +1648,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="297">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#595#596#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java">
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MouseHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="165">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="81" column="32" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="32" />
+        <state relative-caret-position="1110">
+          <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
           <folding />
         </state>
       </provider>
