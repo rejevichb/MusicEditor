@@ -19,7 +19,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
 
     private ConcreteGuiViewPanel displayPanel;
-    IMusicModel model;
+    public IMusicModel model;
 
     /**
      * Creates new GuiView
