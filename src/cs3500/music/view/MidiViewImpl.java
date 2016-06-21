@@ -1,18 +1,28 @@
 package cs3500.music.view;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.sound.midi.*;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiEvent;
+import javax.sound.midi.MidiMessage;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.Receiver;
+import javax.sound.midi.Sequence;
+import javax.sound.midi.Sequencer;
+import javax.sound.midi.ShortMessage;
+import javax.sound.midi.Synthesizer;
+import javax.sound.midi.Track;
+import javax.sound.midi.Transmitter;
+
 import cs3500.music.model.IMusicModel;
-import cs3500.music.model.MusicPieceModel;
 import cs3500.music.model.Note;
 
 /**
  * A class for MIDI playback.
  */
-public class MidiViewImpl implements IMusicPieceView {
+public class MidiViewImpl implements IMidiView {
 
     private List<Note> notes;
     private int totalNumBeats;
@@ -132,7 +142,9 @@ public class MidiViewImpl implements IMusicPieceView {
         this.tempo = m.getTempo();
     }
 
-    public long getMicrosecondsPosition() {
-        return this.getMicrosecondsPosition();
+
+    @Override
+    public long getTime() {
+        return this.seqR.getMicrosecondPosition();
     }
 }

@@ -14,7 +14,7 @@ import cs3500.music.model.Note;
  */
 public class MidiGuiCombo implements IGuiView {
 
-    private IMusicPieceView midi;
+    private IMidiView midi;
     private IGuiView gui;
     private java.util.List<Note> notes;
     private int totalNumBeats;
@@ -22,7 +22,7 @@ public class MidiGuiCombo implements IGuiView {
     Timer aniTimer;
 
 
-    public MidiGuiCombo(IMusicPieceView midi, IGuiView gui) {
+    public MidiGuiCombo(IMidiView midi, IGuiView gui) {
         this.midi = midi;
         this.gui = gui;
     }
@@ -32,9 +32,9 @@ public class MidiGuiCombo implements IGuiView {
     public void initialize() {
         aniTimer = new Timer(tempo, taskPerformer);
         //TODO ask for time from timer or MIDI then set the timeConstant to this variable so that
-        // we can uodate the line when the gui is intialized
+        // we can update the line when the gui is intialized
+        this.setTimeConstant(midi.getTime());
         midi.initialize();
-
         aniTimer.start();
 
     }
@@ -67,5 +67,10 @@ public class MidiGuiCombo implements IGuiView {
     @Override
     public void removeMouseListener(MouseListener mouseListener) {
 
+    }
+
+    @Override
+    public void setTimeConstant(long t) {
+        this.gui.setTimeConstant(t);
     }
 }

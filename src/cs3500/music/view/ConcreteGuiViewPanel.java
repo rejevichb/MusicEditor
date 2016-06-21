@@ -19,7 +19,7 @@ public class ConcreteGuiViewPanel extends JPanel {
     int MEASURE_OFFSET = BOX_OFFSET * 4;
     int absolutePitchLo;  // lowest pitch in lowest octave.
     int absolutePitchHi;   // highest pitch in highest octave.
-    public int timeVariable = 2;
+    public long timeVariable = 2;
 
     public ConcreteGuiViewPanel() {
         super();
@@ -116,7 +116,7 @@ public class ConcreteGuiViewPanel extends JPanel {
 
 
         graphics.setColor(Color.RED);
-        graphics.drawLine(timeVariable, 0, timeVariable,
+        graphics.drawLine((int) timeVariable, 0, (int) timeVariable,
                 BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
     }
 

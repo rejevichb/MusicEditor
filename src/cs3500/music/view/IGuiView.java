@@ -11,5 +11,6 @@ public interface IGuiView extends IMusicPieceView {
 
     void removeMouseListener(MouseListener mouseListener);
 
+    void setTimeConstant(long t);
 
 }
