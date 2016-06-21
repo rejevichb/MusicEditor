@@ -3,27 +3,36 @@ package cs3500.music.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
 import cs3500.music.view.IMusicPieceView;
+import cs3500.music.view.MidiGuiCombo;
 
 /**
  * Music Controller that coordinates communication between the model and the views.
  */
-public class MusicController implements ActionListener, KeyListener {
+public class MusicController implements ActionListener {
 
     IMusicPieceView view;
     IMusicModel model;
+    KeyboardHandler keyHandler;
+    MouseHandler mouseHandler;
 
 
     public MusicController(IMusicModel model, IMusicPieceView view) {
         this.model = model;
         this.view = view;
+
+        if (view.getClass() == MidiGuiCombo.class) {
+            this.keyHandler = new KeyboardHandler();
+            this.mouseHandler = new MouseHandler();
+        } else {
+            this.keyHandler = null;
+            this.mouseHandler = null;
+        }
     }
 
     /**
@@ -39,20 +48,6 @@ public class MusicController implements ActionListener, KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 
     class Init implements Runnable {
         @Override

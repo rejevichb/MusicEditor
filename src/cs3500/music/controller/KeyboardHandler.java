@@ -15,7 +15,9 @@ public class KeyboardHandler implements KeyListener {
     Map<Integer, Runnable> keyReleased;
 
     public KeyboardHandler() {
-
+        keyTyped = new HashMap<>();
+        keyPressed = new HashMap<>();
+        keyReleased = new HashMap<>();
     }
 
     /**
@@ -57,7 +59,6 @@ public class KeyboardHandler implements KeyListener {
      * This is called when the view detects that a key has been pressed. Find if anything has been
      * mapped to this key code and if so, execute it
      */
-
     @Override
     public void keyPressed(KeyEvent e) {
         if (keyPressed.containsKey(e.getKeyCode()))
@@ -68,7 +69,6 @@ public class KeyboardHandler implements KeyListener {
      * This is called when the view detects that a key has been released. Find if anything has been
      * mapped to this key code and if so, execute it
      */
-
     @Override
     public void keyReleased(KeyEvent e) {
         if (keyReleased.containsKey(e.getKeyCode()))
