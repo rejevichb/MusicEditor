@@ -3,7 +3,7 @@ package cs3500.music.view;
 import java.awt.event.MouseListener;
 
 import cs3500.music.model.IMusicModel;
-import cs3500.music.model.MusicPieceModel;
+import cs3500.music.model.Note;
 
 /**
  * Created by Jameson on 6/20/16.
@@ -12,7 +12,9 @@ public class MidiGuiCombo implements IGuiView {
 
     private IMusicPieceView midi;
     private IGuiView gui;
-    IMusicModel m;
+    private java.util.List<Note> notes;
+    private int totalNumBeats;
+    int tempo;
 
 
     public MidiGuiCombo(IMusicPieceView midi, IGuiView gui) {
@@ -27,11 +29,12 @@ public class MidiGuiCombo implements IGuiView {
     }
 
     @Override
-    public void modelDataToView(IMusicModel model) {
-        IMusicModel copy = new MusicPieceModel(model);
-        m = copy;
+    public void modelDataToView(IMusicModel m) {
         midi.modelDataToView(m);
         gui.modelDataToView(m);
+        this.notes = m.getNotes();
+        this.totalNumBeats = m.getTotNumBeats();
+        this.tempo = m.getTempo();
     }
 
     @Override
