@@ -36,7 +36,7 @@ public class MidiGuiCombo implements IGuiView {
         midi.initialize();
 
 
-        aniTimer = new Timer(2, new ActionListener() {
+        aniTimer = new Timer(1, new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui.setTimeConstant(midi.getTime());
                 gui.repaintFrame();
