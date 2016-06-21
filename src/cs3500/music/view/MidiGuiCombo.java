@@ -1,6 +1,10 @@
 package cs3500.music.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+
+import javax.swing.*;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
@@ -15,6 +19,7 @@ public class MidiGuiCombo implements IGuiView {
     private java.util.List<Note> notes;
     private int totalNumBeats;
     int tempo;
+    Timer aniTimer;
 
 
     public MidiGuiCombo(IMusicPieceView midi, IGuiView gui) {
@@ -25,8 +30,26 @@ public class MidiGuiCombo implements IGuiView {
 
     @Override
     public void initialize() {
-        //long pos = midi.getMicrosecondsPosition();
+
+        aniTimer = new Timer(tempo, taskPerformer);
+
+        aniTimer.start();
+
     }
+
+
+    ActionListener taskPerformer = new ActionListener() {
+
+        public void actionPerformed(ActionEvent evt) {
+
+
+            JPanel line = new DrawPanel();
+            gui.initialize();
+            line.repaint();
+
+
+        }
+    };
 
     @Override
     public void modelDataToView(IMusicModel m) {
