@@ -25,16 +25,13 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     /**
      * Creates new GuiView
      */
-    public GuiViewFrame(boolean flag) {
+    public GuiViewFrame() {
         super();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("Music Viewer v1.6        Authors: Jameson O'Connor, Brendan Rejevich");
         this.setSize(new Dimension(400, 400));
-        if (flag) {
-            this.displayPanel = new ComboConcreteGuiViewPanel(); //Extends ConcreteGuiViewPanel
-        } else {
-            this.displayPanel = new ConcreteGuiViewPanel();
-        }
+
+        this.displayPanel = new ConcreteGuiViewPanel();
 
     }
 
