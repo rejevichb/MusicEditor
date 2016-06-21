@@ -30,25 +30,26 @@ public class MidiGuiCombo implements IGuiView {
 
     @Override
     public void initialize() {
-        aniTimer = new Timer(tempo, taskPerformer);
+        midi.initialize();
+        gui.initialize();
+
+        aniTimer = new Timer(1, new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                gui.setTimeConstant(midi.getTime());
+                gui.repaintFrame();
+
+            }
+        });
+        aniTimer.start();
+
+
+
         //TODO ask for time from timer or MIDI then set the timeConstant to this variable so that
         // we can update the line when the gui is intialized
-        this.setTimeConstant(midi.getTime());
-        midi.initialize();
-        aniTimer.start();
+
 
     }
 
-
-    ActionListener taskPerformer = new ActionListener() {
-
-        public void actionPerformed(ActionEvent evt) {
-
-
-            gui.initialize();
-
-        }
-    };
 
     @Override
     public void modelDataToView(IMusicModel m) {
@@ -72,5 +73,10 @@ public class MidiGuiCombo implements IGuiView {
     @Override
     public void setTimeConstant(long t) {
         this.gui.setTimeConstant(t);
+    }
+
+    @Override
+    public void repaintFrame() {
+        gui.repaintFrame();
     }
 }

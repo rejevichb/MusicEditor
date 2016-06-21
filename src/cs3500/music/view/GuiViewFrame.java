@@ -99,6 +99,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.displayPanel.timeVariable = t;
     }
 
+    @Override
+    public void repaintFrame() {
+        this.displayPanel.repaint();
+    }
+
 
 }
 

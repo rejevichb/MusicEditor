@@ -13,4 +13,6 @@ public interface IGuiView extends IMusicPieceView {
 
     void setTimeConstant(long t);
 
+    void repaintFrame();
+
 }
