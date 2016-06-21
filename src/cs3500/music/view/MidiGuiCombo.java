@@ -30,8 +30,11 @@ public class MidiGuiCombo implements IGuiView {
 
     @Override
     public void initialize() {
-        midi.initialize();
         gui.initialize();
+
+
+        midi.initialize();
+
 
         aniTimer = new Timer(2, new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
