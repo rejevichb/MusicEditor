@@ -1,12 +1,10 @@
 package cs3500.music.view;
 
 import java.awt.*;
-
-import java.util.*;
+import java.util.Collections;
 
 import javax.swing.*;
 
-import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
 
 /**
@@ -21,9 +19,11 @@ public class ConcreteGuiViewPanel extends JPanel {
     int MEASURE_OFFSET = BOX_OFFSET * 4;
     int absolutePitchLo;  // lowest pitch in lowest octave.
     int absolutePitchHi;   // highest pitch in highest octave.
+    public int timeVariable = 2;
 
     public ConcreteGuiViewPanel() {
         super();
+
 
 
     }
@@ -113,6 +113,11 @@ public class ConcreteGuiViewPanel extends JPanel {
             graphics.drawLine(j * MEASURE_OFFSET, 0, (j) * MEASURE_OFFSET, BOX_OFFSET *
                     (absolutePitchHi - absolutePitchLo + 1));
         }
+
+
+        graphics.setColor(Color.RED);
+        graphics.drawLine(timeVariable, 0, timeVariable,
+                BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
     }
 
 

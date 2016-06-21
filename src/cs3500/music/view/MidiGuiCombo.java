@@ -30,8 +30,10 @@ public class MidiGuiCombo implements IGuiView {
 
     @Override
     public void initialize() {
-
         aniTimer = new Timer(tempo, taskPerformer);
+        //TODO ask for time from timer or MIDI then set the timeConstant to this variable so that
+        // we can uodate the line when the gui is intialized
+        midi.initialize();
 
         aniTimer.start();
 
@@ -43,10 +45,7 @@ public class MidiGuiCombo implements IGuiView {
         public void actionPerformed(ActionEvent evt) {
 
 
-            JPanel line = new DrawPanel();
             gui.initialize();
-            line.repaint();
-
 
         }
     };

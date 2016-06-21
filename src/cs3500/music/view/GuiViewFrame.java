@@ -2,14 +2,13 @@ package cs3500.music.view;
 
 import java.awt.*;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.*;
 
-import cs3500.music.controller.MouseHandler;
 import cs3500.music.model.IMusicModel;
-import cs3500.music.model.MusicPieceModel;
 import cs3500.music.model.Note;
+
+//import cs3500.music.controller.MouseHandler;
 
 // Possibly of interest for handling mouse events
 
@@ -86,7 +85,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         //FIXME look at this... associate a name or number with each mouse handler??? how to know
         //This should be just handled in the controller
         // which one to remove?
-        this.displayPanel.addMouseListener(new MouseHandler());
+        // this.displayPanel.addMouseListener(new MouseHandler());
     }
 
     @Override
