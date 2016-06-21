@@ -3,11 +3,13 @@ package cs3500.music.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
+import cs3500.music.view.IGuiView;
 import cs3500.music.view.IMusicPieceView;
 import cs3500.music.view.MidiGuiCombo;
 
@@ -25,18 +27,22 @@ public class MusicController implements ActionListener {
     public MusicController(IMusicModel model, IMusicPieceView view) {
         this.model = model;
         this.view = view;
+        this.keyHandler = null;
+        this.mouseHandler = null;
 
-        if (view.getClass() == MidiGuiCombo.class) {
-            this.keyHandler = new KeyboardHandler();
-            this.mouseHandler = new MouseHandler();
-        } else {
-            this.keyHandler = null;
-            this.mouseHandler = null;
-        }
-
-//        configureKeyBoardListener();
-//        this.view.addActionListener(this);
     }
+
+    public MusicController(IMusicModel model, IGuiView view) {
+        this.model = model;
+        this.view = view;
+        this.keyHandler = new KeyboardHandler();
+        this.mouseHandler = new MouseHandler();
+
+        view.addMouseListener(mouseHandler);
+        view.addKeyListener(keyHandler);
+        view.addActionListener(this);
+    }
+
 
     /**
      * Sends the model in the controller to the view in the controller
@@ -49,25 +55,13 @@ public class MusicController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-//            //read from the input textfield
-//            case "Echo Button":
-//                String text = view.getInputString();
-//                //send text to the model
-//                model.setString(text);
-//
-//                //clear input textfield
-//                view.clearInputString();
-//                //finally echo the string in view
-//                text = model.getString();
-//                view.setEchoOutput(text);
-//
-//                //set focus back to main frame so that keyboard events work
-//                view.resetFocus();
-//
-//                break;
-//            case "Exit Button":
-//                System.exit(0);
-//                break;
+            //read from the input textfield
+            case "AddNote Button":
+                //
+                break;
+            case "RemoveNote Button":
+                System.exit(69);
+                break;
         }
     }
 

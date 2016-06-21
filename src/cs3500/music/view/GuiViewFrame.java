@@ -24,6 +24,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     private java.util.List<Note> notes;
     private int totalNumBeats;
     int tempo;
+    JButton addNoteButton;
+    JButton removeNoteButton;
 
 
     /**
@@ -34,7 +36,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("Music Viewer v1.6        Authors: Jameson O'Connor, Brendan Rejevich");
         this.setSize(new Dimension(400, 400));
-
         this.displayPanel = new ConcreteGuiViewPanel();
 
     }
@@ -60,11 +61,33 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
 
         this.displayPanel.setPreferredSize(new Dimension(setX, setY));
-        this.add(displayPanel);
+
+        BorderLayout borderLayout = new BorderLayout();
+        this.setLayout(borderLayout);
+
+
+        this.add(displayPanel, borderLayout.CENTER);
 
         JScrollPane scrolls = new JScrollPane(displayPanel);
         this.add(scrolls);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.setBackground(Color.red);
 
+
+        //AddNote Button
+        addNoteButton = new JButton("+");
+        addNoteButton.setActionCommand("AddNote Button");
+        addNoteButton.setPreferredSize(new Dimension(40, 40));
+        buttonPanel.add(addNoteButton);
+
+        //RemoveNote Button
+        removeNoteButton = new JButton("-");
+        removeNoteButton.setActionCommand("RemoveNote Button");
+        removeNoteButton.setPreferredSize(new Dimension(40, 40));
+        buttonPanel.add(removeNoteButton);
+
+        this.add(buttonPanel, borderLayout.NORTH);
 
         displayPanel.repaint();
         this.setVisible(true);
@@ -99,9 +122,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void addActionListener(ActionListener actionListener) {
-        //echoButton.addActionListener(actionListener);
-        //exitButton.addActionListener(actionListener);
-
+        this.addNoteButton.addActionListener(actionListener);
+        this.removeNoteButton.addActionListener(actionListener);
     }
 
 
