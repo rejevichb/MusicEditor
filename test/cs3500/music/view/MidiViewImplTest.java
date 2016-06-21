@@ -5,18 +5,10 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.List;
 
-import javax.sound.midi.MidiDevice;
 import javax.sound.midi.MidiEvent;
-import javax.sound.midi.MidiMessage;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.MidiUnavailableException;
-import javax.sound.midi.Receiver;
 import javax.sound.midi.ShortMessage;
-import javax.sound.midi.Synthesizer;
 import javax.sound.midi.Track;
-import javax.sound.midi.Transmitter;
 
 import cs3500.music.controller.MusicController;
 import cs3500.music.model.IMusicModel;
@@ -92,7 +84,7 @@ public class MidiViewImplTest {
         builder.setTempo(20000);
 
         IMusicModel out = builder.build();
-        mock.setModelToView(out);
+        mock.modelDataToView(out);
 
         StringBuilder log = mock.logModelToSequence();
         assertEquals("Message #1\n" +

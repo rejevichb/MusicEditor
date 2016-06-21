@@ -6,17 +6,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.swing.*;
-import javax.swing.text.Keymap;
-
 import cs3500.music.model.IMusicModel;
-import cs3500.music.model.Note;
+import cs3500.music.model.MusicPieceModel;
 import cs3500.music.view.IMusicPieceView;
-import cs3500.music.view.MidiGuiCombo;
-import cs3500.music.view.MidiViewImpl;
 
 /**
  * Music Controller that coordinates communication between the model and the views.
@@ -36,7 +30,7 @@ public class MusicController implements ActionListener, KeyListener {
      * Sends the model in the controller to the view in the controller
      */
     public void modelToView() {
-        view.setModelToView(this.model);
+        view.modelDataToView(new MusicPieceModel(this.model));
     }
 
 

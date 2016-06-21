@@ -1,7 +1,8 @@
 package cs3500.music.view;
 
 import java.awt.*;
-import java.util.Collections;
+
+import java.util.*;
 
 import javax.swing.*;
 
@@ -13,8 +14,9 @@ import cs3500.music.model.Note;
  */
 public class ConcreteGuiViewPanel extends JPanel {
 
-    IMusicModel model;
-    java.util.List<Note> notes;
+    protected java.util.List<Note> notes;
+    protected int totalNumBeats;
+    protected int tempo;
     int BOX_OFFSET = 20;
     int MEASURE_OFFSET = BOX_OFFSET * 4;
     int absolutePitchLo;  // lowest pitch in lowest octave.
@@ -61,7 +63,7 @@ public class ConcreteGuiViewPanel extends JPanel {
         }
 
         //drawing beat labels
-        for (int j = 0; j < model.getTotNumBeats() + 1; j++) {
+        for (int j = 0; j < this.totalNumBeats + 1; j++) {
             graphics.setColor(Color.BLACK);
             graphics.setFont(new Font("TimesRoman", Font.BOLD, 13));
             if (j % 16 == 0) {
@@ -79,7 +81,7 @@ public class ConcreteGuiViewPanel extends JPanel {
                 graphics.setStroke(new BasicStroke(2.65f));
             }
             graphics.drawLine(0, (i - absolutePitchLo) * BOX_OFFSET,
-                    (model.getTotNumBeats() + completeMeasure()) * BOX_OFFSET,
+                    (totalNumBeats + completeMeasure()) * BOX_OFFSET,
                     (i - absolutePitchLo) * BOX_OFFSET);
         }
 
@@ -87,7 +89,7 @@ public class ConcreteGuiViewPanel extends JPanel {
 
 
         //draw all the notes on this layout
-        for (int beat = 0; beat < model.getTotNumBeats() + 1; beat++) {
+        for (int beat = 0; beat < totalNumBeats + 1; beat++) {
             for (int absPitch = absolutePitchHi; absPitch >= absolutePitchLo; absPitch--) {
                 for (Note n : notes) {
                     if (n.getStartBeat() < beat
@@ -106,7 +108,7 @@ public class ConcreteGuiViewPanel extends JPanel {
         }
 
         //columns
-        for (int j = 0; j < ((model.getTotNumBeats() / 4) + completeMeasure() - 2); j++) {
+        for (int j = 0; j < ((this.totalNumBeats / 4) + completeMeasure() - 2); j++) {
             graphics.setColor(Color.BLACK);
             graphics.drawLine(j * MEASURE_OFFSET, 0, (j) * MEASURE_OFFSET, BOX_OFFSET *
                     (absolutePitchHi - absolutePitchLo + 1));
@@ -123,7 +125,7 @@ public class ConcreteGuiViewPanel extends JPanel {
      * in
      */
     private int completeMeasure() {
-        int end = this.model.getTotNumBeats() % 4;
+        int end = this.totalNumBeats % 4;
         return 4 - end;
     }
 

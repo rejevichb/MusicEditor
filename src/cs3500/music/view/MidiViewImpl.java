@@ -1,5 +1,6 @@
 package cs3500.music.view;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,8 +14,9 @@ import cs3500.music.model.Note;
  */
 public class MidiViewImpl implements IMusicPieceView {
 
-    private IMusicModel model;
     private List<Note> notes;
+    private int totalNumBeats;
+    int tempo;
 
     protected Sequencer seqR;
     private Transmitter seqTrans;
@@ -56,7 +58,7 @@ public class MidiViewImpl implements IMusicPieceView {
     public void modelToSequencer() throws InvalidMidiDataException {
         Sequence ret = null;
         try {
-            ret = new Sequence(Sequence.PPQ, model.getTempo());
+            ret = new Sequence(Sequence.PPQ, this.tempo);
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
@@ -109,7 +111,7 @@ public class MidiViewImpl implements IMusicPieceView {
             e.printStackTrace();
         }
 
-        seqR.setTempoInMPQ(model.getTempo());
+        seqR.setTempoInMPQ(this.tempo);
 
         seqR.start();
 
@@ -124,10 +126,10 @@ public class MidiViewImpl implements IMusicPieceView {
         }
     }
 
-    public void setModelToView(IMusicModel m) {
-        IMusicModel defence = new MusicPieceModel(m);
-        this.model = defence;
-        this.notes = defence.getNotes();
+    public void modelDataToView(IMusicModel m) {
+        this.notes = m.getNotes();
+        this.totalNumBeats = m.getTotNumBeats();
+        this.tempo = m.getTempo();
     }
 
     public long getMicrosecondsPosition() {

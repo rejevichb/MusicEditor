@@ -27,11 +27,11 @@ public class MidiGuiCombo implements IGuiView {
     }
 
     @Override
-    public void setModelToView(IMusicModel model) {
+    public void modelDataToView(IMusicModel model) {
         IMusicModel copy = new MusicPieceModel(model);
         m = copy;
-        midi.setModelToView(m);
-        gui.setModelToView(m);
+        midi.modelDataToView(m);
+        gui.modelDataToView(m);
     }
 
     @Override

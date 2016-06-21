@@ -2,6 +2,7 @@ package cs3500.music.view;
 
 import java.awt.*;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -19,7 +20,9 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
 
     private ConcreteGuiViewPanel displayPanel;
-    public IMusicModel model;
+    private java.util.List<Note> notes;
+    private int totalNumBeats;
+    int tempo;
 
 
     /**
@@ -43,7 +46,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         int absolutePitchLo = 127;  // lowest pitch in lowest octave.
         int absolutePitchHi = 0;   // highest pitch in highest octave.
 
-        for (Note n : this.model.getNotes()) {
+        for (Note n : this.notes) {
             //Set the pitchLo
             if (n.getAbsPitch() < absolutePitchLo) {
                 absolutePitchLo = n.getAbsPitch();
@@ -55,7 +58,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         }
 
         int setY = ((absolutePitchHi - absolutePitchLo) * 20) + 150;
-        int setX = this.model.getTotNumBeats() * 20 + 300;
+        int setX = this.totalNumBeats * 20 + 300;
 
 
         this.displayPanel.setPreferredSize(new Dimension(setX, setY));
@@ -72,13 +75,13 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     }
 
     @Override
-    public void setModelToView(IMusicModel m) {
-        IMusicModel defense = new MusicPieceModel(m);
-
-        this.model = defense;
-        this.displayPanel.model = defense;
-        this.displayPanel.notes = defense.getNotes();
-
+    public void modelDataToView(IMusicModel m) {
+        this.displayPanel.notes = m.getNotes();
+        this.displayPanel.totalNumBeats = m.getTotNumBeats();
+        this.displayPanel.tempo = m.getTempo();
+        this.notes = m.getNotes();
+        this.totalNumBeats = m.getTotNumBeats();
+        this.tempo = m.getTempo();
     }
 
     @Override

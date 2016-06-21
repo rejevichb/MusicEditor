@@ -39,7 +39,7 @@ public class ConsoleViewFrameTest {
         IMusicModel test = new MusicPieceModel();
         test.addNote(cSharp4);
 
-        cvTest.setModelToView(test);
+        cvTest.modelDataToView(test);
 
         cvTest.initialize();
 
@@ -59,7 +59,7 @@ public class ConsoleViewFrameTest {
         test.addNote(dSharp4B);
         test.addNote(dSharp4C);
 
-        cvTest.setModelToView(test);
+        cvTest.modelDataToView(test);
 
         cvTest.initialize();
 

@@ -22,7 +22,7 @@ public interface IMusicPieceView {
      * Sets this.model in whichever view to the model passed in.
      * @param model
      */
-    void setModelToView(IMusicModel model);
+    void modelDataToView(IMusicModel model);
 
 
 }
