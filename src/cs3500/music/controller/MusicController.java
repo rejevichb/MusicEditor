@@ -33,6 +33,9 @@ public class MusicController implements ActionListener {
             this.keyHandler = null;
             this.mouseHandler = null;
         }
+
+//        configureKeyBoardListener();
+//        this.view.addActionListener(this);
     }
 
     /**
@@ -45,7 +48,27 @@ public class MusicController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        switch (e.getActionCommand()) {
+//            //read from the input textfield
+//            case "Echo Button":
+//                String text = view.getInputString();
+//                //send text to the model
+//                model.setString(text);
+//
+//                //clear input textfield
+//                view.clearInputString();
+//                //finally echo the string in view
+//                text = model.getString();
+//                view.setEchoOutput(text);
+//
+//                //set focus back to main frame so that keyboard events work
+//                view.resetFocus();
+//
+//                break;
+//            case "Exit Button":
+//                System.exit(0);
+//                break;
+        }
     }
 
 

@@ -1,6 +1,7 @@
 package cs3500.music.view;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
@@ -93,6 +94,14 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     public void removeMouseListener(MouseListener mouseListener) {
         //TODO implement after MouseHandlerImpl
         // this should be just handled in the controller
+    }
+
+
+    @Override
+    public void addActionListener(ActionListener actionListener) {
+        //echoButton.addActionListener(actionListener);
+        //exitButton.addActionListener(actionListener);
+
     }
 
 

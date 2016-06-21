@@ -69,4 +69,10 @@ public class MidiGuiCombo implements IGuiView {
     public void removeMouseListener(MouseListener mouseListener) {
 
     }
+
+    @Override
+    public void addActionListener(ActionListener actionListener) {
+        //echoButton.addActionListener(actionListener);
+        //exitButton.addActionListener(actionListener);
+    }
 }
