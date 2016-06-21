@@ -33,7 +33,7 @@ public class MidiGuiCombo implements IGuiView {
         midi.initialize();
         gui.initialize();
 
-        aniTimer = new Timer(1, new ActionListener() {
+        aniTimer = new Timer(2, new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui.setTimeConstant(midi.getTime());
                 gui.repaintFrame();
@@ -41,11 +41,6 @@ public class MidiGuiCombo implements IGuiView {
             }
         });
         aniTimer.start();
-
-
-
-        //TODO ask for time from timer or MIDI then set the timeConstant to this variable so that
-        // we can update the line when the gui is intialized
 
 
     }
