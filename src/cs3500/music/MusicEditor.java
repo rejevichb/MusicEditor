@@ -12,6 +12,7 @@ import cs3500.music.util.CompositionBuilder;
 import cs3500.music.util.CompositionBuilderImpl;
 import cs3500.music.util.MusicReader;
 import cs3500.music.view.FactoryView;
+import cs3500.music.view.IGuiView;
 import cs3500.music.view.IMusicPieceView;
 
 
@@ -22,11 +23,17 @@ public class MusicEditor {
         Readable f = new FileReader(new File(args[0]));
 
         IMusicModel model = MusicReader.parseFile(f, builder);
-        IMusicPieceView view = FactoryView.create(args[1]); //I changed this for user input
 
-        MusicController controller = new MusicController(model, view);
-
-        controller.modelToView();
-        view.initialize();
+        if (args[1].equalsIgnoreCase("combo") || args[1].equalsIgnoreCase("visual")) {
+            IGuiView view = (IGuiView) FactoryView.create(args[1]);
+            MusicController controller = new MusicController(model, view);
+            controller.modelToView();
+            view.initialize();
+        } else {
+            IMusicPieceView view = FactoryView.create(args[1]); //I changed this for user input
+            MusicController controller = new MusicController(model, view);
+            controller.modelToView();
+            view.initialize();
+        }
     }
 }
