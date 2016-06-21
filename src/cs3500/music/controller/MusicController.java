@@ -36,8 +36,9 @@ public class MusicController implements ActionListener {
     public MusicController(IMusicModel model, IGuiView view) {
         this.model = model;
         this.view = view;
-        this.keyHandler = new KeyboardHandler();
+
         this.mouseHandler = new MouseHandler();
+        this.keyHandler = new KeyboardHandler();
 
         view.addMouseListener(mouseHandler);
         view.addKeyListener(keyHandler);
@@ -58,7 +59,6 @@ public class MusicController implements ActionListener {
         switch (e.getActionCommand()) {
             //read from the input textfield
             case "AddNote Button":
-                //
                 break;
             case "RemoveNote Button":
                 System.exit(69);

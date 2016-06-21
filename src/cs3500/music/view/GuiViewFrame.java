@@ -23,8 +23,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     private java.util.List<Note> notes;
     private int totalNumBeats;
     int tempo;
-    JButton addNoteButton;
-    JButton removeNoteButton;
+    JButton addNoteButton = new JButton("+");
+    JButton removeNoteButton = new JButton("-");
 
 
     /**
@@ -75,13 +75,13 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
 
         //AddNote Button
-        addNoteButton = new JButton("+");
+        //addNoteButton = new JButton("+");
         addNoteButton.setActionCommand("AddNote Button");
         addNoteButton.setPreferredSize(new Dimension(40, 40));
         buttonPanel.add(addNoteButton);
 
         //RemoveNote Button
-        removeNoteButton = new JButton("-");
+        //removeNoteButton = new JButton("-");
         removeNoteButton.setActionCommand("RemoveNote Button");
         removeNoteButton.setPreferredSize(new Dimension(40, 40));
         buttonPanel.add(removeNoteButton);

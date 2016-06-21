@@ -14,11 +14,11 @@ public class KeyboardHandler implements KeyListener {
     Map<Integer, Runnable> keyPressed;
     Map<Integer, Runnable> keyReleased;
 
-    public KeyboardHandler() {
-        keyTyped = new HashMap<>();
-        keyPressed = new HashMap<>();
-        keyReleased = new HashMap<>();
-    }
+//    public KeyboardHandler() {
+//        keyTyped = new HashMap<>();
+//        keyPressed = new HashMap<>();
+//        keyReleased = new HashMap<>();
+//    }
 
     /**
      * Set the map for key typed events. Key typed events in Java Swing are characters
