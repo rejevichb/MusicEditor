@@ -2,6 +2,7 @@ package cs3500.music.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
@@ -60,6 +61,16 @@ public class MidiGuiCombo implements IGuiView {
 
     @Override
     public void addMouseListener(MouseListener mouseListener) {
+        gui.addMouseListener(mouseListener);
+    }
+
+    @Override
+    public void addActionListener(ActionListener actionListener) {
+        gui.addActionListener(actionListener);
+    }
+
+    @Override
+    public void addKeyListener(KeyListener keyListener) {
 
     }
 
