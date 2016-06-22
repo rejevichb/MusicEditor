@@ -187,7 +187,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     public void hidePopup() {
         this.borderLayout.removeLayoutComponent(addNotePanel);
         this.remove(addNotePanel);
-        this.pack();
+        //this.pack();
     }
 
     @Override
