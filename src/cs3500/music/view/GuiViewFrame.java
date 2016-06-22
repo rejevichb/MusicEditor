@@ -124,6 +124,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         displayPanel.repaint();
         this.setVisible(true);
 
+        scrolls.setAutoscrolls(true);
+
 
     }
 
