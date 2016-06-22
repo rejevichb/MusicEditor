@@ -3,8 +3,10 @@ package cs3500.music.view;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.text.NumberFormat;
 
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
@@ -28,6 +30,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     JButton removeNoteButton = new JButton("-");
     JPanel addNotePanel;
     BorderLayout borderLayout;
+    JFormattedTextField beatStart;
+    JFormattedTextField beatDur;
+    JComboBox octaveList;
+    JComboBox pitchList;
+    JComboBox instrumentList;
 
 
     /**
@@ -138,6 +145,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         JLabel beatStartL = new JLabel("Input a start beat");
         JLabel durationL = new JLabel("Input a sustain in number of beats         ");
         JLabel octaveL = new JLabel("Enter Octave (from 0 - 10)");
+        JLabel instrumentL = new JLabel("Enter Instrument Number (From 0 - 10");
+        instrumentL.setHorizontalAlignment(JLabel.LEFT);
         pitchL.setHorizontalAlignment(JLabel.LEFT);
         beatStartL.setHorizontalAlignment(JLabel.LEFT);
         durationL.setHorizontalAlignment(JLabel.LEFT);
@@ -152,25 +161,46 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
 
         Dimension textFieldSize = new Dimension(50, 50);
-        JTextField beatStart = new JTextField(1);
-        JTextField beatDur = new JTextField(1);
-        JTextField octave = new JTextField(1);
+
+        NumberFormat format = NumberFormat.getInstance();
+        NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Integer.class);
+
+        //formatter.setMinimum(0);
+        //formatter.setMaximum(Integer.MAX_VALUE);
+        formatter.setAllowsInvalid(false);
+        // If you want the value to be committed on each keystroke instead of focus lost
+        formatter.setCommitsOnValidEdit(false);
+        //JFormattedTextField field = new JFormattedTextField(formatter);
+
+
+        beatStart = new JFormattedTextField(formatter);
+        beatDur = new JFormattedTextField(formatter);
         beatStart.setSize(textFieldSize);
         beatDur.setSize(textFieldSize);
-        octave.setSize(textFieldSize);
 
 
-        JComboBox pitchList = new JComboBox(Pitch.values());
+        Integer[] octaveNums = new Integer[11];
+        Integer[] instrumentNums = new Integer[11];
+        for (int i = 0; i <= 10; i++) {
+            instrumentNums[i] = i;
+            octaveNums[i] = i;
+        }
+        instrumentList = new JComboBox(instrumentNums);
+        pitchList = new JComboBox(Pitch.values());
+        octaveList = new JComboBox(octaveNums);
         pitchList.setSelectedIndex(0);
         //pitchList.addActionListener();
         addNotePanel.add(pitchL);
         addNotePanel.add(pitchList);
+        addNotePanel.add(octaveL);
+        addNotePanel.add(octaveList);
         addNotePanel.add(beatStartL);
         addNotePanel.add(beatStart);
         addNotePanel.add(durationL);
         addNotePanel.add(beatDur);
-        addNotePanel.add(octaveL);
-        addNotePanel.add(octave);
+        addNotePanel.add(instrumentL);
+        addNotePanel.add(instrumentList);
         addNotePanel.add(acceptButton);
         addNotePanel.add(cancelButton);
 
@@ -188,6 +218,24 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.borderLayout.removeLayoutComponent(addNotePanel);
         this.remove(addNotePanel);
         //this.pack();
+    }
+
+//    @Override
+//    public boolean validPopupData() {
+//
+//    }
+
+
+    @Override
+    public Note getNoteFromPopop() {
+        int oct = octaveList.getSelectedIndex();
+        int beatSt = Integer.valueOf(this.beatStart.getText());
+        int beatDur = Integer.valueOf(this.beatDur.getText());
+        int absPitch = ((oct * 12) + pitchList.getSelectedIndex());
+        int instr = instrumentList.getSelectedIndex();
+
+        Note n = new Note(absPitch, beatSt, beatDur, instr, 69);
+        return n;
     }
 
     @Override

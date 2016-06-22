@@ -71,14 +71,22 @@ public class MusicController implements ActionListener {
                 case "CancelNewNote":
                     guiView.hidePopup();
                     guiView.repaintFrame();
-//                    System.out.print("Jameson is a pussy");
+
 //                    System.exit(69);
                     break;
                 case "AcceptNewNoteData":
-//                    Note n = new Note ();
-//                    newNoteToModel(n);
-                    System.out.print("Jameson jk jameson is a stud");
-                    System.exit(69);
+                    //if (guiView.validPopupData()) {
+                    model.addNote(guiView.getNoteFromPopop());
+                    //}
+                    //else {
+                    //guiView.invalidatePopup();
+                    //}
+
+
+//                    System.out.println("Jameson is a pussy");
+//                    System.out.println("Jameson jk jameson is a stud");
+//                    System.exit(69);
+                    modelToView();
             }
         }
     }

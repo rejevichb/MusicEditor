@@ -50,6 +50,9 @@ public class MidiViewImpl implements IMidiView {
             e.printStackTrace();
         }
         this.seqR = tempSeqR;
+        //TODO this is how we should be drawing red line
+        //this.seqR.addMetaEventListener()// evryy meta event is an event, every event has a time,
+        //get a callback everytime this event fires.
         this.seqTrans = tempSeqTrans;
         this.synth = tempSynth;
         this.receiver = tempReceiver;

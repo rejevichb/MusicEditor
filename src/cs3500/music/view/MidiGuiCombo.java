@@ -89,6 +89,16 @@ public class MidiGuiCombo implements IGuiView {
         gui.hidePopup();
     }
 
+//    @Override
+//    public boolean validPopupData() {
+//       return gui.validPopupData();
+//    }
+
+    @Override
+    public Note getNoteFromPopop() {
+        return gui.getNoteFromPopop();
+    }
+
     @Override
     public void setTimeConstant(long t) {
         this.gui.setTimeConstant(t);
