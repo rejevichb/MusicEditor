@@ -62,12 +62,24 @@ public class MusicController implements ActionListener {
     }
 
 
+    class PopupListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
         switch (e.getActionCommand()) {
             //read from the input textfield
             case "AddNote Button":
-                guiView.createPopup(this); //or another action listener??????
+                guiView.createPopup(new PopupListener()); //or another action listener??????
+
 
                 break;
             case "RemoveNote Button":

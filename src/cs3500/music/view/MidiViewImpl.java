@@ -143,7 +143,6 @@ public class MidiViewImpl implements IMidiView {
 
     @Override
     public long getTime() {
-        //TODO
         return this.seqR.getMicrosecondPosition() /
                 (long) (this.seqR.getTempoInMPQ() * seqR.getTempoFactor());
     }
