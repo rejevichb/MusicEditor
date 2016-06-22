@@ -20,6 +20,7 @@ import cs3500.music.view.MidiGuiCombo;
 public class MusicController implements ActionListener {
 
     IMusicPieceView view;
+    IGuiView guiView;
     IMusicModel model;
     KeyListener keyHandler;
     MouseListener mouseHandler;
@@ -28,6 +29,7 @@ public class MusicController implements ActionListener {
     public MusicController(IMusicModel model, IMusicPieceView view) {
         this.model = model;
         this.view = view;
+        this.guiView = null;
         this.keyHandler = null;
         this.mouseHandler = null;
 
@@ -35,7 +37,8 @@ public class MusicController implements ActionListener {
 
     public MusicController(IMusicModel model, IGuiView view) {
         this.model = model;
-        this.view = view;
+        this.view = null;
+        this.guiView = view;
 
         this.mouseHandler = new MouseHandler();
         this.keyHandler = new KeyboardHandler();
@@ -50,7 +53,12 @@ public class MusicController implements ActionListener {
      * Sends the model in the controller to the view in the controller
      */
     public void modelToView() {
-        view.modelDataToView(new MusicPieceModel(this.model));
+        if (view == null) {
+            guiView.modelDataToView(new MusicPieceModel(this.model));
+        } else if (guiView == null) {
+            view.modelDataToView(new MusicPieceModel(this.model));
+        }
+
     }
 
 
@@ -59,8 +67,11 @@ public class MusicController implements ActionListener {
         switch (e.getActionCommand()) {
             //read from the input textfield
             case "AddNote Button":
+                guiView.createPopup();
+
                 break;
             case "RemoveNote Button":
+                System.out.println("Fuck her right in the pussy");
                 System.exit(69);
                 break;
         }
