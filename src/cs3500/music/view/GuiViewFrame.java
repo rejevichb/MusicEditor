@@ -43,10 +43,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     public GuiViewFrame() {
         super();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setTitle("Music Viewer v1.6        Authors: Jameson O'Connor, Brendan Rejevich");
-        this.setSize(new Dimension(400, 400));
+        this.setTitle("Music Viewer v1.7        Authors: Jameson O'Connor, Brendan Rejevich");
+        this.setSize(new Dimension(1350, 800));
         this.displayPanel = new ConcreteGuiViewPanel();
-
+        this.setResizable(false);
     }
 
     @Override
@@ -138,12 +138,15 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     @Override
     public void createPopup(ActionListener actionListener) {
         addNotePanel = new JPanel();
-        addNotePanel.setLayout(new BoxLayout(addNotePanel, BoxLayout.Y_AXIS));
+        BoxLayout box = new BoxLayout(addNotePanel, BoxLayout.X_AXIS);
+        addNotePanel.setLayout(box);
 
+        FlowLayout flow = new FlowLayout();
+        //addNotePanel.setLayout(flow);
 
         JLabel pitchL = new JLabel("Select a pitch");
         JLabel beatStartL = new JLabel("Input a start beat");
-        JLabel durationL = new JLabel("Input a sustain in number of beats         ");
+        JLabel durationL = new JLabel("Input a sustain in number of beats");
         JLabel octaveL = new JLabel("Enter Octave (from 0 - 10)");
         JLabel instrumentL = new JLabel("Enter Instrument Number (From 0 - 10");
         instrumentL.setHorizontalAlignment(JLabel.LEFT);
@@ -160,7 +163,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         cancelButton.addActionListener(actionListener);
 
 
-        Dimension textFieldSize = new Dimension(50, 50);
+        Dimension textFieldSize = new Dimension(70, 40);
 
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format);
@@ -171,13 +174,15 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         formatter.setAllowsInvalid(false);
         // If you want the value to be committed on each keystroke instead of focus lost
         formatter.setCommitsOnValidEdit(false);
-        //JFormattedTextField field = new JFormattedTextField(formatter);
 
 
         beatStart = new JFormattedTextField(formatter);
         beatDur = new JFormattedTextField(formatter);
-        beatStart.setSize(textFieldSize);
-        beatDur.setSize(textFieldSize);
+//        beatStart.setSize(textFieldSize);
+//        beatDur.setSize(textFieldSize);
+        beatStart.setPreferredSize(textFieldSize);
+        beatDur.setPreferredSize(textFieldSize);
+
 
 
         Integer[] octaveNums = new Integer[11];
@@ -206,7 +211,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
         addNotePanel.setSize(new Dimension(200, 800));
         addNotePanel.setVisible(true);
-        this.add(addNotePanel, borderLayout.EAST);
+        this.add(addNotePanel, borderLayout.SOUTH);
         this.repaint();
 
     }
@@ -217,6 +222,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     public void hidePopup() {
         this.borderLayout.removeLayoutComponent(addNotePanel);
         this.remove(addNotePanel);
+        this.revalidate();
         //this.pack();
     }
 
@@ -245,9 +251,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void repaintFrame() {
-//        this.displayPanel.repaint();
-//        this.addNotePanel.repaint();
+        this.displayPanel.repaint();
+        //this.addNotePanel.setVisible(false);
         this.repaint();
+        this.revalidate();
 
     }
 

@@ -76,6 +76,7 @@ public class MusicController implements ActionListener {
                     break;
                 case "AcceptNewNoteData":
                     //if (guiView.validPopupData()) {
+
                     model.addNote(guiView.getNoteFromPopop());
                     //}
                     //else {
