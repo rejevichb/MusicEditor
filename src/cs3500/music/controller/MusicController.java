@@ -111,34 +111,4 @@ public class MusicController implements ActionListener {
                 break;
         }
     }
-
-
-    //SOMEHOW READ KEYMAPS VIA FILE..????
-    //figure out which file to read based on which view i'm in
-    //      check somehow to see if we have the sub-view-interface IGuiView and if so perform
-    //      certain operations on the panel, playing music, etc.
-
-    static class MapFactory {
-
-        public static Map<Integer, Runnable> create(String s) {
-            HashMap<Integer, Runnable> ret = new HashMap<>();
-            switch (s) {
-                case "released":
-                    //populate hash map from file somehow????
-                    break;
-                case "pressed":
-                    //populate hash map from file somehow????
-                    break;
-                case "typed":
-                    //populate hash map from file somehow????
-                    break;
-            }
-            return ret;
-        }
-    }
-
-
-    public Map<Integer, Runnable> getMap(String s) {
-        return MapFactory.create(s);
-    }
 }
