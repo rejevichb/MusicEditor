@@ -17,7 +17,8 @@ public interface IGuiView extends IMusicPieceView {
 
     void removeMouseListener(MouseListener mouseListener);
 
-    void createPopup();
+    void createPopup(ActionListener actionListener);
+
 
     void setTimeConstant(long t);
 

@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
+import cs3500.music.model.Pitch;
 
 //import cs3500.music.controller.MouseHandler;
 
@@ -25,6 +26,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     int tempo;
     JButton addNoteButton = new JButton("+");
     JButton removeNoteButton = new JButton("-");
+    BorderLayout borderLayout;
 
 
     /**
@@ -61,7 +63,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
         this.displayPanel.setPreferredSize(new Dimension(setX, setY));
 
-        BorderLayout borderLayout = new BorderLayout();
+        borderLayout = new BorderLayout();
         this.setLayout(borderLayout);
 
 
@@ -70,23 +72,27 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         JScrollPane scrolls = new JScrollPane(displayPanel);
         this.add(scrolls);
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout());
-        buttonPanel.setBackground(Color.red);
+        BoxLayout buttonlayout = new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS);
+        buttonPanel.setLayout(buttonlayout);
+        buttonPanel.setBackground(Color.getHSBColor(160, 50, 100));
 
 
         //AddNote Button
         //addNoteButton = new JButton("+");
         addNoteButton.setActionCommand("AddNote Button");
         addNoteButton.setPreferredSize(new Dimension(40, 40));
+        addNoteButton.setVerticalAlignment(SwingConstants.CENTER);
         buttonPanel.add(addNoteButton);
 
         //RemoveNote Button
         //removeNoteButton = new JButton("-");
         removeNoteButton.setActionCommand("RemoveNote Button");
         removeNoteButton.setPreferredSize(new Dimension(40, 40));
+        removeNoteButton.setHorizontalAlignment(SwingConstants.CENTER);
         buttonPanel.add(removeNoteButton);
 
-        this.add(buttonPanel, borderLayout.NORTH);
+        this.add(buttonPanel, borderLayout.WEST);
+
 
         displayPanel.repaint();
         this.setVisible(true);
@@ -116,6 +122,55 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     public void removeMouseListener(MouseListener mouseListener) {
         //TODO implement after MouseHandlerImpl
         // this should be just handled in the controller
+    }
+
+    @Override
+    public void createPopup(ActionListener actionListener) {
+        JPanel addNotePanel = new JPanel();
+        addNotePanel.setLayout(new BoxLayout(addNotePanel, BoxLayout.Y_AXIS));
+
+        JLabel pitchL = new JLabel("Select a pitch");
+        JLabel beatStartL = new JLabel("Input a start beat");
+        JLabel durationL = new JLabel("Input a sustain in number of beats         ");
+        JLabel octaveL = new JLabel("Enter Octave (from 0 - 10)");
+        pitchL.setHorizontalAlignment(JLabel.LEFT);
+        beatStartL.setHorizontalAlignment(JLabel.LEFT);
+        durationL.setHorizontalAlignment(JLabel.LEFT);
+        octaveL.setHorizontalAlignment(JLabel.LEFT);
+
+        JButton acceptButton = new JButton("Add Note");
+        JButton cancelButton = new JButton("Cancel");
+
+
+        Dimension textFieldSize = new Dimension(50, 50);
+        JTextField beatStart = new JTextField(1);
+        JTextField beatDur = new JTextField(1);
+        JTextField octave = new JTextField(1);
+        beatStart.setSize(textFieldSize);
+        beatDur.setSize(textFieldSize);
+        octave.setSize(textFieldSize);
+
+
+        JComboBox pitchList = new JComboBox(Pitch.values());
+        pitchList.setSelectedIndex(0);
+        //pitchList.addActionListener();
+        addNotePanel.add(pitchL);
+        addNotePanel.add(pitchList);
+        addNotePanel.add(beatStartL);
+        addNotePanel.add(beatStart);
+        addNotePanel.add(durationL);
+        addNotePanel.add(beatDur);
+        addNotePanel.add(octaveL);
+        addNotePanel.add(octave);
+        addNotePanel.add(acceptButton);
+        addNotePanel.add(cancelButton);
+
+        addNotePanel.setSize(new Dimension(200, 800));
+        addNotePanel.setVisible(true);
+        this.add(addNotePanel, borderLayout.EAST);
+        addNotePanel.setVisible(true);
+        this.repaint();
+
     }
 
     @Override

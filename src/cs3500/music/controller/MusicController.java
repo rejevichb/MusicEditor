@@ -67,7 +67,7 @@ public class MusicController implements ActionListener {
         switch (e.getActionCommand()) {
             //read from the input textfield
             case "AddNote Button":
-                guiView.createPopup();
+                guiView.createPopup(this); //or another action listener??????
 
                 break;
             case "RemoveNote Button":

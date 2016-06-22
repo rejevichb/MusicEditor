@@ -80,6 +80,11 @@ public class MidiGuiCombo implements IGuiView {
     }
 
     @Override
+    public void createPopup(ActionListener actionListener) {
+        gui.createPopup(actionListener);
+    }
+
+    @Override
     public void setTimeConstant(long t) {
         this.gui.setTimeConstant(t);
     }

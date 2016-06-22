@@ -132,7 +132,6 @@ public class MidiViewImpl implements IMidiView {
             this.seqTrans.close();
             this.synth.close();
             this.seqR.close();
-            System.exit(69);
         }
     }
 
