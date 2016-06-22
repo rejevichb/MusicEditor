@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MetaEventListener;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
@@ -51,8 +52,6 @@ public class MidiViewImpl implements IMidiView {
         }
         this.seqR = tempSeqR;
         //TODO this is how we should be drawing red line
-        //this.seqR.addMetaEventListener()// evryy meta event is an event, every event has a time,
-        //get a callback everytime this event fires.
         this.seqTrans = tempSeqTrans;
         this.synth = tempSynth;
         this.receiver = tempReceiver;
@@ -149,5 +148,11 @@ public class MidiViewImpl implements IMidiView {
     public long getTime() {
         return this.seqR.getMicrosecondPosition() /
                 (long) (this.seqR.getTempoInMPQ() * seqR.getTempoFactor());
+    }
+
+    @Override
+    public void addMetaEventListener(MetaEventListener metaEventListener) {
+        this.seqR.addMetaEventListener(metaEventListener);// evryy meta event is an event, every event has a time,
+        //get a callback everytime this event fires.
     }
 }

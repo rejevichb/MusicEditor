@@ -133,7 +133,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     }
 
 
-    //TODO new method
 
     @Override
     public void createPopup(ActionListener actionListener) {
@@ -216,7 +215,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     }
 
-    //TODO new method
 
     @Override
     public void hidePopup() {

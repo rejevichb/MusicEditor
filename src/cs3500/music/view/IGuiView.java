@@ -20,8 +20,6 @@ public interface IGuiView extends IMusicPieceView {
     void removeMouseListener(MouseListener mouseListener);
 
 
-    //TODO 3 new methods for gui
-
     void createPopup(ActionListener actionListener);
 
     void hidePopup();

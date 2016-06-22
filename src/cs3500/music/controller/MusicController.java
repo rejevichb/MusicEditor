@@ -64,7 +64,7 @@ public class MusicController implements ActionListener {
 
 
     class PopupListener implements ActionListener {
-        //TODO new stuff
+
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
@@ -99,7 +99,7 @@ public class MusicController implements ActionListener {
         switch (e.getActionCommand()) {
             //read from the input textfield
             case "AddNote Button":
-                guiView.createPopup(new PopupListener()); //TODO new Stuff
+                guiView.createPopup(new PopupListener());
                 guiView.repaintFrame();
                 break;
             case "RemoveNote Button":
@@ -110,9 +110,9 @@ public class MusicController implements ActionListener {
     }
 
 
-    private void newNoteToModel(Note note) {
-        model.addNote(note);
-    }
+//    private void newNoteToModel(Note note) {
+//        model.addNote(note);
+//    }
 
     //SOMEHOW READ KEYMAPS VIA FILE..????
     //figure out which file to read based on which view i'm in
