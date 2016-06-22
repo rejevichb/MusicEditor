@@ -37,6 +37,7 @@ public class MidiGuiCombo implements IGuiView {
         midi.initialize();
 
 
+        //TODO fix this
         aniTimer = new Timer(1, new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui.setTimeConstant(midi.getTime());
@@ -45,8 +46,6 @@ public class MidiGuiCombo implements IGuiView {
             }
         });
         aniTimer.start();
-
-
     }
 
 
