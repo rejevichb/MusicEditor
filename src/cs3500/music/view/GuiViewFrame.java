@@ -99,6 +99,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         buttonPanel.setLayout(buttonlayout);
         buttonPanel.setBackground(Color.getHSBColor(160, 50, 100));
 
+        InputMap im = scrolls.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        im.put(KeyStroke.getKeyStroke("DOWN"), "positiveUnitIncrement");
+        im.put(KeyStroke.getKeyStroke("UP"), "negativeUnitIncrement");
+
 
         //AddNote Button
         //addNoteButton = new JButton("+");
@@ -269,7 +273,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
         int setY = ((absolutePitchHi - absolutePitchLo) * 20) + 150;
         int setX = this.totalNumBeats * 20 + 300;
-
 
         this.displayPanel.setPreferredSize(new Dimension(setX, setY));
 

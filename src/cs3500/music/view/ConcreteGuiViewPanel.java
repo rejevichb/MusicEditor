@@ -24,10 +24,7 @@ public class ConcreteGuiViewPanel extends JPanel {
     public ConcreteGuiViewPanel() {
         super();
 
-
-
     }
-
 
     @Override
     public void paintComponent(Graphics g) {
@@ -108,7 +105,7 @@ public class ConcreteGuiViewPanel extends JPanel {
         }
 
         //columns
-        for (int j = 0; j < ((this.totalNumBeats / 4) + completeMeasure() - 2); j++) {
+        for (int j = 0; j <= (this.totalNumBeats + completeMeasure()) / 4; j++) {
             graphics.setColor(Color.BLACK);
             graphics.drawLine(j * MEASURE_OFFSET, 0, (j) * MEASURE_OFFSET, BOX_OFFSET *
                     (absolutePitchHi - absolutePitchLo + 1));

@@ -81,13 +81,14 @@ public class MusicController implements ActionListener {
                     //if (guiView.validPopupData()) {
 
                     model.addNote(guiView.getNoteFromPopop());
+                    modelToView();
                     guiView.repaintFrame();
 
                     //}
                     //else {
                     //guiView.invalidatePopup();
                     //}
-                    modelToView();
+
                     break;
             }
         }
