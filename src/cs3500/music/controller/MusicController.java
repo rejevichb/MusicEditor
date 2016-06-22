@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import java.util.HashMap;
-import java.util.Map;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
@@ -106,7 +104,7 @@ public class MusicController implements ActionListener {
                 guiView.repaintFrame();
                 break;
             case "RemoveNote Button":
-                System.out.println("Fuck her right in the pussy");
+
                 System.exit(301);
                 break;
         }

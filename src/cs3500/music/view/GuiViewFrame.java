@@ -25,6 +25,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     private java.util.List<Note> notes;
     private int totalNumBeats;
     int tempo;
+    int absolutePitchHi;
+    int absolutePitchLo;
     JButton addNoteButton = new JButton("+");
     JButton removeNoteButton = new JButton("-");
     JPanel addNotePanel;
@@ -48,21 +50,35 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.setResizable(true);
     }
 
-    @Override
-    public void initialize() {
-        int absolutePitchLo = 127;  // lowest pitch in lowest octave.
-        int absolutePitchHi = 0;   // highest pitch in highest octave.
-
+    private int getAbsoluteLo() {
+        int returnVal = 127;
         for (Note n : this.notes) {
             //Set the pitchLo
-            if (n.getAbsPitch() < absolutePitchLo) {
-                absolutePitchLo = n.getAbsPitch();
-            }
-            //Set the pitchHi
-            if (n.getAbsPitch() > absolutePitchHi) {
-                absolutePitchHi = n.getAbsPitch();
+            if (n.getAbsPitch() < returnVal) {
+                returnVal = n.getAbsPitch();
             }
         }
+        return returnVal;
+    }
+
+    private int getAbsoluteHi() {
+        int returnVal = 0;
+        for (Note n : this.notes) {
+            //Set the pitchHi
+            if (n.getAbsPitch() > returnVal) {
+                returnVal = n.getAbsPitch();
+            }
+        }
+        return returnVal;
+    }
+
+
+
+    @Override
+    public void initialize() {
+        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
+        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
+
 
         int setY = ((absolutePitchHi - absolutePitchLo) * 20) + 150;
         int setX = this.totalNumBeats * 20 + 300;
@@ -207,7 +223,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         addNotePanel.setSize(new Dimension(200, 800));
         addNotePanel.setVisible(true);
         this.add(addNotePanel, borderLayout.SOUTH);
-        //getToolkit().beep();
+        getToolkit().beep();
 //        Toolkit.getScreenSize() ---> returns a dimension.
         this.repaint();
 
@@ -219,7 +235,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.borderLayout.removeLayoutComponent(addNotePanel);
         this.remove(addNotePanel);
         this.revalidate();
-        //this.pack();
+
     }
 
 //    @Override
@@ -247,10 +263,18 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void repaintFrame() {
+        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
+        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
+
+
+        int setY = ((absolutePitchHi - absolutePitchLo) * 20) + 150;
+        int setX = this.totalNumBeats * 20 + 300;
+
+
+        this.displayPanel.setPreferredSize(new Dimension(setX, setY));
+
         displayPanel.revalidate();
         this.displayPanel.repaint();
-        //this.addNotePanel.setVisible(false);
-        this.add(scrolls);
 
         this.revalidate();
         this.repaint();
