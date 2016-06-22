@@ -8,18 +8,11 @@ import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
-
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
 import cs3500.music.util.SoundUtils;
 import cs3500.music.view.IGuiView;
 import cs3500.music.view.IMusicPieceView;
-
-import static javax.sound.sampled.FloatControl.Type.SAMPLE_RATE;
 
 /**
  * Music Controller that coordinates communication between the model and the views.
@@ -79,7 +72,7 @@ public class MusicController implements ActionListener {
                     guiView.repaintFrame();
                     try {
                         SoundUtils.tone(1000, 100);
-                        Thread.sleep(10000);
+                        Thread.sleep(100);
                     } catch (Exception exep) {
                         System.exit(202);
                     }
@@ -90,11 +83,14 @@ public class MusicController implements ActionListener {
                     //if (guiView.validPopupData()) {
 
                     model.addNote(guiView.getNoteFromPopop());
+                    guiView.repaintFrame();
+
                     //}
                     //else {
                     //guiView.invalidatePopup();
                     //}
                     modelToView();
+                    break;
             }
         }
     }

@@ -34,7 +34,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     JComboBox octaveList;
     JComboBox pitchList;
     JComboBox instrumentList;
-
+    JScrollPane scrolls;
 
     /**
      * Creates new GuiView
@@ -43,9 +43,9 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         super();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("Music Viewer v1.7        Authors: Jameson O'Connor, Brendan Rejevich");
-        this.setSize(new Dimension(1350, 800));
+        this.setSize(new Dimension(1300, 600));
         this.displayPanel = new ConcreteGuiViewPanel();
-        this.setResizable(false);
+        this.setResizable(true);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
         this.add(displayPanel, borderLayout.CENTER);
 
-        JScrollPane scrolls = new JScrollPane(displayPanel);
+        scrolls = new JScrollPane(displayPanel);
         this.add(scrolls);
         JPanel buttonPanel = new JPanel();
         BoxLayout buttonlayout = new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS);
@@ -247,8 +247,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void repaintFrame() {
+        displayPanel.revalidate();
         this.displayPanel.repaint();
         //this.addNotePanel.setVisible(false);
+        this.add(scrolls);
+
         this.revalidate();
         this.repaint();
 
