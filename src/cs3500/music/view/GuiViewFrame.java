@@ -26,6 +26,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     int tempo;
     JButton addNoteButton = new JButton("+");
     JButton removeNoteButton = new JButton("-");
+    JPanel addNotePanel;
     BorderLayout borderLayout;
 
 
@@ -124,10 +125,14 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         // this should be just handled in the controller
     }
 
+
+    //TODO new method
+
     @Override
     public void createPopup(ActionListener actionListener) {
-        JPanel addNotePanel = new JPanel();
+        addNotePanel = new JPanel();
         addNotePanel.setLayout(new BoxLayout(addNotePanel, BoxLayout.Y_AXIS));
+
 
         JLabel pitchL = new JLabel("Select a pitch");
         JLabel beatStartL = new JLabel("Input a start beat");
@@ -140,6 +145,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
         JButton acceptButton = new JButton("Add Note");
         JButton cancelButton = new JButton("Cancel");
+        acceptButton.setActionCommand("AcceptNewNoteData");
+        cancelButton.setActionCommand("CancelNewNote");
+        acceptButton.addActionListener(actionListener);
+        cancelButton.addActionListener(actionListener);
 
 
         Dimension textFieldSize = new Dimension(50, 50);
@@ -168,9 +177,17 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         addNotePanel.setSize(new Dimension(200, 800));
         addNotePanel.setVisible(true);
         this.add(addNotePanel, borderLayout.EAST);
-        addNotePanel.setVisible(true);
         this.repaint();
 
+    }
+
+    //TODO new method
+
+    @Override
+    public void hidePopup() {
+        this.borderLayout.removeLayoutComponent(addNotePanel);
+        this.remove(addNotePanel);
+        this.pack();
     }
 
     @Override
@@ -180,7 +197,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void repaintFrame() {
-        this.displayPanel.repaint();
+//        this.displayPanel.repaint();
+//        this.addNotePanel.repaint();
+        this.repaint();
+
     }
 
     @Override

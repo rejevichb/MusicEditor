@@ -14,6 +14,7 @@ public class KeyboardHandler implements KeyListener {
     Map<Integer, Runnable> keyPressed;
     Map<Integer, Runnable> keyReleased;
 
+
 //    public KeyboardHandler() {
 //        keyTyped = new HashMap<>();
 //        keyPressed = new HashMap<>();

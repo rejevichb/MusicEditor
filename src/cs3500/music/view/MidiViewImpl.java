@@ -17,6 +17,7 @@ import javax.sound.midi.Track;
 import javax.sound.midi.Transmitter;
 
 import cs3500.music.model.IMusicModel;
+import cs3500.music.view.IMidiView;
 import cs3500.music.model.Note;
 
 /**
@@ -81,9 +82,9 @@ public class MidiViewImpl implements IMidiView {
 
         //populates Sequence's track with delta-time stamped MIDI messages
         for (Note n : this.notes) {
-            MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument(),
+            MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
                     n.getAbsPitch(), n.getVolume());
-            MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument(),
+            MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
                     n.getAbsPitch(), n.getVolume());
             MidiEvent start = new MidiEvent(noteOn,   (n.getStartBeat()) * (ret.getResolution()));
             MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration())

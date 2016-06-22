@@ -10,6 +10,7 @@ import java.util.Map;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
+import cs3500.music.model.Note;
 import cs3500.music.view.IGuiView;
 import cs3500.music.view.IMusicPieceView;
 import cs3500.music.view.MidiGuiCombo;
@@ -63,10 +64,22 @@ public class MusicController implements ActionListener {
 
 
     class PopupListener implements ActionListener {
-
+        //TODO new stuff
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            switch (e.getActionCommand()) {
+                case "CancelNewNote":
+                    guiView.hidePopup();
+                    guiView.repaintFrame();
+//                    System.out.print("Jameson is a pussy");
+//                    System.exit(69);
+                    break;
+                case "AcceptNewNoteData":
+//                    Note n = new Note ();
+//                    newNoteToModel(n);
+                    System.out.print("Jameson jk jameson is a stud");
+                    System.exit(69);
+            }
         }
     }
 
@@ -74,19 +87,22 @@ public class MusicController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-
         switch (e.getActionCommand()) {
             //read from the input textfield
             case "AddNote Button":
-                guiView.createPopup(new PopupListener()); //or another action listener??????
-
-
+                guiView.createPopup(new PopupListener()); //TODO new Stuff
+                guiView.repaintFrame();
                 break;
             case "RemoveNote Button":
                 System.out.println("Fuck her right in the pussy");
-                System.exit(69);
+                System.exit(301);
                 break;
         }
+    }
+
+
+    private void newNoteToModel(Note note) {
+        model.addNote(note);
     }
 
     //SOMEHOW READ KEYMAPS VIA FILE..????

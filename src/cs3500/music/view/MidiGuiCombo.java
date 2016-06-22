@@ -11,7 +11,7 @@ import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
 
 /**
- * Created by Jameson on 6/20/16.
+ * Brendan
  */
 public class MidiGuiCombo implements IGuiView {
 
@@ -82,6 +82,11 @@ public class MidiGuiCombo implements IGuiView {
     @Override
     public void createPopup(ActionListener actionListener) {
         gui.createPopup(actionListener);
+    }
+
+    @Override
+    public void hidePopup() {
+        gui.hidePopup();
     }
 
     @Override
