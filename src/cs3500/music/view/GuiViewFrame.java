@@ -12,7 +12,6 @@ import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
 import cs3500.music.model.Pitch;
 
-//import cs3500.music.controller.MouseHandler;
 
 // Possibly of interest for handling mouse events
 
@@ -120,10 +119,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void addMouseListener(MouseListener mouseListener) {
-        //FIXME look at this... associate a name or number with each mouse handler??? how to know
-        //This should be just handled in the controller
-        // which one to remove?
-        // this.displayPanel.addMouseListener(new MouseHandler());
+        this.displayPanel.addMouseListener(mouseListener);
     }
 
     @Override
@@ -149,10 +145,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         JLabel octaveL = new JLabel("Enter Octave (from 0 - 10)");
         JLabel instrumentL = new JLabel("Enter Instrument Number (From 0 - 10");
         instrumentL.setHorizontalAlignment(JLabel.LEFT);
-        pitchL.setHorizontalAlignment(JLabel.LEFT);
-        beatStartL.setHorizontalAlignment(JLabel.LEFT);
-        durationL.setHorizontalAlignment(JLabel.LEFT);
-        octaveL.setHorizontalAlignment(JLabel.LEFT);
+//        pitchL.setHorizontalAlignment(JLabel.LEFT);
+//        beatStartL.setHorizontalAlignment(JLabel.LEFT);
+//        durationL.setHorizontalAlignment(JLabel.LEFT);
+//        octaveL.setHorizontalAlignment(JLabel.LEFT);
 
         JButton acceptButton = new JButton("Add Note");
         JButton cancelButton = new JButton("Cancel");
@@ -211,6 +207,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         addNotePanel.setSize(new Dimension(200, 800));
         addNotePanel.setVisible(true);
         this.add(addNotePanel, borderLayout.SOUTH);
+        //getToolkit().beep();
+//        Toolkit.getScreenSize() ---> returns a dimension.
         this.repaint();
 
     }
@@ -251,8 +249,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     public void repaintFrame() {
         this.displayPanel.repaint();
         //this.addNotePanel.setVisible(false);
-        this.repaint();
         this.revalidate();
+        this.repaint();
 
     }
 

@@ -8,12 +8,18 @@ import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.SourceDataLine;
+
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
-import cs3500.music.model.Note;
+import cs3500.music.util.SoundUtils;
 import cs3500.music.view.IGuiView;
 import cs3500.music.view.IMusicPieceView;
-import cs3500.music.view.MidiGuiCombo;
+
+import static javax.sound.sampled.FloatControl.Type.SAMPLE_RATE;
 
 /**
  * Music Controller that coordinates communication between the model and the views.
@@ -71,6 +77,12 @@ public class MusicController implements ActionListener {
                 case "CancelNewNote":
                     guiView.hidePopup();
                     guiView.repaintFrame();
+                    try {
+                        SoundUtils.tone(1000, 100);
+                        Thread.sleep(10000);
+                    } catch (Exception exep) {
+                        System.exit(202);
+                    }
 
 //                    System.exit(69);
                     break;
@@ -82,11 +94,6 @@ public class MusicController implements ActionListener {
                     //else {
                     //guiView.invalidatePopup();
                     //}
-
-
-//                    System.out.println("Jameson is a pussy");
-//                    System.out.println("Jameson jk jameson is a stud");
-//                    System.exit(69);
                     modelToView();
             }
         }
@@ -109,10 +116,6 @@ public class MusicController implements ActionListener {
         }
     }
 
-
-//    private void newNoteToModel(Note note) {
-//        model.addNote(note);
-//    }
 
     //SOMEHOW READ KEYMAPS VIA FILE..????
     //figure out which file to read based on which view i'm in
@@ -137,6 +140,7 @@ public class MusicController implements ActionListener {
             return ret;
         }
     }
+
 
     public Map<Integer, Runnable> getMap(String s) {
         return MapFactory.create(s);
