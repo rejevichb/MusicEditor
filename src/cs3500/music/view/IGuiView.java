@@ -19,20 +19,22 @@ public interface IGuiView extends IMusicPieceView {
 
     void addKeyListener(KeyListener keyListener);
 
-    //void addMetaEventListener(MetaEventListener metaEventListener);
-
     void removeMouseListener(MouseListener mouseListener);
 
     void createPopup(ActionListener actionListener);
 
     void hidePopup();
 
-//    boolean validPopupData();
-
     Note getNoteFromPopop();
 
     void setTimeConstant(long t);
 
     void repaintFrame();
+
+    void removeNote(MouseListener mouseListener);
+
+    Note getRemovedNote();
+
+    boolean canRemoveNote(int x, int y);
 
 }

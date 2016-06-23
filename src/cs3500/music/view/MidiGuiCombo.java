@@ -33,8 +33,6 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     @Override
     public void initialize() {
         gui.initialize();
-
-
         midi.initialize();
 
 
@@ -106,6 +104,21 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     @Override
     public void repaintFrame() {
         gui.repaintFrame();
+    }
+
+    @Override
+    public void removeNote(MouseListener mouseListener) {
+        this.gui.removeNote(mouseListener);
+    }
+
+    @Override
+    public Note getRemovedNote() {
+        return gui.getRemovedNote();
+    }
+
+    @Override
+    public boolean canRemoveNote(int x, int y) {
+        return gui.canRemoveNote(x, y);
     }
 
     @Override

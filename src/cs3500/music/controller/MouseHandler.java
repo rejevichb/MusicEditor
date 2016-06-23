@@ -8,11 +8,31 @@ import java.awt.event.MouseListener;
  */
 public class MouseHandler implements MouseListener {
 
+    private int x = 0;
+    private int y = 0;
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        x = e.getX();
+        y = e.getY();
+//
 
     }
+
+
+    public int getX() {
+        int copy = this.x;
+        return copy;
+    }
+
+    public int getY() {
+        int copy = this.y;
+        return copy;
+    }
+
+
+
+
 
     @Override
     public void mousePressed(MouseEvent e) {

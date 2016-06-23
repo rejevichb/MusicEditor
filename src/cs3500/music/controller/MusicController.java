@@ -4,6 +4,7 @@ package cs3500.music.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.sound.midi.MetaEventListener;
@@ -119,6 +120,47 @@ public class MusicController implements ActionListener {
         }
     }
 
+    public class Clicka implements MouseListener {
+        private int x;
+        private int y;
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            this.x = e.getX();
+            this.y = e.getY();
+            if (guiView.canRemoveNote(this.x, this.y)) {
+                model.removeNote(guiView.getRemovedNote());
+                guiView.repaintFrame();
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+
+        public int getX() {
+            int copy = this.x;
+            return copy;
+        }
+
+        public int getY() {
+            int copy = this.y;
+            return copy;
+        }
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -130,8 +172,8 @@ public class MusicController implements ActionListener {
                 guiView.repaintFrame();
                 break;
             case "RemoveNote Button":
-
-                System.exit(301);
+                guiView.removeNote(new Clicka());
+                guiView.repaintFrame();
                 break;
         }
     }

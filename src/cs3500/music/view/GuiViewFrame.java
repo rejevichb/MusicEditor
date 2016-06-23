@@ -2,13 +2,17 @@ package cs3500.music.view;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.NumberFormat;
+import java.util.Collections;
 
 import javax.sound.midi.MetaEventListener;
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 
+import cs3500.music.controller.MouseHandler;
+import cs3500.music.controller.MusicController;
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
 import cs3500.music.model.Pitch;
@@ -38,6 +42,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     JComboBox pitchList;
     JComboBox instrumentList;
     JScrollPane scrolls;
+    Note remove;
 
     /**
      * Creates new GuiView
@@ -284,8 +289,48 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
         this.revalidate();
         this.repaint();
+    }
+
+    @Override
+    public void removeNote(MouseListener mouseListener) {
+        MusicController.Clicka mHandler = (MusicController.Clicka) mouseListener;
+
+        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
+        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
+
+
+        int xSub = mHandler.getX() % 20;
+        int xPoint = (mHandler.getX() - xSub) / 20;
+
+        int ySub = mHandler.getY() % 20;
+        int yPoint = (mHandler.getX() - ySub) / 20;
+        yPoint += absolutePitchLo;
+
+
+        for (Note n : notes) {
+            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
+                remove = n;
+            }
+        }
 
     }
+
+    @Override
+    public Note getRemovedNote() {
+        return remove;
+    }
+
+    @Override
+    public boolean canRemoveNote(int x, int y) {
+        boolean ret = false;
+        for (Note n : notes) {
+            if (n.getStartBeat() == x && n.getAbsPitch() == y) {
+                ret = true;
+            }
+        }
+        return ret;
+    }
+
 
     @Override
     public void addActionListener(ActionListener actionListener) {
