@@ -3,6 +3,7 @@ package cs3500.music.controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyEvent.*;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 import java.util.Map;
 
 import static java.awt.event.KeyEvent.VK_DOWN;

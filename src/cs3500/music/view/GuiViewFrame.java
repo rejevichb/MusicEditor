@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.text.NumberFormat;
 
+import javax.sound.midi.MetaEventListener;
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 
@@ -291,7 +292,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.addNoteButton.addActionListener(actionListener);
         this.removeNoteButton.addActionListener(actionListener);
     }
-
 
 
 }

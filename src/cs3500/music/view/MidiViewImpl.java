@@ -153,6 +153,5 @@ public class MidiViewImpl implements IMidiView {
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {
         this.seqR.addMetaEventListener(metaEventListener);// evryy meta event is an event, every event has a time,
-        //get a callback everytime this event fires.
     }
 }

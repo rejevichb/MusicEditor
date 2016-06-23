@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
+import javax.sound.midi.MetaEventListener;
 import javax.swing.*;
 
 import cs3500.music.model.IMusicModel;
@@ -13,7 +14,7 @@ import cs3500.music.model.Note;
 /**
  * Brendan
  */
-public class MidiGuiCombo implements IGuiView {
+public class MidiGuiCombo implements IGuiView, IMidiView {
 
     private IMidiView midi;
     private IGuiView gui;
@@ -42,7 +43,6 @@ public class MidiGuiCombo implements IGuiView {
             public void actionPerformed(ActionEvent evt) {
                 gui.setTimeConstant(midi.getTime());
                 gui.repaintFrame();
-
             }
         });
         aniTimer.start();
@@ -106,5 +106,15 @@ public class MidiGuiCombo implements IGuiView {
     @Override
     public void repaintFrame() {
         gui.repaintFrame();
+    }
+
+    @Override
+    public long getTime() {
+        return midi.getTime();
+    }
+
+    @Override
+    public void addMetaEventListener(MetaEventListener metaEventListener) {
+        midi.addMetaEventListener(metaEventListener);
     }
 }

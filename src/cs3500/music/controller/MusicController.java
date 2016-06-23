@@ -6,11 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
+import javax.sound.midi.MetaEventListener;
+import javax.sound.midi.MetaMessage;
+
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
 import cs3500.music.util.SoundUtils;
 import cs3500.music.view.IGuiView;
 import cs3500.music.view.IMusicPieceView;
+import cs3500.music.view.MidiGuiCombo;
 
 /**
  * Music Controller that coordinates communication between the model and the views.
@@ -22,6 +26,7 @@ public class MusicController implements ActionListener {
     IMusicModel model;
     KeyListener keyHandler;
     MouseListener mouseHandler;
+    MetaHandler metaHandler;
 
 
     public MusicController(IMusicModel model, IMusicPieceView view) {
@@ -30,6 +35,7 @@ public class MusicController implements ActionListener {
         this.guiView = null;
         this.keyHandler = null;
         this.mouseHandler = null;
+        this.metaHandler = null;
 
     }
 
@@ -40,10 +46,18 @@ public class MusicController implements ActionListener {
 
         this.mouseHandler = new MouseHandler();
         this.keyHandler = new KeyboardHandler();
+        this.metaHandler = new MetaHandler();
 
-        view.addMouseListener(mouseHandler);
-        view.addKeyListener(keyHandler);
-        view.addActionListener(this);
+        guiView.addMouseListener(mouseHandler);
+        guiView.addKeyListener(keyHandler);
+        guiView.addActionListener(this);
+
+        if (guiView instanceof MidiGuiCombo) {
+            MidiGuiCombo combo = (MidiGuiCombo) guiView;
+            combo.addMetaEventListener(metaHandler);
+        }
+
+
     }
 
 
@@ -56,11 +70,22 @@ public class MusicController implements ActionListener {
         } else if (guiView == null) {
             view.modelDataToView(new MusicPieceModel(this.model));
         }
-
     }
 
 
-    class PopupListener implements ActionListener {
+    private class MetaHandler implements MetaEventListener {
+        int time = 0;
+
+        @Override
+        public void meta(MetaMessage meta) {
+            guiView.repaintFrame();
+            //guiView.setTimeConstant();
+            time += 20;
+        }
+    }
+
+
+    private class PopupListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
