@@ -13,10 +13,13 @@ public class MouseHandler implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        x = e.getX();
-        y = e.getY();
-//
-
+        this.x = e.getX();
+        this.y = e.getY();
+        //System.out.println(x + ", " + y);
+//        if (guiView.canRemoveNote(this.x, this.y)) {
+//            model.removeNote(guiView.getRemovedNote());
+//            guiView.repaintFrame();
+//        }
     }
 
 

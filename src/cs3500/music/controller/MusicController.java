@@ -28,6 +28,7 @@ public class MusicController implements ActionListener {
     KeyListener keyHandler;
     MouseListener mouseHandler;
     MetaHandler metaHandler;
+    int time = 0;
 
 
     public MusicController(IMusicModel model, IMusicPieceView view) {
@@ -45,7 +46,7 @@ public class MusicController implements ActionListener {
         this.view = null;
         this.guiView = view;
 
-        this.mouseHandler = new MouseHandler();
+        this.mouseHandler = new MouseHandler();   //FIXME maybe
         this.keyHandler = new KeyboardHandler();
         this.metaHandler = new MetaHandler();
 
@@ -75,13 +76,12 @@ public class MusicController implements ActionListener {
 
 
     private class MetaHandler implements MetaEventListener {
-        int time = 0;
-
         @Override
         public void meta(MetaMessage meta) {
+            int localTime = time;
+            guiView.setTimeConstant(localTime);
             guiView.repaintFrame();
-            //guiView.setTimeConstant();
-            time += 20;
+            time += 1;
         }
     }
 
@@ -100,21 +100,11 @@ public class MusicController implements ActionListener {
                     } catch (Exception exep) {
                         System.exit(202);
                     }
-
-//                    System.exit(69);
                     break;
                 case "AcceptNewNoteData":
-                    //if (guiView.validPopupData()) {
-
                     model.addNote(guiView.getNoteFromPopop());
                     modelToView();
                     guiView.repaintFrame();
-
-                    //}
-                    //else {
-                    //guiView.invalidatePopup();
-                    //}
-
                     break;
             }
         }
@@ -128,8 +118,10 @@ public class MusicController implements ActionListener {
         public void mouseClicked(MouseEvent e) {
             this.x = e.getX();
             this.y = e.getY();
+            System.out.println(x + ", " + y);
             if (guiView.canRemoveNote(this.x, this.y)) {
                 model.removeNote(guiView.getRemovedNote());
+                modelToView();
                 guiView.repaintFrame();
             }
         }
@@ -164,9 +156,7 @@ public class MusicController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         switch (e.getActionCommand()) {
-            //read from the input textfield
             case "AddNote Button":
                 guiView.createPopup(new PopupListener());
                 guiView.repaintFrame();

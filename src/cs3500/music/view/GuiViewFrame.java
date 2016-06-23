@@ -293,38 +293,52 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void removeNote(MouseListener mouseListener) {
-        MusicController.Clicka mHandler = (MusicController.Clicka) mouseListener;
+//        MusicController.Clicka mHandler = (MusicController.Clicka) mouseListener;
+//
+//        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
+//        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
+//
+//
+//        int xSub = mHandler.getX() % 20;
+//        int xPoint = (mHandler.getX() - xSub) / 20;
+//
+//        int ySub = mHandler.getY() % 20;
+//        int yPoint = (mHandler.getX() - ySub) / 20;
+//        yPoint += absolutePitchLo;
+//
+//
+//        for (Note n : notes) {
+//            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
+//                remove = n;
+//            }
+//        }
 
-        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
-        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
-
-
-        int xSub = mHandler.getX() % 20;
-        int xPoint = (mHandler.getX() - xSub) / 20;
-
-        int ySub = mHandler.getY() % 20;
-        int yPoint = (mHandler.getX() - ySub) / 20;
-        yPoint += absolutePitchLo;
-
-
-        for (Note n : notes) {
-            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
-                remove = n;
-            }
-        }
+        this.displayPanel.removeNote(mouseListener);
 
     }
 
     @Override
     public Note getRemovedNote() {
-        return remove;
+        return displayPanel.getRemovedNote();
     }
 
     @Override
     public boolean canRemoveNote(int x, int y) {
+
+        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
+        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
+
+
+        int xSub = x % 20;
+        int xPoint = (x - xSub) / 20;
+
+        int ySub = y % 20;
+        int yPoint = (y - ySub) / 20;
+        yPoint += absolutePitchLo;
+
         boolean ret = false;
         for (Note n : notes) {
-            if (n.getStartBeat() == x && n.getAbsPitch() == y) {
+            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
                 ret = true;
             }
         }

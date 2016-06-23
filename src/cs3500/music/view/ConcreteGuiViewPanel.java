@@ -1,10 +1,12 @@
 package cs3500.music.view;
 
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.util.Collections;
 
 import javax.swing.*;
 
+import cs3500.music.controller.MusicController;
 import cs3500.music.model.Note;
 
 /**
@@ -19,11 +21,34 @@ public class ConcreteGuiViewPanel extends JPanel {
     int MEASURE_OFFSET = BOX_OFFSET * 4;
     int absolutePitchLo;  // lowest pitch in lowest octave.
     int absolutePitchHi;   // highest pitch in highest octave.
-    public long timeVariable = 2;
+    public long timeVariable = 0;
+    Note remove;
 
     public ConcreteGuiViewPanel() {
         super();
 
+    }
+
+    private int getAbsoluteLo() {
+        int returnVal = 127;
+        for (Note n : this.notes) {
+            //Set the pitchLo
+            if (n.getAbsPitch() < returnVal) {
+                returnVal = n.getAbsPitch();
+            }
+        }
+        return returnVal;
+    }
+
+    private int getAbsoluteHi() {
+        int returnVal = 0;
+        for (Note n : this.notes) {
+            //Set the pitchHi
+            if (n.getAbsPitch() > returnVal) {
+                returnVal = n.getAbsPitch();
+            }
+        }
+        return returnVal;
     }
 
     @Override
@@ -31,21 +56,11 @@ public class ConcreteGuiViewPanel extends JPanel {
         super.paintComponents(g);
         Graphics2D graphics = (Graphics2D) g;
 
-        absolutePitchLo = 127;  // lowest pitch in lowest octave.
-        absolutePitchHi = 0;   // highest pitch in highest octave.
+        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
+        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
 
         Collections.sort(this.notes);
 
-        for (Note n : notes) {
-            //Set the pitchLo
-            if (n.getAbsPitch() < absolutePitchLo) {
-                this.absolutePitchLo = n.getAbsPitch();
-            }
-            //Set the pitchHi
-            if (n.getAbsPitch() > absolutePitchHi) {
-                this.absolutePitchHi = n.getAbsPitch();
-            }
-        }
 
         //drawing pitch labels
         for (int i = absolutePitchHi; i >= absolutePitchLo; i--) {
@@ -129,6 +144,34 @@ public class ConcreteGuiViewPanel extends JPanel {
     private int completeMeasure() {
         int end = this.totalNumBeats % 4;
         return 4 - end;
+    }
+
+
+    protected void removeNote(MouseListener mouseListener) {
+        MusicController.Clicka mHandler = (MusicController.Clicka) mouseListener;
+
+        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
+        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
+
+
+        int xSub = mHandler.getX() % 20;
+        int xPoint = (mHandler.getX() - xSub) / 20;
+
+        int ySub = mHandler.getY() % 20;
+        int yPoint = (mHandler.getX() - ySub) / 20;
+        yPoint += absolutePitchLo;
+
+
+        for (Note n : notes) {
+            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
+                remove = n;
+            }
+        }
+
+    }
+
+    public Note getRemovedNote() {
+        return remove;
     }
 
 }

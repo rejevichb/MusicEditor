@@ -7,7 +7,7 @@ import javax.sound.midi.MetaEventListener;
  */
 public interface IMidiView extends IMusicPieceView {
 
-    long getTime();
+//    long getTime();
 
     void addMetaEventListener(MetaEventListener metaEventListener);
 }

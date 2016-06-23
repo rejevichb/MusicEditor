@@ -36,14 +36,15 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
         midi.initialize();
 
 
+        //COMBOVIEW GETS META.
         //TODO fix this
-        aniTimer = new Timer(1, new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                gui.setTimeConstant(midi.getTime());
-                gui.repaintFrame();
-            }
-        });
-        aniTimer.start();
+//        aniTimer = new Timer(1, new ActionListener() {
+//            public void actionPerformed(ActionEvent evt) {
+//                gui.setTimeConstant(midi.getTime());
+//                gui.repaintFrame();
+//            }
+//        });
+//        aniTimer.start();
     }
 
 
@@ -120,11 +121,11 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     public boolean canRemoveNote(int x, int y) {
         return gui.canRemoveNote(x, y);
     }
-
-    @Override
-    public long getTime() {
-        return midi.getTime();
-    }
+//
+//    @Override
+//    public long getTime() {
+//        return midi.getTime();
+//    }
 
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {

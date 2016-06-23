@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MetaEventListener;
+import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
@@ -82,18 +83,35 @@ public class MidiViewImpl implements IMidiView {
 
         Collections.sort(this.notes, Collections.reverseOrder());
 
+        MetaMessage action = new MetaMessage();
+        //MidiEvent fire = new MidiEvent(action, 0);
+        for (int i = 0; i < totalNumBeats; i++) {
+            MidiEvent fire = new MidiEvent(action, i);
+
+            //track.add(fire);
+        }
+
+//        MetaMessage action = new MetaMessage();
+//        MidiEvent fire = new MidiEvent(action, totalNumBeats);
+
         //populates Sequence's track with delta-time stamped MIDI messages
         for (Note n : this.notes) {
             MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
                     n.getAbsPitch(), n.getVolume());
             MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
                     n.getAbsPitch(), n.getVolume());
+
             MidiEvent start = new MidiEvent(noteOn,   (n.getStartBeat()) * (ret.getResolution()));
             MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration())
                     * ret.getResolution()));
+
+
             track.add(start);
             track.add(stop);
+            //MidiEvent fire = new MidiEvent(action, n.getStartBeat());
+            //track.add(fire);
         }
+
 
         //set the generated Sequence to the Sequencer
         try {
@@ -144,11 +162,11 @@ public class MidiViewImpl implements IMidiView {
         this.tempo = m.getTempo();
     }
 
-    @Override
-    public long getTime() {
-        return this.seqR.getMicrosecondPosition() /
-                (long) (this.seqR.getTempoInMPQ() * seqR.getTempoFactor());
-    }
+//    @Override
+//    public long getTime() {
+//        return this.seqR.getMicrosecondPosition() /
+//                (long) (this.seqR.getTempoInMPQ() * seqR.getTempoFactor());
+//    }
 
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {
