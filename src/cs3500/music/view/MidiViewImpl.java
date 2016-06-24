@@ -19,7 +19,6 @@ import javax.sound.midi.Track;
 import javax.sound.midi.Transmitter;
 
 import cs3500.music.model.IMusicModel;
-import cs3500.music.view.IMidiView;
 import cs3500.music.model.Note;
 
 /**
@@ -103,7 +102,7 @@ public class MidiViewImpl implements IMidiView {
         for (int i = 0; i < totalNumBeats; i += 20) {
             //for (Note n : notes) {
             //if (!(n.getStartBeat() == i)) {
-            MetaMessage action = new MetaMessage(0x00, new byte[i], 1);
+            MetaMessage action = new MetaMessage(0x00, new byte[i], i);
             MidiEvent fire = new MidiEvent(action, i);
             track.add(fire);
             //}

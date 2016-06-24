@@ -154,11 +154,11 @@ public class ConcreteGuiViewPanel extends JPanel {
         absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
 
 
-        int xSub = mHandler.getX() % 20;
+        int xSub = (mHandler.getX() + 40) % 20;
         int xPoint = (mHandler.getX() - xSub) / 20;
 
-        int ySub = mHandler.getY() % 20;
-        int yPoint = (mHandler.getX() - ySub) / 20;
+        int ySub = (mHandler.getY() + 50) % 20;
+        int yPoint = (mHandler.getY() - ySub) / 20;
         yPoint += absolutePitchLo;
 
 

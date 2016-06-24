@@ -2,17 +2,12 @@ package cs3500.music.view;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.NumberFormat;
-import java.util.Collections;
 
-import javax.sound.midi.MetaEventListener;
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 
-import cs3500.music.controller.MouseHandler;
-import cs3500.music.controller.MusicController;
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
 import cs3500.music.model.Pitch;
@@ -318,11 +313,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
         absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
 
-
-        int xSub = x % 20;
+        int xSub = (x + 40) % 20;
         int xPoint = (x - xSub) / 20;
 
-        int ySub = y % 20;
+        int ySub = (y + 50) % 20;
         int yPoint = (y - ySub) / 20;
         yPoint += absolutePitchLo;
 
