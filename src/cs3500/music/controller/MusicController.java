@@ -29,6 +29,7 @@ public class MusicController implements ActionListener {
     MouseListener mouseHandler;
     MetaHandler metaHandler;
     int time = 0;
+    boolean removeActive = false;
 
 
     public MusicController(IMusicModel model, IMusicPieceView view) {
@@ -46,7 +47,7 @@ public class MusicController implements ActionListener {
         this.view = null;
         this.guiView = view;
 
-        this.mouseHandler = new MouseHandler();   //FIXME maybe
+        this.mouseHandler = new Clicka();   //FIXME maybe
         this.keyHandler = new KeyboardHandler();
         this.metaHandler = new MetaHandler();
 
@@ -58,8 +59,6 @@ public class MusicController implements ActionListener {
             MidiGuiCombo combo = (MidiGuiCombo) guiView;
             combo.addMetaEventListener(metaHandler);
         }
-
-
     }
 
 
@@ -74,7 +73,6 @@ public class MusicController implements ActionListener {
         }
     }
 
-
     private class MetaHandler implements MetaEventListener {
         @Override
         public void meta(MetaMessage meta) {
@@ -84,7 +82,6 @@ public class MusicController implements ActionListener {
             time += 1;
         }
     }
-
 
     private class PopupListener implements ActionListener {
 
@@ -119,10 +116,11 @@ public class MusicController implements ActionListener {
             this.x = e.getX();
             this.y = e.getY();
             System.out.println(x + ", " + y);
-            if (guiView.canRemoveNote(this.x, this.y)) {
+            if (removeActive && guiView.canRemoveNote(this.x, this.y)) {
                 model.removeNote(guiView.getRemovedNote());
                 modelToView();
                 guiView.repaintFrame();
+                removeActive = false;
             }
         }
 
@@ -162,7 +160,8 @@ public class MusicController implements ActionListener {
                 guiView.repaintFrame();
                 break;
             case "RemoveNote Button":
-                guiView.removeNote(new Clicka());
+                removeActive = true;
+                guiView.removeNote(mouseHandler);
                 guiView.repaintFrame();
                 break;
         }

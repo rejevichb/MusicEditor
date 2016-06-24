@@ -111,14 +111,12 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
 
         //AddNote Button
-        //addNoteButton = new JButton("+");
         addNoteButton.setActionCommand("AddNote Button");
         addNoteButton.setPreferredSize(new Dimension(40, 40));
         addNoteButton.setVerticalAlignment(SwingConstants.CENTER);
         buttonPanel.add(addNoteButton);
 
         //RemoveNote Button
-        //removeNoteButton = new JButton("-");
         removeNoteButton.setActionCommand("RemoveNote Button");
         removeNoteButton.setPreferredSize(new Dimension(40, 40));
         removeNoteButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,13 +124,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
         this.add(buttonPanel, borderLayout.WEST);
 
-
         displayPanel.repaint();
         this.setVisible(true);
 
         scrolls.setAutoscrolls(true);
-
-
     }
 
     @Override
@@ -250,11 +245,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     }
 
-//    @Override
-//    public boolean validPopupData() {
-//
-//    }
-
 
     @Override
     public Note getNoteFromPopop() {
@@ -336,9 +326,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         int yPoint = (y - ySub) / 20;
         yPoint += absolutePitchLo;
 
+        //TODO use notes at beat?
+
         boolean ret = false;
-        for (Note n : notes) {
-            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
+        for (Note n : notes) { //&& n.getAbsPitch() == yPoint
+            if (n.getStartBeat() == xPoint) {
                 ret = true;
             }
         }

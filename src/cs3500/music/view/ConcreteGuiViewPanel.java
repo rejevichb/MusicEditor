@@ -17,11 +17,11 @@ public class ConcreteGuiViewPanel extends JPanel {
     protected java.util.List<Note> notes;
     protected int totalNumBeats;
     protected int tempo;
-    int BOX_OFFSET = 20;
-    int MEASURE_OFFSET = BOX_OFFSET * 4;
-    int absolutePitchLo;  // lowest pitch in lowest octave.
-    int absolutePitchHi;   // highest pitch in highest octave.
-    public long timeVariable = 0;
+    private int BOX_OFFSET = 20;
+    private int MEASURE_OFFSET = BOX_OFFSET * 4;
+    private int absolutePitchLo;  // lowest pitch in lowest octave.
+    private int absolutePitchHi;   // highest pitch in highest octave.
+    long timeVariable = 0;
     Note remove;
 
     public ConcreteGuiViewPanel() {
@@ -162,8 +162,8 @@ public class ConcreteGuiViewPanel extends JPanel {
         yPoint += absolutePitchLo;
 
 
-        for (Note n : notes) {
-            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
+        for (Note n : notes) {            //&& n.getAbsPitch() == yPoint
+            if (n.getStartBeat() == xPoint) {
                 remove = n;
             }
         }

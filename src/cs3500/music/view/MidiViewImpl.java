@@ -83,16 +83,6 @@ public class MidiViewImpl implements IMidiView {
 
         Collections.sort(this.notes, Collections.reverseOrder());
 
-        MetaMessage action = new MetaMessage();
-        //MidiEvent fire = new MidiEvent(action, 0);
-        for (int i = 0; i < totalNumBeats; i++) {
-            MidiEvent fire = new MidiEvent(action, i);
-
-            //track.add(fire);
-        }
-
-//        MetaMessage action = new MetaMessage();
-//        MidiEvent fire = new MidiEvent(action, totalNumBeats);
 
         //populates Sequence's track with delta-time stamped MIDI messages
         for (Note n : this.notes) {
@@ -105,11 +95,19 @@ public class MidiViewImpl implements IMidiView {
             MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration())
                     * ret.getResolution()));
 
-
             track.add(start);
             track.add(stop);
-            //MidiEvent fire = new MidiEvent(action, n.getStartBeat());
-            //track.add(fire);
+        }
+
+
+        for (int i = 0; i < totalNumBeats; i += 20) {
+            //for (Note n : notes) {
+            //if (!(n.getStartBeat() == i)) {
+            MetaMessage action = new MetaMessage(0x00, new byte[i], 1);
+            MidiEvent fire = new MidiEvent(action, i);
+            track.add(fire);
+            //}
+            //}
         }
 
 
@@ -170,6 +168,6 @@ public class MidiViewImpl implements IMidiView {
 
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {
-        this.seqR.addMetaEventListener(metaEventListener);// evryy meta event is an event, every event has a time,
+        this.seqR.addMetaEventListener(metaEventListener);  // evryy meta event is an event, every event has a time,
     }
 }
