@@ -1,13 +1,18 @@
 package cs3500.music.view;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import javax.sound.midi.MetaEventListener;
 
+//TODO
 /**
- * Brendan
+ *
  */
 public interface IMidiView extends IMusicPieceView {
-
-//    long getTime();
 
     void addMetaEventListener(MetaEventListener metaEventListener);
 }

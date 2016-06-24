@@ -1,18 +1,22 @@
 package cs3500.music.controller;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyEvent.*;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 
 import static java.awt.event.KeyEvent.VK_DOWN;
-import static java.awt.event.KeyEvent.VK_KP_DOWN;
 import static java.awt.event.KeyEvent.VK_LEFT;
 import static java.awt.event.KeyEvent.VK_RIGHT;
-import static java.awt.event.KeyEvent.VK_U;
 import static java.awt.event.KeyEvent.VK_UP;
 
+//TODO fixme
 /**
  * Concrete KeyboardHandler
  */
@@ -128,7 +132,6 @@ public class KeyboardHandler implements KeyListener {
         if (keyPressed.containsKey(e.getKeyCode()))
             keyPressed.get(e.getKeyCode()).run();
     }
-
 
     /**
      * This is called when the view detects that a key has been released. Find if anything has been

@@ -1,5 +1,11 @@
 package cs3500.music.model;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 /**
  * Created by brendanrejevich on 6/7/16. Represents the possible types of a Pitch, and their
  * associated int values.

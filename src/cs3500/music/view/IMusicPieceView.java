@@ -1,5 +1,11 @@
 package cs3500.music.view;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import cs3500.music.model.IMusicModel;
 
 /**

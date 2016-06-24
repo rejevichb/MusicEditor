@@ -1,11 +1,17 @@
 package cs3500.music.util;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.MusicPieceModel;
 import cs3500.music.model.Note;
 
 /**
- *  Used for creating and populating a model from a file that was read in.
+ * Used for creating and populating a model from a file that was read in.
  */
 public class CompositionBuilderImpl implements CompositionBuilder<IMusicModel> {
 

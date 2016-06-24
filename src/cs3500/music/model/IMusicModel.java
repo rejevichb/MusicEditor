@@ -1,5 +1,11 @@
 package cs3500.music.model;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import java.util.List;
 
 /**

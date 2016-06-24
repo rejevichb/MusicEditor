@@ -1,5 +1,10 @@
 package cs3500.music.controller;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +44,6 @@ public class MusicController implements ActionListener {
         this.keyHandler = null;
         this.mouseHandler = null;
         this.metaHandler = null;
-
     }
 
     public MusicController(IMusicModel model, IGuiView view) {
@@ -47,7 +51,7 @@ public class MusicController implements ActionListener {
         this.view = null;
         this.guiView = view;
 
-        this.mouseHandler = new Clicka();   //FIXME maybe
+        this.mouseHandler = new MouseHandler();
         this.keyHandler = new KeyboardHandler();
         this.metaHandler = new MetaHandler();
 
@@ -73,6 +77,12 @@ public class MusicController implements ActionListener {
         }
     }
 
+    /**
+     * The MetaHandler listens to messages via the metaEventListener on our Sequencer, which is
+     * populated with a MetaMessage stamp at every beat, allowing us to add the messages that are
+     * related to resolution. Therefore, when the tempo is changed,the MetaMessages will fire at the
+     * right time, as they are calculated as a multiple of the resolution of the sequencer.
+     */
     private class MetaHandler implements MetaEventListener {
         @Override
         public void meta(MetaMessage meta) {
@@ -83,13 +93,18 @@ public class MusicController implements ActionListener {
         }
     }
 
+    /**
+     * A new instance of this class is created every time the user presses the (+) button. The
+     * listener supports two options, cancel adding a new note, or confirm the new note and add it
+     * to the  composition.
+     */
     private class PopupListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
                 case "CancelNewNote":
-                    guiView.hidePopup();
+                    guiView.hidePopup();  //this method actually clears the popup for reuse.
                     guiView.repaintFrame();
                     try {
                         SoundUtils.tone(1000, 100);
@@ -99,7 +114,7 @@ public class MusicController implements ActionListener {
                     }
                     break;
                 case "AcceptNewNoteData":
-                    model.addNote(guiView.getNoteFromPopop());
+                    model.addNote(guiView.getNoteFromPopup());
                     modelToView();
                     guiView.repaintFrame();
                     break;
@@ -107,7 +122,12 @@ public class MusicController implements ActionListener {
         }
     }
 
-    public class Clicka implements MouseListener {
+    /**
+     * Handles mouse events when a user is clicking to remove a note. Boolean flag removeActive
+     * ensures that the user must press the (-) button every time he wants to remove a note -> only
+     * one note can be removed at a time.
+     */
+    public class MouseHandler implements MouseListener {
         private int x;
         private int y;
 
@@ -115,7 +135,6 @@ public class MusicController implements ActionListener {
         public void mouseClicked(MouseEvent e) {
             this.x = e.getX();
             this.y = e.getY();
-            //System.out.println(x + ", " + y);       && guiView.canRemoveNote(this.x, this.y)
             if (removeActive) {
                 model.removeNote(guiView.getRemovedNote());
                 modelToView();
@@ -151,7 +170,10 @@ public class MusicController implements ActionListener {
         }
     }
 
-
+    /**
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {

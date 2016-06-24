@@ -1,13 +1,19 @@
 package cs3500.music.view;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import javax.swing.*;
 
 import cs3500.music.model.IMusicModel;
 
 
 /**
- * Created by brendanrejevich on 6/14/16.
- * This class represents the console view of the music composition, as in the first assignment.
+ * Created by brendanrejevich on 6/14/16. This class represents the console view of the music
+ * composition, as in the first assignment.
  */
 public class ConsoleViewFrame implements IMusicPieceView {
 

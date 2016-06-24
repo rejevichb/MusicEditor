@@ -61,12 +61,10 @@ public class MidiViewImpl implements IMidiView {
     }
 
     /**
-     * Takes the notes from this model, creates a new Sequence containing one track of all notes
-     * in the model, and sets the sequence to the Sequencer. The resolution of the sequence is
-     * initially
-     * set to the model tempo, but will be overridden later by calling setTempoInMPQ and passing it
-     * the microseconds per quarter note.
-     * @throws InvalidMidiDataException
+     * Takes the notes from this model, creates a new Sequence containing one track of all notes in
+     * the model, and sets the sequence to the Sequencer. The resolution of the sequence is
+     * initially set to the model tempo, but will be overridden later by calling setTempoInMPQ and
+     * passing it the microseconds per quarter note.
      */
     public void modelToSequencer() throws InvalidMidiDataException {
         Sequence ret = null;
@@ -90,7 +88,7 @@ public class MidiViewImpl implements IMidiView {
             MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
                     n.getAbsPitch(), n.getVolume());
 
-            MidiEvent start = new MidiEvent(noteOn,   (n.getStartBeat()) * (ret.getResolution()));
+            MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat()) * (ret.getResolution()));
             MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration())
                     * ret.getResolution()));
 
@@ -113,17 +111,15 @@ public class MidiViewImpl implements IMidiView {
         //set the generated Sequence to the Sequencer
         try {
             this.seqR.setSequence(ret);
-        }
-        catch (InvalidMidiDataException e){
+        } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
     }
 
 
-
     /**
-     * Creates and sets a Sequence to the Sequencer. Opens the Sequencer, sets it's tempo,
-     * and starts playing.
+     * Creates and sets a Sequence to the Sequencer. Opens the Sequencer, sets it's tempo, and
+     * starts playing.
      */
     public void initialize() {
 

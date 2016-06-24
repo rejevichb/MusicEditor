@@ -1,5 +1,11 @@
 package cs3500.music.view;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -13,10 +19,10 @@ import cs3500.music.model.Note;
 import cs3500.music.model.Pitch;
 
 
-// Possibly of interest for handling mouse events
-
 /**
- * A skeleton Frame (i.e., a window) in Swing
+ * GUI Frame that handles drawing the GUI panel, including the AddNote popup bar,
+ * repainting the frame, removing a note via pixel coordinates through the controller, and
+ * adding mouse listeners to it's ConcreteGuiDisplayPanel.
  */
 public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
@@ -37,7 +43,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     JComboBox pitchList;
     JComboBox instrumentList;
     JScrollPane scrolls;
-    Note remove;
 
     /**
      * Creates new GuiView
@@ -72,7 +77,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         }
         return returnVal;
     }
-
 
 
     @Override
@@ -141,32 +145,16 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     }
 
     @Override
-    public void removeMouseListener(MouseListener mouseListener) {
-        //TODO implement after MouseHandlerImpl
-        // this should be just handled in the controller
-    }
-
-
-
-    @Override
     public void createPopup(ActionListener actionListener) {
         addNotePanel = new JPanel();
         BoxLayout box = new BoxLayout(addNotePanel, BoxLayout.X_AXIS);
         addNotePanel.setLayout(box);
-
-        FlowLayout flow = new FlowLayout();
-        //addNotePanel.setLayout(flow);
 
         JLabel pitchL = new JLabel("Select a pitch");
         JLabel beatStartL = new JLabel("Input a start beat");
         JLabel durationL = new JLabel("Input a sustain in number of beats");
         JLabel octaveL = new JLabel("Enter Octave (from 0 - 10)");
         JLabel instrumentL = new JLabel("Enter Instrument Number (From 0 - 10");
-        instrumentL.setHorizontalAlignment(JLabel.LEFT);
-//        pitchL.setHorizontalAlignment(JLabel.LEFT);
-//        beatStartL.setHorizontalAlignment(JLabel.LEFT);
-//        durationL.setHorizontalAlignment(JLabel.LEFT);
-//        octaveL.setHorizontalAlignment(JLabel.LEFT);
 
         JButton acceptButton = new JButton("Add Note");
         JButton cancelButton = new JButton("Cancel");
@@ -175,28 +163,20 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         acceptButton.addActionListener(actionListener);
         cancelButton.addActionListener(actionListener);
 
-
         Dimension textFieldSize = new Dimension(70, 40);
 
         NumberFormat format = NumberFormat.getIntegerInstance();
         NumberFormatter formatter = new NumberFormatter(format);
         formatter.setValueClass(Integer.class);
 
-        //formatter.setMinimum(0);
-        //formatter.setMaximum(Integer.MAX_VALUE);
         formatter.setAllowsInvalid(false);
-        // If you want the value to be committed on each keystroke instead of focus lost
         formatter.setCommitsOnValidEdit(false);
         format.setGroupingUsed(false);
 
-
         beatStart = new JFormattedTextField(formatter);
         beatDur = new JFormattedTextField(formatter);
-//        beatStart.setSize(textFieldSize);
-//        beatDur.setSize(textFieldSize);
         beatStart.setPreferredSize(textFieldSize);
         beatDur.setPreferredSize(textFieldSize);
-
 
 
         Integer[] octaveNums = new Integer[11];
@@ -209,7 +189,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         pitchList = new JComboBox(Pitch.values());
         octaveList = new JComboBox(octaveNums);
         pitchList.setSelectedIndex(0);
-        //pitchList.addActionListener();
+
         addNotePanel.add(pitchL);
         addNotePanel.add(pitchList);
         addNotePanel.add(octaveL);
@@ -238,12 +218,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.borderLayout.removeLayoutComponent(addNotePanel);
         this.remove(addNotePanel);
         this.revalidate();
-
     }
 
 
     @Override
-    public Note getNoteFromPopop() {
+    public Note getNoteFromPopup() {
         int oct = octaveList.getSelectedIndex();
         int beatSt = Integer.valueOf(this.beatStart.getText());
         int beatDur = Integer.valueOf(this.beatDur.getText());
@@ -280,7 +259,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     @Override
     public void removeNote(MouseListener mouseListener) {
         this.displayPanel.removeNote(mouseListener);
-
     }
 
     @Override
@@ -301,8 +279,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         int yPoint = (((y - ySub) - 40) / 20);
         yPoint = yPoint + (absolutePitchHi - absolutePitchLo);
 
-        //TODO use notes at beat?
-
         boolean ret = false;
         for (Note n : notes) {
             if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
@@ -312,14 +288,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         return ret;
     }
 
-
     @Override
     public void addActionListener(ActionListener actionListener) {
         this.addNoteButton.addActionListener(actionListener);
         this.removeNoteButton.addActionListener(actionListener);
     }
-
-
 }
 
 

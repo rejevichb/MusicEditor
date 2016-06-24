@@ -1,5 +1,11 @@
 package cs3500.music.util;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 /**
  * A builder of compositions.  Since we do not know in advance what the name of the main type is for
  * a model, we parameterize this builder interface by an unknown type.

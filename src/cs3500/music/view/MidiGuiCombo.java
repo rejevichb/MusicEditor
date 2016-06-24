@@ -1,18 +1,23 @@
 package cs3500.music.view;
 
-import java.awt.event.ActionEvent;
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
 import javax.sound.midi.MetaEventListener;
-import javax.swing.*;
 
 import cs3500.music.model.IMusicModel;
 import cs3500.music.model.Note;
+//TODO fixme
 
 /**
- * Brendan
+ *
  */
 public class MidiGuiCombo implements IGuiView, IMidiView {
 
@@ -21,7 +26,6 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     private java.util.List<Note> notes;
     private int totalNumBeats;
     int tempo;
-    Timer aniTimer;
 
 
     public MidiGuiCombo(IMidiView midi, IGuiView gui) {
@@ -34,17 +38,6 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     public void initialize() {
         gui.initialize();
         midi.initialize();
-
-
-        //COMBOVIEW GETS META.
-        //TODO fix this
-//        aniTimer = new Timer(1, new ActionListener() {
-//            public void actionPerformed(ActionEvent evt) {
-//                gui.setTimeConstant(midi.getTime());
-//                gui.repaintFrame();
-//            }
-//        });
-//        aniTimer.start();
     }
 
 
@@ -73,11 +66,6 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     }
 
     @Override
-    public void removeMouseListener(MouseListener mouseListener) {
-
-    }
-
-    @Override
     public void createPopup(ActionListener actionListener) {
         gui.createPopup(actionListener);
     }
@@ -87,14 +75,9 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
         gui.hidePopup();
     }
 
-//    @Override
-//    public boolean validPopupData() {
-//       return gui.validPopupData();
-//    }
-
     @Override
-    public Note getNoteFromPopop() {
-        return gui.getNoteFromPopop();
+    public Note getNoteFromPopup() {
+        return gui.getNoteFromPopup();
     }
 
     @Override
@@ -121,11 +104,6 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     public boolean canRemoveNote(int x, int y) {
         return gui.canRemoveNote(x, y);
     }
-//
-//    @Override
-//    public long getTime() {
-//        return midi.getTime();
-//    }
 
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {

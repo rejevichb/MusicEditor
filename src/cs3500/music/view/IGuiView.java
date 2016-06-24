@@ -1,10 +1,14 @@
 package cs3500.music.view;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-
-import javax.sound.midi.MetaEventListener;
 
 import cs3500.music.model.Note;
 
@@ -20,30 +24,26 @@ public interface IGuiView extends IMusicPieceView {
 
     /**
      * Adds an ActionListener to the IGuiVIew
-     * @param actionListener
      */
     void addActionListener(ActionListener actionListener);
 
 
     /**
      * Adds a KeyListener to the IGuiView
-     * @param keyListener
      */
     void addKeyListener(KeyListener keyListener);
 
-    void removeMouseListener(MouseListener mouseListener);
 
     /**
-     * Creates a popup on the right side of the JFrame, allowing the user to
-     * enter in note information and add a note. A listener must also be added to the popup
-     * specifically int order
-     * @param actionListener
+     * Creates a popup on the right side of the JFrame, allowing the user to enter in note
+     * information and add a note. A listener must also be added to the popup specifically int
+     * order
      */
     void createPopup(ActionListener actionListener);
 
     void hidePopup();
 
-    Note getNoteFromPopop();
+    Note getNoteFromPopup();
 
     void setTimeConstant(long t);
 

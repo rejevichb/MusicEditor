@@ -1,5 +1,11 @@
 package cs3500.music.view;
 
+/*
+Jameson O'Connor
+Brendan Rejevich
+CS3500 Object Oriented Design
+ */
+
 import java.awt.*;
 import java.awt.event.MouseListener;
 import java.util.Collections;
@@ -9,8 +15,10 @@ import javax.swing.*;
 import cs3500.music.controller.MusicController;
 import cs3500.music.model.Note;
 
+//TODO
+
 /**
- * A dummy view that simply draws a string
+ *
  */
 public class ConcreteGuiViewPanel extends JPanel {
 
@@ -138,8 +146,7 @@ public class ConcreteGuiViewPanel extends JPanel {
      * for the gui view.  This is a helper for paintComponent and make sure that every note is in a
      * beat measure.
      *
-     * @return int representing the number of beats to complete the measure that the last beat is
-     * in
+     * @return int representing the number of beats to complete the measure that the last beat is in
      */
     private int completeMeasure() {
         int end = this.totalNumBeats % 4;
@@ -148,7 +155,7 @@ public class ConcreteGuiViewPanel extends JPanel {
 
 
     protected void removeNote(MouseListener mouseListener) {
-        MusicController.Clicka mHandler = (MusicController.Clicka) mouseListener;
+        MusicController.MouseHandler mHandler = (MusicController.MouseHandler) mouseListener;
 
         absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
         absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
