@@ -40,7 +40,7 @@ public class MusicPieceModel implements IMusicModel {
         if (this.notes.contains(n)) {
             this.notes.remove(n);
             resizeAfterRemoval();
-        } else throw new IllegalArgumentException("That note does not exist in the piece");
+        }
     }
 
     /**

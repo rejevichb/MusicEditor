@@ -79,11 +79,11 @@ public class ConcreteGuiViewPanel extends JPanel {
             graphics.setColor(Color.BLACK);
             graphics.setFont(new Font("TimesRoman", Font.BOLD, 13));
             if (j % 16 == 0) {
-                graphics.drawString(j + "", (j * BOX_OFFSET) + 30, 40);
+                graphics.drawString(j + "", (j * BOX_OFFSET) + 30, 30);
             }
         }
 
-        graphics.translate(40, 50);
+        graphics.translate(40, 40);
 
 
         //rows
@@ -152,18 +152,20 @@ public class ConcreteGuiViewPanel extends JPanel {
 
         absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
         absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
+        System.out.println(mHandler.getX() + " + " + mHandler.getY());
 
 
-        int xSub = (mHandler.getX() + 40) % 20;
-        int xPoint = (mHandler.getX() - xSub) / 20;
+        int xSub = mHandler.getX() % 20;
+        int xPoint = ((mHandler.getX() - xSub) - 40) / 20;
 
-        int ySub = (mHandler.getY() + 50) % 20;
-        int yPoint = (mHandler.getY() - ySub) / 20;
-        yPoint += absolutePitchLo;
+        int ySub = mHandler.getY() % 20;
+        int yPoint = ((mHandler.getY() - ySub) - 40) / 20;
+        yPoint = absolutePitchHi - yPoint;
 
 
-        for (Note n : notes) {            //&& n.getAbsPitch() == yPoint
-            if (n.getStartBeat() == xPoint) {
+        for (Note n : this.notes) {  //
+            // xPoint <= 5  && n.getStartBeat() - xPoint >= -5
+            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
                 remove = n;
             }
         }

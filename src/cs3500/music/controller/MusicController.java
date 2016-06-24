@@ -115,8 +115,8 @@ public class MusicController implements ActionListener {
         public void mouseClicked(MouseEvent e) {
             this.x = e.getX();
             this.y = e.getY();
-            System.out.println(x + ", " + y);
-            if (removeActive && guiView.canRemoveNote(this.x, this.y)) {
+            //System.out.println(x + ", " + y);       && guiView.canRemoveNote(this.x, this.y)
+            if (removeActive) {
                 model.removeNote(guiView.getRemovedNote());
                 modelToView();
                 guiView.repaintFrame();
