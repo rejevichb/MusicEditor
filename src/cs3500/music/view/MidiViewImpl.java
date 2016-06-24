@@ -99,11 +99,11 @@ public class MidiViewImpl implements IMidiView {
         }
 
 
-        for (int i = 0; i < totalNumBeats; i += 20) {
+        for (int i = 0; i < totalNumBeats + 2; i += 1) {
             //for (Note n : notes) {
             //if (!(n.getStartBeat() == i)) {
-            MetaMessage action = new MetaMessage(0x00, new byte[i], i);
-            MidiEvent fire = new MidiEvent(action, i);
+            MetaMessage action = new MetaMessage();
+            MidiEvent fire = new MidiEvent(action, i * ret.getResolution());
             track.add(fire);
             //}
             //}

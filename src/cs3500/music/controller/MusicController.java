@@ -79,7 +79,7 @@ public class MusicController implements ActionListener {
             int localTime = time;
             guiView.setTimeConstant(localTime);
             guiView.repaintFrame();
-            time += 1;
+            time += 20;
         }
     }
 
