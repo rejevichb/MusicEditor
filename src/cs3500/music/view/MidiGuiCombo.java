@@ -105,6 +105,16 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
         return gui.canRemoveNote(x, y);
     }
 
+
+    public void play(boolean b) {
+        midi.play(b);
+    }
+
+    @Override
+    public void pause() {
+        midi.pause();
+    }
+
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {
         midi.addMetaEventListener(metaEventListener);

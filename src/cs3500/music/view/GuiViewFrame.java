@@ -289,6 +289,16 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     }
 
     @Override
+    public void play(boolean b) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
     public void addActionListener(ActionListener actionListener) {
         this.addNoteButton.addActionListener(actionListener);
         this.removeNoteButton.addActionListener(actionListener);

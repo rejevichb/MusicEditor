@@ -15,4 +15,8 @@ import javax.sound.midi.MetaEventListener;
 public interface IMidiView extends IMusicPieceView {
 
     void addMetaEventListener(MetaEventListener metaEventListener);
+
+    void play(boolean b);
+
+    void pause();
 }

@@ -8,9 +8,12 @@ CS3500 Object Oriented Design
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.sound.midi.MetaEventListener;
 import javax.sound.midi.MetaMessage;
@@ -27,14 +30,15 @@ import cs3500.music.view.MidiGuiCombo;
  */
 public class MusicController implements ActionListener {
 
-    IMusicPieceView view;
-    IGuiView guiView;
-    IMusicModel model;
-    KeyListener keyHandler;
-    MouseListener mouseHandler;
-    MetaHandler metaHandler;
-    int time = 0;
-    boolean removeActive = false;
+    private IMusicPieceView view;
+    private IGuiView guiView;
+    private IMusicModel model;
+    private KeyListener keyHandler;
+    private MouseListener mouseHandler;
+    private MetaHandler metaHandler;
+    private int time = 0;
+    private boolean removeActive = false;
+    private boolean isPlaying = true;
 
 
     public MusicController(IMusicModel model, IMusicPieceView view) {
@@ -160,15 +164,78 @@ public class MusicController implements ActionListener {
         }
 
         public int getX() {
-            int copy = this.x;
-            return copy;
+            return this.x;
         }
 
         public int getY() {
-            int copy = this.y;
-            return copy;
+            return this.y;
         }
     }
+
+
+    /**
+     * Concrete KeyboardHandler
+     */
+    private class KeyboardHandler implements KeyListener {
+        Map<Character, Runnable> playPauseMap = new HashMap<>();
+        Map<Character, Runnable> keyTyped;
+
+        KeyboardHandler() {
+            keyTyped = new HashMap<>();
+            playPauseMap.put('r', () -> {
+                {
+                    if (isPlaying) {
+                        //guiView.pause();
+                        isPlaying = false;
+                    } else {
+                        //guiView.play();
+                        isPlaying = true;
+                    }
+                }
+                guiView.play(isPlaying);
+            });
+            this.setKeyTypedMap(playPauseMap);
+        }
+
+        /**
+         * Set the map for key typed events. Key typed events in Java Swing are characters
+         */
+        public void setKeyTypedMap(Map<Character, Runnable> map) {
+            keyTyped = map;
+        }
+
+        /**
+         * This is called when the view detects that a key has been typed. Find if anything has been
+         * mapped to this key character and if so, execute it
+         */
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (keyTyped.containsKey(e.getKeyChar()))
+                keyTyped.get(e.getKeyChar()).run();
+        }
+
+        /**
+         * This is called when the view detects that a key has been pressed. Find if anything has
+         * been mapped to this key code and if so, execute it
+         */
+        @Override
+        public void keyPressed(KeyEvent e) {
+        }
+
+        /**
+         * This is called when the view detects that a key has been released. Find if anything has
+         * been mapped to this key code and if so, execute it
+         */
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
+    }
+
+
+
+
+
+
 
     /**
      *

@@ -34,7 +34,7 @@ public class MidiViewImpl implements IMidiView {
     private Transmitter seqTrans;
     private final Synthesizer synth;
     private final Receiver receiver;
-
+    private boolean isPlaying = false;
 
     public MidiViewImpl() {
         Sequencer tempSeqR = null;
@@ -139,6 +139,12 @@ public class MidiViewImpl implements IMidiView {
 
         seqR.start();
 
+        while (isPlaying) {
+            seqR.stop();
+        }
+
+
+
 
         if (synth.getMicrosecondPosition() >= seqR.getMicrosecondLength()) {
             seqR.stop();
@@ -155,14 +161,22 @@ public class MidiViewImpl implements IMidiView {
         this.tempo = m.getTempo();
     }
 
-//    @Override
-//    public long getTime() {
-//        return this.seqR.getMicrosecondPosition() /
-//                (long) (this.seqR.getTempoInMPQ() * seqR.getTempoFactor());
-//    }
-
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {
         this.seqR.addMetaEventListener(metaEventListener);  // evryy meta event is an event, every event has a time,
+    }
+
+
+    public void play(boolean b) {
+        isPlaying = b;
+
+    }
+
+    @Override
+    public void pause() {
+        if (seqR.isRunning()) {
+            this.seqR.stop();
+
+        }
     }
 }
