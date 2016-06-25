@@ -51,7 +51,6 @@ public class MidiViewImpl implements IMidiView {
             e.printStackTrace();
         }
         this.seqR = tempSeqR;
-        //TODO this is how we should be drawing red line
         this.seqTrans = tempSeqTrans;
         this.synth = tempSynth;
         this.receiver = tempReceiver;
@@ -164,8 +163,4 @@ public class MidiViewImpl implements IMidiView {
     }
 
 
-    private void updateSeqr() {
-        initialize();
-
-    }
 }

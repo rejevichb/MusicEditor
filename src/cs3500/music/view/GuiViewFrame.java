@@ -55,6 +55,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.setSize(new Dimension(1300, 600));
         this.displayPanel = new ConcreteGuiViewPanel();
         this.setResizable(true);
+        this.setFocusable(true);
     }
 
     private int getAbsoluteLo() {
@@ -292,6 +293,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
             }
         }
         return ret;
+
     }
 
     @Override
@@ -299,6 +301,19 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         //empty implementation
 
     }
+
+    @Override
+    public void resetFocus() {
+        this.setFocusable(true);
+        this.requestFocus();
+    }
+
+
+    public void toggleColor() {
+        this.displayPanel.setForeground(Color.BLACK);
+
+    }
+
 
 
 

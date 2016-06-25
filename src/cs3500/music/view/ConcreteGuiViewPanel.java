@@ -35,6 +35,7 @@ public class ConcreteGuiViewPanel extends JPanel {
     public ConcreteGuiViewPanel() {
         super();
 
+
     }
 
     private int getAbsoluteLo() {
@@ -182,6 +183,7 @@ public class ConcreteGuiViewPanel extends JPanel {
     public Note getRemovedNote() {
         return remove;
     }
+
 
 }
 

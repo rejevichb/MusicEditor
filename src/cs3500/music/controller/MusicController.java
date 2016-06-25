@@ -8,12 +8,9 @@ CS3500 Object Oriented Design
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.sound.midi.MetaEventListener;
 import javax.sound.midi.MetaMessage;
@@ -57,7 +54,7 @@ public class MusicController implements ActionListener {
 
         this.mouseHandler = new MouseHandler();
         this.metaHandler = new MetaHandler();
-        configureKeyboardHandler();
+
         guiView.addMouseListener(mouseHandler);
         guiView.addActionListener(this);
 
@@ -115,27 +112,19 @@ public class MusicController implements ActionListener {
                     } catch (Exception exep) {
                         System.exit(202);
                     }
+                    guiView.resetFocus();
                     break;
                 case "AcceptNewNoteData":
                     model.addNote(guiView.getNoteFromPopup());
                     modelToView();
                     guiView.repaintFrame();
+                    guiView.resetFocus();
                     break;
             }
         }
     }
 
 
-    private void configureKeyboardHandler() {
-        Map<Character, Runnable> typedMap = new HashMap<>();
-        typedMap.put('r', () -> {
-                    guiView.initialize();
-                }
-        );
-        KeyboardHandler kbd = new KeyboardHandler();
-        kbd.setKeyTypedMap(typedMap);
-        guiView.addKeyListener(kbd);
-    }
 
     /**
      * Handles mouse events when a user is clicking to remove a note. Boolean flag removeActive
@@ -150,6 +139,7 @@ public class MusicController implements ActionListener {
         public void mouseClicked(MouseEvent e) {
             this.x = e.getX();
             this.y = e.getY();
+            guiView.resetFocus();
             if (removeActive) {
                 model.removeNote(guiView.getRemovedNote());
                 modelToView();
@@ -196,16 +186,19 @@ public class MusicController implements ActionListener {
             case "AddNote Button":
                 guiView.createPopup(new PopupListener());
                 guiView.repaintFrame();
+                guiView.resetFocus();
                 break;
             case "RemoveNote Button":
                 removeActive = true;
                 guiView.removeNote(mouseHandler);
                 guiView.repaintFrame();
+                guiView.resetFocus();
                 break;
             case "playPause":
                 guiView.modelDataToView(this.model);
                 guiView.playPause();
                 guiView.repaintFrame();
+                guiView.resetFocus();
                 break;
 
         }

@@ -57,5 +57,9 @@ public interface IGuiView extends IMusicPieceView {
 
     void playPause();
 
+    void resetFocus();
+
+    void toggleColor();
+
 
 }

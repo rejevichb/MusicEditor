@@ -110,6 +110,17 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
         midi.playPause();
     }
 
+    @Override
+    public void resetFocus() {
+        gui.resetFocus();
+    }
+
+
+    @Override
+    public void toggleColor() {
+        gui.toggleColor();
+    }
+
 
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {
