@@ -77,9 +77,7 @@ public class MidiViewImpl implements IMidiView {
         ret.createTrack();
         Track track = ret.getTracks()[0];
 
-
         Collections.sort(this.notes, Collections.reverseOrder());
-
 
         //populates Sequence's track with delta-time stamped MIDI messages
         for (Note n : this.notes) {
@@ -96,17 +94,11 @@ public class MidiViewImpl implements IMidiView {
             track.add(stop);
         }
 
-
         for (int i = 0; i < totalNumBeats + 2; i += 1) {
-            //for (Note n : notes) {
-            //if (!(n.getStartBeat() == i)) {
             MetaMessage action = new MetaMessage();
             MidiEvent fire = new MidiEvent(action, i * ret.getResolution());
             track.add(fire);
-            //}
-            //}
         }
-
 
         //set the generated Sequence to the Sequencer
         try {
@@ -137,14 +129,6 @@ public class MidiViewImpl implements IMidiView {
 
         seqR.setTempoInMPQ(this.tempo);
 
-        seqR.start();
-
-        while (isPlaying) {
-            seqR.stop();
-        }
-
-
-
 
         if (synth.getMicrosecondPosition() >= seqR.getMicrosecondLength()) {
             seqR.stop();
@@ -163,20 +147,25 @@ public class MidiViewImpl implements IMidiView {
 
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {
-        this.seqR.addMetaEventListener(metaEventListener);  // evryy meta event is an event, every event has a time,
-    }
-
-
-    public void play(boolean b) {
-        isPlaying = b;
-
+        this.seqR.addMetaEventListener(metaEventListener);
     }
 
     @Override
-    public void pause() {
+    public void playPause() {
+        seqR.setTempoInMPQ(this.tempo * 2);
         if (seqR.isRunning()) {
-            this.seqR.stop();
-
+            seqR.setTempoInMPQ(this.tempo);
+            seqR.stop();
+        } else {
+            seqR.stop();
+            seqR.setTempoInMPQ(this.tempo);
+            seqR.start();
         }
+    }
+
+
+    private void updateSeqr() {
+        initialize();
+
     }
 }

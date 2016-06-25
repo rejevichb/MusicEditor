@@ -25,6 +25,7 @@ import cs3500.music.view.IGuiView;
 import cs3500.music.view.IMusicPieceView;
 import cs3500.music.view.MidiGuiCombo;
 
+
 /**
  * Music Controller that coordinates communication between the model and the views.
  */
@@ -38,7 +39,6 @@ public class MusicController implements ActionListener {
     private MetaHandler metaHandler;
     private int time = 0;
     private boolean removeActive = false;
-    private boolean isPlaying = true;
 
 
     public MusicController(IMusicModel model, IMusicPieceView view) {
@@ -56,12 +56,11 @@ public class MusicController implements ActionListener {
         this.guiView = view;
 
         this.mouseHandler = new MouseHandler();
-        this.keyHandler = new KeyboardHandler();
         this.metaHandler = new MetaHandler();
-
+        configureKeyboardHandler();
         guiView.addMouseListener(mouseHandler);
-        guiView.addKeyListener(keyHandler);
         guiView.addActionListener(this);
+
 
         if (guiView instanceof MidiGuiCombo) {
             MidiGuiCombo combo = (MidiGuiCombo) guiView;
@@ -126,6 +125,18 @@ public class MusicController implements ActionListener {
         }
     }
 
+
+    private void configureKeyboardHandler() {
+        Map<Character, Runnable> typedMap = new HashMap<>();
+        typedMap.put('r', () -> {
+                    guiView.initialize();
+                }
+        );
+        KeyboardHandler kbd = new KeyboardHandler();
+        kbd.setKeyTypedMap(typedMap);
+        guiView.addKeyListener(kbd);
+    }
+
     /**
      * Handles mouse events when a user is clicking to remove a note. Boolean flag removeActive
      * ensures that the user must press the (-) button every time he wants to remove a note -> only
@@ -173,68 +184,6 @@ public class MusicController implements ActionListener {
     }
 
 
-    /**
-     * Concrete KeyboardHandler
-     */
-    private class KeyboardHandler implements KeyListener {
-        Map<Character, Runnable> playPauseMap = new HashMap<>();
-        Map<Character, Runnable> keyTyped;
-
-        KeyboardHandler() {
-            keyTyped = new HashMap<>();
-            playPauseMap.put('r', () -> {
-                {
-                    if (isPlaying) {
-                        //guiView.pause();
-                        isPlaying = false;
-                    } else {
-                        //guiView.play();
-                        isPlaying = true;
-                    }
-                }
-                guiView.play(isPlaying);
-            });
-            this.setKeyTypedMap(playPauseMap);
-        }
-
-        /**
-         * Set the map for key typed events. Key typed events in Java Swing are characters
-         */
-        public void setKeyTypedMap(Map<Character, Runnable> map) {
-            keyTyped = map;
-        }
-
-        /**
-         * This is called when the view detects that a key has been typed. Find if anything has been
-         * mapped to this key character and if so, execute it
-         */
-        @Override
-        public void keyTyped(KeyEvent e) {
-            if (keyTyped.containsKey(e.getKeyChar()))
-                keyTyped.get(e.getKeyChar()).run();
-        }
-
-        /**
-         * This is called when the view detects that a key has been pressed. Find if anything has
-         * been mapped to this key code and if so, execute it
-         */
-        @Override
-        public void keyPressed(KeyEvent e) {
-        }
-
-        /**
-         * This is called when the view detects that a key has been released. Find if anything has
-         * been mapped to this key code and if so, execute it
-         */
-        @Override
-        public void keyReleased(KeyEvent e) {
-        }
-    }
-
-
-
-
-
 
 
     /**
@@ -253,6 +202,13 @@ public class MusicController implements ActionListener {
                 guiView.removeNote(mouseHandler);
                 guiView.repaintFrame();
                 break;
+            case "playPause":
+                guiView.modelDataToView(this.model);
+                guiView.playPause();
+                guiView.repaintFrame();
+                break;
+
         }
     }
+
 }

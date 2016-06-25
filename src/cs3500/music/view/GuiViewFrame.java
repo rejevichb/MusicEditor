@@ -35,6 +35,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     int absolutePitchLo;
     JButton addNoteButton = new JButton("+");
     JButton removeNoteButton = new JButton("-");
+    JButton playPauseButton = new JButton("► / ||");
     JPanel addNotePanel;
     BorderLayout borderLayout;
     JFormattedTextField beatStart;
@@ -108,18 +109,23 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         im.put(KeyStroke.getKeyStroke("DOWN"), "positiveUnitIncrement");
         im.put(KeyStroke.getKeyStroke("UP"), "negativeUnitIncrement");
 
-
         //AddNote Button
         addNoteButton.setActionCommand("AddNote Button");
         addNoteButton.setPreferredSize(new Dimension(40, 40));
         addNoteButton.setVerticalAlignment(SwingConstants.CENTER);
         buttonPanel.add(addNoteButton);
 
+
         //RemoveNote Button
         removeNoteButton.setActionCommand("RemoveNote Button");
         removeNoteButton.setPreferredSize(new Dimension(40, 40));
         removeNoteButton.setHorizontalAlignment(SwingConstants.CENTER);
         buttonPanel.add(removeNoteButton);
+
+        //PlayPause Button
+        playPauseButton.setActionCommand("playPause");
+        playPauseButton.setPreferredSize(new Dimension(60, 40));
+        buttonPanel.add(playPauseButton);
 
         this.add(buttonPanel, borderLayout.WEST);
 
@@ -289,19 +295,18 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     }
 
     @Override
-    public void play(boolean b) {
+    public void playPause() {
+        //empty implementation
 
     }
 
-    @Override
-    public void pause() {
 
-    }
 
     @Override
     public void addActionListener(ActionListener actionListener) {
         this.addNoteButton.addActionListener(actionListener);
         this.removeNoteButton.addActionListener(actionListener);
+        this.playPauseButton.addActionListener(actionListener);
     }
 }
 

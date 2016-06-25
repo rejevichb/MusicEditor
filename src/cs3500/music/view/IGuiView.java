@@ -55,8 +55,7 @@ public interface IGuiView extends IMusicPieceView {
 
     boolean canRemoveNote(int x, int y);
 
-    void play(boolean b);
+    void playPause();
 
-    void pause();
 
 }

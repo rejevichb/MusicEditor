@@ -16,7 +16,6 @@ public interface IMidiView extends IMusicPieceView {
 
     void addMetaEventListener(MetaEventListener metaEventListener);
 
-    void play(boolean b);
+    void playPause();
 
-    void pause();
 }
