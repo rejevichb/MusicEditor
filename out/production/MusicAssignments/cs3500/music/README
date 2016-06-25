@@ -28,6 +28,25 @@ Files
 
 
 
+--  --  -- Change Log -- -- -- --
+
+
+
+
+
+--  --  -- Guide to GUI Interaction -- -- -- --
+
+To play or pause the music in the MidiGuiCombo view, press the play/pause button.
+To add a note, press the (+) button, fill in the required info, and press the add note button.
+If a user decides that he no longer wants to add a note, he can press the cancel button to cancel
+the operation. To remove a note, the user must first click the remove note button (-), click the
+note he wants to remove, and do the same exact operation twice to confirm the removal. To clarify,
+if a user wants to remove a button, he must first click the minus sign, click on the start beat
+of a note to remove, click the minus sign again, and click on the same note to confirm removal.
+
+
+
+
 
 
 
