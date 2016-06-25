@@ -41,25 +41,55 @@ public interface IGuiView extends IMusicPieceView {
      */
     void createPopup(ActionListener actionListener);
 
+    /**
+     * Hides the popup from the GuiFrame after the user accepts or cancels the note.
+     */
     void hidePopup();
 
+    /**
+     * Returns the note that was inputted in the popup to the controller, so it can be added to the
+     * model.
+     *
+     * @return Note
+     */
     Note getNoteFromPopup();
 
+    /**
+     * Sets the time in the ConcreteGuiViewPanel for drawing of the red line.
+     * @param t
+     */
     void setTimeConstant(long t);
 
+    /**
+     * Repaints the GUIFrame
+     */
     void repaintFrame();
 
+    /**
+     * Removes a note based on mouse events on the ConcreteGuiViewPanel
+     * @param mouseListener
+     */
     void removeNote(MouseListener mouseListener);
 
+    /**
+     * Returns the note that was removed.
+     * @return
+     */
     Note getRemovedNote();
 
-    boolean canRemoveNote(int x, int y);
-
+    /**
+     * Plays or pauses the red line and the audio based on the sequencers current state.
+     */
     void playPause();
 
+    /**
+     * Resets the focus to the display panel after any mouse or action event
+     */
     void resetFocus();
 
-    void toggleColor();
-
+    /**
+     * Restarts the music piece, both the red line and the MIDI.
+     */
+    void restart();
 
 }

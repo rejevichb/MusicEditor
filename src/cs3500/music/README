@@ -35,8 +35,8 @@ Files
   - Enum:        Pitch - can be one of 12 pitch values
 
 
-NOTE: WHEN RUNNING THE PROGRAM, the first command line argument is the file to read from, the second
-command is the type of view desired (one of : visual, midi, console, or combo.)
+****** NOTE: WHEN RUNNING THE PROGRAM, the first command line argument is the file to read from,
+the second command is the type of view desired (one of : visual, midi, console, or combo.) ****
 
 
 
@@ -61,7 +61,10 @@ If a user decides that he no longer wants to add a note, he can press the cancel
 the operation. To remove a note, the user must first click the remove note button (-), click the
 note he wants to remove, and do the same exact operation twice to confirm the removal. To clarify,
 if a user wants to remove a button, he must first click the minus sign, click on the start beat
-of a note to remove, click the minus sign again, and click on the same note to confirm removal.
+of a note to remove, click the minus sign again, and click on the same note to confirm removal.  To
+reset or jump to the beginning of the composition the user must click the reset button. This button
+will bring the red ticker back to the zero beat and restart the music from the beginning.  Thank you
+and enjoy the Music Editor.
 
 
 
@@ -114,6 +117,7 @@ after the call to musicPieceModel2, the internal states of the notes from musicP
 that are now in musicPieceModel1 have been changed, and therefore it is not acceptable
 to allow the note to be mutated, leaving the notes in musicPieceModel2 unchanged, and instead
 creating new ones that go in musicPieceModel1 - the note class is final.
+
 
 
 

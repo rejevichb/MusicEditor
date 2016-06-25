@@ -36,6 +36,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     JButton addNoteButton = new JButton("+");
     JButton removeNoteButton = new JButton("-");
     JButton playPauseButton = new JButton("► / ||");
+    JButton restartButton = new JButton("⟳");
     JPanel addNotePanel;
     BorderLayout borderLayout;
     JFormattedTextField beatStart;
@@ -114,6 +115,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         addNoteButton.setActionCommand("AddNote Button");
         addNoteButton.setPreferredSize(new Dimension(40, 40));
         addNoteButton.setVerticalAlignment(SwingConstants.CENTER);
+        buttonPanel.add(new JLabel("Add"));
         buttonPanel.add(addNoteButton);
 
 
@@ -121,16 +123,26 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         removeNoteButton.setActionCommand("RemoveNote Button");
         removeNoteButton.setPreferredSize(new Dimension(40, 40));
         removeNoteButton.setHorizontalAlignment(SwingConstants.CENTER);
+        buttonPanel.add(new JLabel("Remove"));
         buttonPanel.add(removeNoteButton);
 
         //PlayPause Button
         playPauseButton.setActionCommand("playPause");
         playPauseButton.setPreferredSize(new Dimension(60, 40));
+        buttonPanel.add(new JLabel("Play/Pause"));
         buttonPanel.add(playPauseButton);
+
+        //Restart button
+        restartButton.setActionCommand("restart");
+        restartButton.setPreferredSize(new Dimension(60, 40));
+        buttonPanel.add(new JLabel("Reset"));
+        buttonPanel.add(restartButton);
 
         this.add(buttonPanel, borderLayout.WEST);
 
+
         displayPanel.repaint();
+
         this.setVisible(true);
 
         scrolls.setAutoscrolls(true);
@@ -274,29 +286,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     }
 
     @Override
-    public boolean canRemoveNote(int x, int y) {
-
-        absolutePitchLo = getAbsoluteLo();  // lowest pitch in lowest octave.
-        absolutePitchHi = getAbsoluteHi();   // highest pitch in highest octave.
-
-        int xSub = x % 20;
-        int xPoint = ((x - xSub) - 40) / 20;
-
-        int ySub = y % 20;
-        int yPoint = (((y - ySub) - 40) / 20);
-        yPoint = yPoint + (absolutePitchHi - absolutePitchLo);
-
-        boolean ret = false;
-        for (Note n : notes) {
-            if (n.getStartBeat() == xPoint && n.getAbsPitch() == yPoint) {
-                ret = true;
-            }
-        }
-        return ret;
-
-    }
-
-    @Override
     public void playPause() {
         //empty implementation
 
@@ -308,13 +297,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.requestFocus();
     }
 
-
-    public void toggleColor() {
-        this.displayPanel.setForeground(Color.BLACK);
-
+    @Override
+    public void restart() {
+        setTimeConstant(0);
+        this.repaint();
     }
-
-
 
 
     @Override
@@ -322,6 +309,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.addNoteButton.addActionListener(actionListener);
         this.removeNoteButton.addActionListener(actionListener);
         this.playPauseButton.addActionListener(actionListener);
+        this.restartButton.addActionListener(actionListener);
     }
 }
 

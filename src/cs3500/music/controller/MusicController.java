@@ -8,7 +8,6 @@ CS3500 Object Oriented Design
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -31,7 +30,6 @@ public class MusicController implements ActionListener {
     private IMusicPieceView view;
     private IGuiView guiView;
     private IMusicModel model;
-    private KeyListener keyHandler;
     private MouseListener mouseHandler;
     private MetaHandler metaHandler;
     private int time = 0;
@@ -42,7 +40,6 @@ public class MusicController implements ActionListener {
         this.model = model;
         this.view = view;
         this.guiView = null;
-        this.keyHandler = null;
         this.mouseHandler = null;
         this.metaHandler = null;
     }
@@ -200,6 +197,10 @@ public class MusicController implements ActionListener {
                 guiView.repaintFrame();
                 guiView.resetFocus();
                 break;
+            case "restart":
+                time = 0;
+                guiView.restart();
+
 
         }
     }

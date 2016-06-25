@@ -100,10 +100,6 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
         return gui.getRemovedNote();
     }
 
-    @Override
-    public boolean canRemoveNote(int x, int y) {
-        return gui.canRemoveNote(x, y);
-    }
 
     @Override
     public void playPause() {
@@ -115,12 +111,11 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
         gui.resetFocus();
     }
 
-
     @Override
-    public void toggleColor() {
-        gui.toggleColor();
+    public void restart() {
+        midi.restart();
+        gui.restart();
     }
-
 
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {

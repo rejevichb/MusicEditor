@@ -162,5 +162,12 @@ public class MidiViewImpl implements IMidiView {
         }
     }
 
+    @Override
+    public void restart() {
+        seqR.stop();
+        seqR.close();
+        this.initialize();
+    }
+
 
 }
