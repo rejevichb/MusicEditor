@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="format and comments">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler$8.class" afterPath="" />
+    <list default="true" id="b178f0c9-af74-4db3-9f6b-f7cd0eca683e" name="Default" comment="work it">
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/KeyboardHandler.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/MusicAssignments_jar/MusicAssignments.jar" afterPath="$PROJECT_DIR$/out/artifacts/MusicAssignments_jar/MusicAssignments.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/MusicController$PopupListener.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/controller/MusicController$PopupListener.class" />
@@ -20,13 +12,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiGuiCombo.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiGuiCombo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiViewImpl.class" afterPath="$PROJECT_DIR$/out/production/MusicAssignments/cs3500/music/view/MidiViewImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/IMidiView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/IMidiView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/MidiGuiCombo.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/MidiGuiCombo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" />
     </list>
     <ignored path="MusicAssignments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,13 +38,13 @@
         <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="154">
-              <caret line="131" column="37" selection-start-line="131" selection-start-column="37" selection-end-line="131" selection-end-column="37" />
+              <caret line="131" column="41" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5420#5421#0" expanded="true" />
-                <element signature="e#5457#5458#0" expanded="true" />
-                <element signature="e#5486#5487#0" expanded="true" />
-                <element signature="e#5523#5524#0" expanded="true" />
+                <element signature="e#5428#5429#0" expanded="true" />
+                <element signature="e#5465#5466#0" expanded="true" />
+                <element signature="e#5494#5495#0" expanded="true" />
+                <element signature="e#5531#5532#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -226,10 +211,10 @@
         <option value="$PROJECT_DIR$/src/cs3500/music/view/IGuiView.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/view/MidiGuiCombo.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/view/GuiViewFrame.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardListener.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/controller/KeyboardHandler.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/music/view/MidiViewImpl.java" />
       </list>
     </option>
   </component>
@@ -1045,14 +1030,7 @@
       <workItem from="1466731304363" duration="3630000" />
       <workItem from="1466777209531" duration="348000" />
       <workItem from="1466782287898" duration="310000" />
-      <workItem from="1466782651256" duration="15458000" />
-    </task>
-    <task id="LOCAL-00008" summary="Cleaned up MIDI primary method.">
-      <created>1466300245181</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1466300245181</updated>
+      <workItem from="1466782651256" duration="15487000" />
     </task>
     <task id="LOCAL-00009" summary="Added tests for factory views.  Cleaned up, commented, and reformatted other code. Added copy constructor to model to be used in view.setModelToView(IMusicModel m) in order to hide implementation details and not allow for access to the original model's data, in other words, now the model instance variable in each of the view classes is a disposable copy of the original.">
       <created>1466303538319</created>
@@ -1390,7 +1368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466871476324</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="work it">
+      <created>1466883765126</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1466883765126</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1426,7 +1411,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167357000" />
+    <option name="totallyTimeSpent" value="167386000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1507,7 +1492,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fleshed out controller for key and action events" />
     <MESSAGE value="created new MidiGuiCombo" />
     <MESSAGE value="updated factory, constructor and setModelToView for MidiGuiCombo" />
     <MESSAGE value="Created ComboConcreteGuiViewPanel. Edited views to begin implementation of red line drawing." />
@@ -1532,7 +1516,8 @@
     <MESSAGE value="working with mouse handlers, the view, and the controller in order to remove notes when clicking on the start beat via implementation of MouseListener, Clicka, a nested class in the MusicController interface. Benefits of this nesting allow instance variables and class data to be refrenced from within the actionPerformed(MouseEvent e). &#10;" />
     <MESSAGE value="Working on metaEvents and fixed some of the calculations on the remove functionality" />
     <MESSAGE value="format and comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="format and comments" />
+    <MESSAGE value="work it" />
+    <option name="LAST_COMMIT_MESSAGE" value="work it" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1891,13 +1876,13 @@
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MusicController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="131" column="37" selection-start-line="131" selection-start-column="37" selection-end-line="131" selection-end-column="37" />
+          <caret line="131" column="41" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5420#5421#0" expanded="true" />
-            <element signature="e#5457#5458#0" expanded="true" />
-            <element signature="e#5486#5487#0" expanded="true" />
-            <element signature="e#5523#5524#0" expanded="true" />
+            <element signature="e#5428#5429#0" expanded="true" />
+            <element signature="e#5465#5466#0" expanded="true" />
+            <element signature="e#5494#5495#0" expanded="true" />
+            <element signature="e#5531#5532#0" expanded="true" />
           </folding>
         </state>
       </provider>
