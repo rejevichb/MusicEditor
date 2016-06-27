@@ -92,4 +92,12 @@ public interface IGuiView extends IMusicPieceView {
      */
     void restart();
 
+    int[] getRepeatInfo();
+
+    void commenceRepeat(int x, int y, int num);
+
+    void createRepeatPopup(ActionListener actionListener);
+
+    void createEndingPopup(ActionListener actionListener);
+
 }

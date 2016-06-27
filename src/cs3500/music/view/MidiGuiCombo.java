@@ -118,6 +118,32 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     }
 
     @Override
+    public void setSequencerRepeat(int start, int end, int numberRepeats) {
+        //midi.setSequencerRepeat(start, end, numberRepeats);
+    }
+
+    @Override
+    public int[] getRepeatInfo() {
+        return gui.getRepeatInfo();
+    }
+
+    @Override
+    public void commenceRepeat(int start, int end, int num) {
+        midi.setSequencerRepeat(start, end, num);
+        gui.commenceRepeat(start, end, num);
+    }
+
+    @Override
+    public void createRepeatPopup(ActionListener actionListener) {
+        gui.createRepeatPopup(actionListener);
+    }
+
+    @Override
+    public void createEndingPopup(ActionListener actionListener) {
+        gui.createEndingPopup(actionListener);
+    }
+
+    @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {
         midi.addMetaEventListener(metaEventListener);
     }

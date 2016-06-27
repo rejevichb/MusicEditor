@@ -122,6 +122,39 @@ public class MusicController implements ActionListener {
     }
 
 
+    private class AddRepeatPopupListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch (e.getActionCommand()) {
+                case "AcceptRepeat":
+                    int[] tempInfo = guiView.getRepeatInfo();
+                    guiView.commenceRepeat(tempInfo[0], tempInfo[1], tempInfo[2]);
+                    guiView.repaintFrame();
+                    guiView.hidePopup();
+                    try {
+                        SoundUtils.tone(400, 900, 5.0);
+                        Thread.sleep(100);
+                    } catch (Exception exep) {
+                        System.exit(202);
+                    }
+                    break;
+                case "CancelRepeat":
+                    guiView.hidePopup();
+                    guiView.repaintFrame();
+                    try {
+                        SoundUtils.tone(200, 500);
+                        Thread.sleep(100);
+                    } catch (Exception exep) {
+                        System.exit(202);
+                    }
+                    guiView.resetFocus();
+                    break;
+            }
+        }
+    }
+
+
 
     /**
      * Handles mouse events when a user is clicking to remove a note. Boolean flag removeActive
@@ -180,6 +213,11 @@ public class MusicController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
+            case "Repeat":
+                guiView.createRepeatPopup(new AddRepeatPopupListener());
+                guiView.repaintFrame();
+                guiView.resetFocus();
+                break;
             case "AddNote Button":
                 guiView.createPopup(new PopupListener());
                 guiView.repaintFrame();
@@ -200,6 +238,9 @@ public class MusicController implements ActionListener {
             case "restart":
                 time = 0;
                 guiView.restart();
+                break;
+
+
 
 
         }

@@ -33,18 +33,37 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     int tempo;
     int absolutePitchHi;
     int absolutePitchLo;
+    JScrollPane scrolls;
+
+    //For the addNote popup
+    JPanel addNotePanel;
     JButton addNoteButton = new JButton("+");
     JButton removeNoteButton = new JButton("-");
     JButton playPauseButton = new JButton("► / ||");
     JButton restartButton = new JButton("⟳");
-    JPanel addNotePanel;
+    JButton repeatButton = new JButton("Repeat");
+    JButton vareidEndingButton = new JButton("VarEnding");
     BorderLayout borderLayout;
-    JFormattedTextField beatStart;
-    JFormattedTextField beatDur;
+    JFormattedTextField addNoteBeatStart;
+    JFormattedTextField addNoteBeatDur;
     JComboBox octaveList;
     JComboBox pitchList;
     JComboBox instrumentList;
-    JScrollPane scrolls;
+
+
+    //For the repeat popup
+    JPanel addRepeatPanel;
+    JFormattedTextField addRepeatBeatStart;
+    JFormattedTextField addRepeatBeatEnd;
+    JFormattedTextField addRepeatNumLoops;
+    int[] repeatInfo = new int[3];
+
+
+    //For ending popup
+    JFormattedTextField addEndingBeatStart;
+    JFormattedTextField addEndingBeatEnd;
+
+
 
     /**
      * Creates new GuiView
@@ -138,6 +157,13 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         buttonPanel.add(new JLabel("Reset"));
         buttonPanel.add(restartButton);
 
+
+        //Repeat button
+        repeatButton.setActionCommand("Repeat");
+        repeatButton.setPreferredSize(new Dimension(50, 40));
+        buttonPanel.add(new JLabel("Add Repeat"));
+        buttonPanel.add(repeatButton);
+
         this.add(buttonPanel, borderLayout.WEST);
 
 
@@ -192,10 +218,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         formatter.setCommitsOnValidEdit(false);
         format.setGroupingUsed(false);
 
-        beatStart = new JFormattedTextField(formatter);
-        beatDur = new JFormattedTextField(formatter);
-        beatStart.setPreferredSize(textFieldSize);
-        beatDur.setPreferredSize(textFieldSize);
+        addNoteBeatStart = new JFormattedTextField(formatter);
+        addNoteBeatDur = new JFormattedTextField(formatter);
+        addNoteBeatStart.setPreferredSize(textFieldSize);
+        addNoteBeatDur.setPreferredSize(textFieldSize);
 
 
         Integer[] octaveNums = new Integer[11];
@@ -214,9 +240,9 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         addNotePanel.add(octaveL);
         addNotePanel.add(octaveList);
         addNotePanel.add(beatStartL);
-        addNotePanel.add(beatStart);
+        addNotePanel.add(addNoteBeatStart);
         addNotePanel.add(durationL);
-        addNotePanel.add(beatDur);
+        addNotePanel.add(addNoteBeatDur);
         addNotePanel.add(instrumentL);
         addNotePanel.add(instrumentList);
         addNotePanel.add(acceptButton);
@@ -234,17 +260,23 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void hidePopup() {
-        this.borderLayout.removeLayoutComponent(addNotePanel);
-        this.remove(addNotePanel);
-        this.revalidate();
+        if (addNotePanel != null) {
+            this.borderLayout.removeLayoutComponent(addNotePanel);
+            this.remove(addNotePanel);
+            this.revalidate();
+        } else if (addRepeatPanel != null) {
+            this.borderLayout.removeLayoutComponent(addRepeatPanel);
+            this.remove(addRepeatPanel);
+            this.revalidate();
+        }
     }
 
 
     @Override
     public Note getNoteFromPopup() {
         int oct = octaveList.getSelectedIndex();
-        int beatSt = Integer.valueOf(this.beatStart.getText());
-        int beatDur = Integer.valueOf(this.beatDur.getText());
+        int beatSt = Integer.valueOf(this.addNoteBeatStart.getText());
+        int beatDur = Integer.valueOf(this.addNoteBeatDur.getText());
         int absPitch = ((oct * 12) + pitchList.getSelectedIndex());
         int instr = instrumentList.getSelectedIndex();
 
@@ -301,6 +333,76 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     public void restart() {
         setTimeConstant(0);
         this.repaint();
+        displayPanel.repeatActive = false;
+    }
+
+    @Override
+    public int[] getRepeatInfo() {
+        repeatInfo[0] = Integer.valueOf(this.addRepeatBeatStart.getText());
+        repeatInfo[1] = Integer.valueOf(this.addRepeatBeatEnd.getText());
+        repeatInfo[2] = Integer.valueOf(this.addRepeatNumLoops.getText());
+        int[] ret = this.repeatInfo.clone();
+        return ret;
+    }
+
+    @Override
+    public void commenceRepeat(int start, int end, int num) {
+        displayPanel.repeatActive = true;
+        displayPanel.repeatStart = start;
+        displayPanel.repeatEnd = end;
+    }
+
+    @Override
+    public void createRepeatPopup(ActionListener actionListener) {
+        addRepeatPanel = new JPanel();
+        BoxLayout box = new BoxLayout(addRepeatPanel, BoxLayout.X_AXIS);
+        addRepeatPanel.setLayout(box);
+
+        NumberFormat format = NumberFormat.getIntegerInstance();
+        NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Integer.class);
+
+        formatter.setAllowsInvalid(false);
+        formatter.setCommitsOnValidEdit(false);
+        format.setGroupingUsed(false);
+
+        addRepeatBeatStart = new JFormattedTextField(formatter);
+        addRepeatBeatEnd = new JFormattedTextField(formatter);
+        addRepeatNumLoops = new JFormattedTextField(formatter);
+
+
+        JLabel startRepeatL = new JLabel("Repeat StartBeat");
+        JLabel endRepeatL = new JLabel("Repeat EndBeat");
+        JLabel loopCountRepeatL = new JLabel("Times to repeat");
+
+        JButton acceptRepeat = new JButton("Add Repeat");
+        JButton cancelRepeat = new JButton("Cancel");
+        acceptRepeat.setActionCommand("AcceptRepeat");
+        cancelRepeat.setActionCommand("CancelRepeat");
+        acceptRepeat.addActionListener(actionListener);
+        cancelRepeat.addActionListener(actionListener);
+
+        addRepeatPanel.add(startRepeatL);
+        addRepeatPanel.add(addRepeatBeatStart);
+        addRepeatPanel.add(endRepeatL);
+        addRepeatPanel.add(addRepeatBeatEnd);
+        addRepeatPanel.add(loopCountRepeatL);
+        addRepeatPanel.add(addRepeatNumLoops);
+        addRepeatPanel.add(acceptRepeat);
+        addRepeatPanel.add(cancelRepeat);
+
+
+        addRepeatPanel.setSize(new Dimension(200, 800));
+        this.add(addRepeatPanel, borderLayout.NORTH);
+        addRepeatPanel.setVisible(true);
+
+        //this.revalidate();
+        this.repaint();
+    }
+
+    @Override
+    public void createEndingPopup(ActionListener actionListener) {
+
     }
 
 
@@ -310,6 +412,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.removeNoteButton.addActionListener(actionListener);
         this.playPauseButton.addActionListener(actionListener);
         this.restartButton.addActionListener(actionListener);
+        this.repeatButton.addActionListener(actionListener);
     }
 }
 

@@ -29,4 +29,6 @@ public interface IMidiView extends IMusicPieceView {
      */
     void restart();
 
+    void setSequencerRepeat(int start, int end, int numberRepeats);
+
 }

@@ -31,6 +31,9 @@ public class ConcreteGuiViewPanel extends JPanel {
     private int absolutePitchHi;   // highest pitch in highest octave.
     long timeVariable = 0;
     Note remove;
+    protected boolean repeatActive = false;
+    protected int repeatStart;
+    protected int repeatEnd;
 
     public ConcreteGuiViewPanel() {
         super();
@@ -139,6 +142,16 @@ public class ConcreteGuiViewPanel extends JPanel {
         graphics.setColor(Color.RED);
         graphics.drawLine((int) timeVariable, 0, (int) timeVariable,
                 BOX_OFFSET * (absolutePitchHi - absolutePitchLo + 1));
+
+
+        if (repeatActive) {
+            graphics.setColor(Color.BLUE);
+            graphics.setStroke(new BasicStroke(2.65f));
+            graphics.drawLine((repeatStart * BOX_OFFSET) + 5, 0, (repeatStart * BOX_OFFSET) + 5, BOX_OFFSET *
+                    (absolutePitchHi - absolutePitchLo + 1));
+            graphics.drawLine((repeatEnd * BOX_OFFSET) - 5, 0, (repeatEnd * BOX_OFFSET) - 5, BOX_OFFSET *
+                    (absolutePitchHi - absolutePitchLo + 1));
+        }
     }
 
 
@@ -183,7 +196,6 @@ public class ConcreteGuiViewPanel extends JPanel {
     public Note getRemovedNote() {
         return remove;
     }
-
 
 }
 

@@ -99,6 +99,10 @@ public class MidiViewImpl implements IMidiView {
             track.add(fire);
         }
 
+        MetaMessage finalMessage = new MetaMessage(0x2F, new byte[1], 1);
+        MidiEvent finalEvent = new MidiEvent(finalMessage, (totalNumBeats + 3) * ret.getResolution());
+        track.add(finalEvent);
+
         //set the generated Sequence to the Sequencer
         try {
             this.seqR.setSequence(ret);
@@ -127,6 +131,18 @@ public class MidiViewImpl implements IMidiView {
         }
 
         seqR.setTempoInMPQ(this.tempo);
+
+//        seqR.addMetaEventListener(new MetaEventListener() {
+//            public void meta(MetaMessage msg) {
+//                if (msg.getType() == 0x2F) { // End of track
+//                    // Restart the song
+//                    seqR.setTickPosition(0);
+//                    seqR.start();
+//                }
+//            }
+//        });
+
+        System.out.println(seqR.getTickLength() / seqR.getTempoInMPQ());
 
 
         if (synth.getMicrosecondPosition() >= seqR.getMicrosecondLength()) {
@@ -169,5 +185,30 @@ public class MidiViewImpl implements IMidiView {
         this.initialize();
     }
 
+    @Override
+    public void setSequencerRepeat(int start, int end, int numberRepeats) {
 
+        if (seqR.isRunning()) {
+            seqR.stop();
+        }
+
+        this.initialize();
+
+        System.out.println("Before the loop start and end are set:");
+        System.out.println("Loop start: " + seqR.getLoopStartPoint());
+        System.out.println("Loop end: " + seqR.getLoopEndPoint());
+        System.out.println("");
+        System.out.println("");
+
+        seqR.setLoopCount(numberRepeats);
+        seqR.setLoopStartPoint(start);
+        seqR.setLoopEndPoint(end);
+        seqR.setTempoInMPQ(this.tempo * 2);
+
+        System.out.println("After the loop start and end are set:");
+        System.out.println("Loop start: " + seqR.getLoopStartPoint());
+        System.out.println("Loop end: " + seqR.getLoopEndPoint());
+
+
+    }
 }
