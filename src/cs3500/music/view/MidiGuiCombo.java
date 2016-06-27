@@ -119,7 +119,7 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
 
     @Override
     public void setSequencerRepeat(int start, int end, int numberRepeats) {
-        //midi.setSequencerRepeat(start, end, numberRepeats);
+        midi.setSequencerRepeat(start, end, numberRepeats);
     }
 
     @Override
