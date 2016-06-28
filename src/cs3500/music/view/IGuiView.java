@@ -100,4 +100,8 @@ public interface IGuiView extends IMusicPieceView {
 
     void createEndingPopup(ActionListener actionListener);
 
+    int[] getEndingInfo();
+
+    void commenceEndings(int star1, int start2, int start3, int start4);
+
 }

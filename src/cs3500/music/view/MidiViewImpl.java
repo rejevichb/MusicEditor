@@ -30,11 +30,23 @@ public class MidiViewImpl implements IMidiView {
     private int totalNumBeats;
     int tempo;
 
+    private Sequence sequence;
     protected Sequencer seqR;
     private Transmitter seqTrans;
     private final Synthesizer synth;
     private final Receiver receiver;
-    private boolean isPlaying = false;
+
+    private int startBeatR;
+    private int endBeatR;
+    private int numberRepeat;
+
+    private int startBeat1;
+    private int startBeat2;
+    private int startBeat3;
+    private int startBeat4;
+    private boolean flag;
+
+
 
     public MidiViewImpl() {
         Sequencer tempSeqR = null;
@@ -57,6 +69,17 @@ public class MidiViewImpl implements IMidiView {
         if (this.seqTrans != null && this.receiver != null) {
             this.seqTrans.setReceiver(this.receiver);
         }
+
+        this.startBeatR = 0;
+        this.endBeatR = 0;
+        this.numberRepeat = 0;
+        flag = true;
+
+        this.startBeat1 = 0;
+        this.startBeat2 = 0;
+        this.startBeat3 = 0;
+        this.startBeat4 = 0;
+
     }
 
     /**
@@ -67,6 +90,7 @@ public class MidiViewImpl implements IMidiView {
      */
     public void modelToSequencer() throws InvalidMidiDataException {
         Sequence ret = null;
+        int loopCount = numberRepeat;
         try {
             ret = new Sequence(Sequence.PPQ, this.tempo);
         } catch (InvalidMidiDataException e) {
@@ -79,33 +103,180 @@ public class MidiViewImpl implements IMidiView {
         Collections.sort(this.notes, Collections.reverseOrder());
 
         //populates Sequence's track with delta-time stamped MIDI messages
-        for (Note n : this.notes) {
-            MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
-                    n.getAbsPitch(), n.getVolume());
-            MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
-                    n.getAbsPitch(), n.getVolume());
+        if (flag) {
 
-            MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat()) * (ret.getResolution()));
-            MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration())
-                    * ret.getResolution()));
+            for (Note n : this.notes) {
+                if (n.getStartBeat() < endBeatR || endBeatR == 0) {
+                    MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+                            n.getAbsPitch(), n.getVolume());
+                    MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+                            n.getAbsPitch(), n.getVolume());
 
-            track.add(start);
-            track.add(stop);
+                    MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat()) * (ret.getResolution()));
+                    MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration())
+                            * ret.getResolution()));
+
+                    track.add(start);
+                    track.add(stop);
+                }
+                int offSet = (endBeatR - startBeatR);
+                boolean emptyLoopCout = false;
+
+                for (int j = 1; j <= loopCount; j++) {
+                    if (n.getStartBeat() > startBeatR && !(n.getStartBeat() > endBeatR)
+                            && loopCount >= 1) {
+                        MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+                                n.getAbsPitch(), n.getVolume());
+                        MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+                                n.getAbsPitch(), n.getVolume());
+
+                        MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat() + offSet) * (ret.getResolution()));
+                        MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat()
+                                + n.getDuration()) + offSet)
+                                * ret.getResolution());
+                        track.add(start);
+                        track.add(stop);
+                        offSet = (j + 1) * (endBeatR - startBeatR);
+                    }
+                    emptyLoopCout = true;
+
+                }
+                if (n.getStartBeat() > endBeatR && emptyLoopCout && endBeatR != 0) {
+                    MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+                            n.getAbsPitch(), n.getVolume());
+                    MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+                            n.getAbsPitch(), n.getVolume());
+                    MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat() + (offSet * loopCount)) * (ret.getResolution()));
+                    MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat()
+                            + n.getDuration()) + (offSet * loopCount))
+                            * ret.getResolution());
+                    track.add(start);
+                    track.add(stop);
+
+                }
+            }
+
+
+            if (endBeatR == 0) {
+                for (int i = 0; i < totalNumBeats + 2; i += 1) {
+                    MetaMessage action = new MetaMessage();
+                    MidiEvent fire = new MidiEvent(action, i * ret.getResolution());
+                    track.add(fire);
+                }
+            } else if (endBeatR != 0) {
+                for (int j = 0; j < (totalNumBeats + 2 + (loopCount * (endBeatR - startBeatR))); j += 1) {
+                    MetaMessage action = new MetaMessage();
+                    MidiEvent fire = new MidiEvent(action, j * ret.getResolution());
+                    track.add(fire);
+                }
+            }
+        } else {
+            for (Note n : this.notes) {
+                if (n.getStartBeat() < startBeat2) {
+                    MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+                            n.getAbsPitch(), n.getVolume());
+                    MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+                            n.getAbsPitch(), n.getVolume());
+
+                    MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat()) * (ret.getResolution()));
+                    MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration())
+                            * ret.getResolution()));
+
+                    track.add(start);
+                    track.add(stop);
+                }
+
+                if (n.getStartBeat() < startBeat1) {
+                    MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+                            n.getAbsPitch(), n.getVolume());
+                    MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+                            n.getAbsPitch(), n.getVolume());
+
+                    MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat() + startBeat2) * (ret.getResolution()));
+                    MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration() + startBeat2)
+                            * ret.getResolution()));
+
+                    track.add(start);
+                    track.add(stop);
+                }
+            }
+
+
+//                if (n.getStartBeat() > startBeat2 && n.getStartBeat() < startBeat3 && startBeat3 != 0) {
+//                    MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+//                            n.getAbsPitch(), n.getVolume());
+//                    MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+//                            n.getAbsPitch(), n.getVolume());
+//
+//                    MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat() + startBeat2 + startBeat1) * (ret.getResolution()));
+//                    MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration() + startBeat2 + startBeat1)
+//                            * ret.getResolution()));
+//
+//                    track.add(start);
+//                    track.add(stop);
+//
+//                }
+//                if (n.getStartBeat() < startBeat1) {
+//                    MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+//                            n.getAbsPitch(), n.getVolume());
+//                    MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+//                            n.getAbsPitch(), n.getVolume());
+//
+//                    MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat() +  startBeat1 + startBeat3) * (ret.getResolution()));
+//                    MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration() + startBeat1 + startBeat3)
+//                            * ret.getResolution()));
+//
+//                    track.add(start);
+//                    track.add(stop);
+//                }
+//
+//                if (n.getStartBeat() > startBeat3 && n.getStartBeat() < startBeat4 && startBeat4 != 0) {
+//                    MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+//                            n.getAbsPitch(), n.getVolume());
+//                    MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+//                            n.getAbsPitch(), n.getVolume());
+//
+//                    MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat() +  startBeat1 + startBeat3 + (startBeat4 -startBeat3) ) * (ret.getResolution()));
+//                    MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration() + startBeat1 + startBeat3 + (startBeat4 - startBeat3))
+//                            * ret.getResolution()));
+//
+//                    track.add(start);
+//                    track.add(stop);
+//                }
+//                if (n.getStartBeat() < startBeat1) {
+//                    MidiMessage noteOn = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+//                            n.getAbsPitch(), n.getVolume());
+//                    MidiMessage noteOff = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+//                            n.getAbsPitch(), n.getVolume());
+//
+//                    MidiEvent start = new MidiEvent(noteOn, (n.getStartBeat() +  startBeat1 + startBeat3) * (ret.getResolution()));
+//                    MidiEvent stop = new MidiEvent(noteOff, ((n.getStartBeat() + n.getDuration() + startBeat1 + startBeat3)
+//                            * ret.getResolution()));
+//
+//                    track.add(start);
+//                    track.add(stop);
+//                }
+
         }
 
-        for (int i = 0; i < totalNumBeats + 2; i += 1) {
-            MetaMessage action = new MetaMessage();
-            MidiEvent fire = new MidiEvent(action, i * ret.getResolution());
-            track.add(fire);
+        if (startBeat1 != 0) {
+            for (int j = 0; j <= totalNumBeats + startBeat2; j++) {
+                MetaMessage action = new MetaMessage();
+                MidiEvent fire = new MidiEvent(action, j * ret.getResolution());
+                track.add(fire);
+            }
         }
+
 
         MetaMessage finalMessage = new MetaMessage(0x2F, new byte[1], 1);
-        MidiEvent finalEvent = new MidiEvent(finalMessage, (totalNumBeats + 3) * ret.getResolution());
+        MidiEvent finalEvent = new MidiEvent(finalMessage, (totalNumBeats + 2) * ret.getResolution());
         track.add(finalEvent);
+
+        this.sequence = ret;
 
         //set the generated Sequence to the Sequencer
         try {
-            this.seqR.setSequence(ret);
+            this.seqR.setSequence(sequence);
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
@@ -130,29 +301,10 @@ public class MidiViewImpl implements IMidiView {
             e.printStackTrace();
         }
 
-        seqR.setTempoInMPQ(this.tempo);
+        seqR.setTempoInMPQ(this.tempo * 2);
 
-//        seqR.addMetaEventListener(new MetaEventListener() {
-//            public void meta(MetaMessage msg) {
-//                if (msg.getType() == 0x2F) { // End of track
-//                    // Restart the song
-//                    seqR.setTickPosition(0);
-//                    seqR.start();
-//                }
-//            }
-//        });
-
-        System.out.println(seqR.getTickLength() / seqR.getTempoInMPQ());
-
-
-        if (synth.getMicrosecondPosition() >= seqR.getMicrosecondLength()) {
-            seqR.stop();
-            this.receiver.close();
-            this.seqTrans.close();
-            this.synth.close();
-            this.seqR.close();
-        }
     }
+
 
     public void modelDataToView(IMusicModel m) {
         this.notes = m.getNotes();
@@ -183,32 +335,37 @@ public class MidiViewImpl implements IMidiView {
         seqR.stop();
         seqR.close();
         this.initialize();
+        this.startBeatR = 0;
+        this.endBeatR = 0;
+        this.numberRepeat = 0;
+        this.startBeat1 = 0;
+        this.startBeat2 = 0;
+        this.startBeat3 = 0;
+        this.startBeat4 = 0;
+
     }
 
     @Override
     public void setSequencerRepeat(int start, int end, int numberRepeats) {
-
-        if (seqR.isRunning()) {
-            seqR.stop();
-        }
-
+        this.startBeatR = start;
+        this.endBeatR = end;
+        this.numberRepeat = numberRepeats;
         this.initialize();
-
-        System.out.println("Before the loop start and end are set:");
-        System.out.println("Loop start: " + seqR.getLoopStartPoint());
-        System.out.println("Loop end: " + seqR.getLoopEndPoint());
-        System.out.println("");
-        System.out.println("");
-
-        seqR.setLoopCount(numberRepeats);
-        seqR.setLoopStartPoint(start);
-        seqR.setLoopEndPoint(end);
-        seqR.setTempoInMPQ(this.tempo * 2);
-
-        System.out.println("After the loop start and end are set:");
-        System.out.println("Loop start: " + seqR.getLoopStartPoint());
-        System.out.println("Loop end: " + seqR.getLoopEndPoint());
 
 
     }
+
+    @Override
+    public void setSequencerEnding(int start1, int start2, int start3, int start4) {
+        this.startBeat1 = start1;
+        this.startBeat2 = start2;
+        this.startBeat3 = start3;
+        this.startBeat4 = start4;
+        this.flag = false;
+        this.initialize();
+
+
+    }
+
+
 }

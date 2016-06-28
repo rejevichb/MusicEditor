@@ -42,7 +42,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     JButton playPauseButton = new JButton("► / ||");
     JButton restartButton = new JButton("⟳");
     JButton repeatButton = new JButton("Repeat");
-    JButton vareidEndingButton = new JButton("VarEnding");
     BorderLayout borderLayout;
     JFormattedTextField addNoteBeatStart;
     JFormattedTextField addNoteBeatDur;
@@ -60,8 +59,15 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
 
     //For ending popup
-    JFormattedTextField addEndingBeatStart;
-    JFormattedTextField addEndingBeatEnd;
+    JPanel endingPanel;
+    JComboBox endingBox;
+    JButton newEnding = new JButton("VarEnd");
+    JFormattedTextField addEndingBeat1;
+    JFormattedTextField addEndingBeat2;
+    JFormattedTextField addEndingBeat3;
+    JFormattedTextField addEndingBeat4;
+    int[] endingInfo = new int[4];
+
 
 
 
@@ -163,6 +169,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         repeatButton.setPreferredSize(new Dimension(50, 40));
         buttonPanel.add(new JLabel("Add Repeat"));
         buttonPanel.add(repeatButton);
+
+        newEnding.setActionCommand("endings");
+        newEnding.setPreferredSize(new Dimension(50, 40));
+        buttonPanel.add(new JLabel("Varied endings"));
+        buttonPanel.add(newEnding);
 
         this.add(buttonPanel, borderLayout.WEST);
 
@@ -268,6 +279,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
             this.borderLayout.removeLayoutComponent(addRepeatPanel);
             this.remove(addRepeatPanel);
             this.revalidate();
+        } else if (endingPanel != null) {
+            this.borderLayout.removeLayoutComponent(endingPanel);
+            this.remove(endingPanel);
+            this.revalidate();
         }
     }
 
@@ -320,7 +335,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
     @Override
     public void playPause() {
         //empty implementation
-
     }
 
     @Override
@@ -402,6 +416,80 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
 
     @Override
     public void createEndingPopup(ActionListener actionListener) {
+        endingPanel = new JPanel();
+        BoxLayout box = new BoxLayout(endingPanel, BoxLayout.Y_AXIS);
+        endingPanel.setLayout(box);
+
+        JLabel numEnd = new JLabel("Number of endings");
+        JLabel startE1 = new JLabel("Ending 1:");
+        JLabel startE2 = new JLabel("Ending 2:");
+        JLabel startE3 = new JLabel("Ending 3:");
+        JLabel startE4 = new JLabel("Ending 4:");
+
+
+        Integer[] endingNums = new Integer[4];
+        for (int i = 0; i < 4; i++) {
+            endingNums[i] = i + 1;
+        }
+        endingBox = new JComboBox(endingNums);
+
+
+        NumberFormat format = NumberFormat.getIntegerInstance();
+        NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Integer.class);
+
+        formatter.setAllowsInvalid(false);
+        formatter.setCommitsOnValidEdit(false);
+        format.setGroupingUsed(false);
+
+        addEndingBeat1 = new JFormattedTextField(formatter);
+        addEndingBeat2 = new JFormattedTextField(formatter);
+        addEndingBeat3 = new JFormattedTextField(formatter);
+        addEndingBeat4 = new JFormattedTextField(formatter);
+
+        JButton accept = new JButton("Add Endings");
+        JButton cancel = new JButton("Cancel");
+        accept.setActionCommand("AcceptEnding");
+        cancel.setActionCommand("Cancel");
+        accept.addActionListener(actionListener);
+        cancel.addActionListener(actionListener);
+
+        endingPanel.add(numEnd);
+        endingPanel.add(endingBox);
+        endingPanel.add(startE1);
+        endingPanel.add(addEndingBeat1);
+        endingPanel.add(startE2);
+        endingPanel.add(addEndingBeat2);
+        endingPanel.add(startE3);
+        endingPanel.add(addEndingBeat3);
+        endingPanel.add(startE4);
+        endingPanel.add(addEndingBeat4);
+        endingPanel.add(accept);
+        endingPanel.add(cancel);
+
+        endingPanel.setSize(new Dimension(200, 800));
+        this.add(endingPanel, borderLayout.EAST);
+        endingPanel.setVisible(true);
+
+        this.repaint();
+    }
+
+    @Override
+    public int[] getEndingInfo() {
+        endingInfo[0] = Integer.valueOf(addEndingBeat1.getText());
+        endingInfo[1] = Integer.valueOf(addEndingBeat2.getText());
+        endingInfo[2] = Integer.valueOf(addEndingBeat3.getText());
+        endingInfo[3] = Integer.valueOf(addEndingBeat4.getText());
+        return endingInfo.clone();
+    }
+
+    @Override
+    public void commenceEndings(int start1, int start2, int start3, int start4) {
+        displayPanel.endActive = true;
+        displayPanel.starter1 = start1;
+        displayPanel.starter2 = start2;
+        displayPanel.starter3 = start3;
+        displayPanel.starter4 = start4;
 
     }
 
@@ -413,7 +501,10 @@ public class GuiViewFrame extends javax.swing.JFrame implements IGuiView {
         this.playPauseButton.addActionListener(actionListener);
         this.restartButton.addActionListener(actionListener);
         this.repeatButton.addActionListener(actionListener);
+        this.newEnding.addActionListener(actionListener);
     }
+
+
 }
 
 

@@ -34,6 +34,10 @@ public class MusicController implements ActionListener {
     private MetaHandler metaHandler;
     private int time = 0;
     private boolean removeActive = false;
+    private boolean flagRepeat = false;
+    private boolean flagEnd = false;
+    private int[] tempInfo = new int[3];
+    private int[] endInfo = new int[4];
 
 
     public MusicController(IMusicModel model, IMusicPieceView view) {
@@ -81,9 +85,30 @@ public class MusicController implements ActionListener {
      * right time, as they are calculated as a multiple of the resolution of the sequencer.
      */
     private class MetaHandler implements MetaEventListener {
+        private int counter = 0;
         @Override
         public void meta(MetaMessage meta) {
             int localTime = time;
+
+            if (flagRepeat) {
+                int loopCount = tempInfo[2] - counter;
+                if ((localTime / 20) == tempInfo[1] && loopCount > 0) {
+                    time = tempInfo[0] * 20;
+                    localTime = tempInfo[0] * 20;
+                    counter = counter + 1;
+                } else {
+                    localTime = time;
+                }
+            }
+            if (flagEnd) {
+                localTime = time;
+                if ((localTime / 20) == endInfo[1] && counter == 0) {
+                    time = 0;
+                    localTime = time;
+                    counter++;
+                }
+
+            }
             guiView.setTimeConstant(localTime);
             guiView.repaintFrame();
             time += 20;
@@ -121,6 +146,33 @@ public class MusicController implements ActionListener {
         }
     }
 
+    private class EndingPopupListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch (e.getActionCommand()) {
+                case "AcceptEnding":
+                    endInfo = guiView.getEndingInfo();
+                    flagEnd = true;
+                    guiView.commenceEndings(endInfo[0], endInfo[1], endInfo[2], endInfo[3]);
+                    guiView.repaintFrame();
+                    guiView.hidePopup();
+                    break;
+                case "Cancel":
+                    guiView.hidePopup();
+                    guiView.repaintFrame();
+                    try {
+                        SoundUtils.tone(200, 500);
+                        Thread.sleep(100);
+                    } catch (Exception exep) {
+                        System.exit(202);
+                    }
+                    guiView.resetFocus();
+                    break;
+            }
+        }
+    }
+
 
     private class AddRepeatPopupListener implements ActionListener {
 
@@ -128,8 +180,9 @@ public class MusicController implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
                 case "AcceptRepeat":
-                    int[] tempInfo = guiView.getRepeatInfo();
+                    tempInfo = guiView.getRepeatInfo();
                     guiView.commenceRepeat(tempInfo[0], tempInfo[1], tempInfo[2]);
+                    flagRepeat = true;
                     guiView.repaintFrame();
                     guiView.hidePopup();
                     try {
@@ -177,27 +230,21 @@ public class MusicController implements ActionListener {
                 removeActive = false;
             }
         }
-
         @Override
         public void mousePressed(MouseEvent e) {
         }
-
         @Override
         public void mouseReleased(MouseEvent e) {
         }
-
         @Override
         public void mouseEntered(MouseEvent e) {
         }
-
         @Override
         public void mouseExited(MouseEvent e) {
         }
-
         public int getX() {
             return this.x;
         }
-
         public int getY() {
             return this.y;
         }
@@ -238,6 +285,11 @@ public class MusicController implements ActionListener {
             case "restart":
                 time = 0;
                 guiView.restart();
+                break;
+            case "endings":
+                guiView.createEndingPopup(new EndingPopupListener());
+                guiView.repaintFrame();
+                guiView.resetFocus();
                 break;
 
 

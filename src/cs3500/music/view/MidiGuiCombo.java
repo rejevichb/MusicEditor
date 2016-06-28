@@ -123,6 +123,11 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     }
 
     @Override
+    public void setSequencerEnding(int start1, int start2, int start3, int start4) {
+        midi.setSequencerEnding(start1, start2, start3, start4);
+    }
+
+    @Override
     public int[] getRepeatInfo() {
         return gui.getRepeatInfo();
     }
@@ -142,6 +147,18 @@ public class MidiGuiCombo implements IGuiView, IMidiView {
     public void createEndingPopup(ActionListener actionListener) {
         gui.createEndingPopup(actionListener);
     }
+
+    @Override
+    public int[] getEndingInfo() {
+        return gui.getEndingInfo();
+    }
+
+    @Override
+    public void commenceEndings(int start1, int start2, int start3, int start4) {
+        gui.commenceEndings(start1, start2, start3, start4);
+        midi.setSequencerEnding(start1, start2, start3, start4);
+    }
+
 
     @Override
     public void addMetaEventListener(MetaEventListener metaEventListener) {

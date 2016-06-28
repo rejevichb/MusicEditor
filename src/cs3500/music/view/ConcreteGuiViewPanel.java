@@ -34,6 +34,11 @@ public class ConcreteGuiViewPanel extends JPanel {
     protected boolean repeatActive = false;
     protected int repeatStart;
     protected int repeatEnd;
+    protected boolean endActive = false;
+    protected int starter1;
+    protected int starter2;
+    protected int starter3;
+    protected int starter4;
 
     public ConcreteGuiViewPanel() {
         super();
@@ -151,6 +156,30 @@ public class ConcreteGuiViewPanel extends JPanel {
                     (absolutePitchHi - absolutePitchLo + 1));
             graphics.drawLine((repeatEnd * BOX_OFFSET) - 5, 0, (repeatEnd * BOX_OFFSET) - 5, BOX_OFFSET *
                     (absolutePitchHi - absolutePitchLo + 1));
+        }
+
+        if (endActive) {
+            graphics.setColor(Color.PINK);
+            graphics.setStroke(new BasicStroke(2.65f));
+            if (starter1 != 0) {
+                graphics.drawLine((starter1 * BOX_OFFSET) + 5, 0, (starter1 * BOX_OFFSET) + 5, BOX_OFFSET *
+                        (absolutePitchHi - absolutePitchLo + 1));
+            }
+            if (starter2 != 0) {
+                graphics.drawLine((starter2 * BOX_OFFSET) + 5, 0, (starter2 * BOX_OFFSET) + 5, BOX_OFFSET *
+                        (absolutePitchHi - absolutePitchLo + 1));
+            }
+            if (starter3 != 0) {
+                graphics.drawLine((starter3 * BOX_OFFSET) + 5, 0, (starter3 * BOX_OFFSET) + 5, BOX_OFFSET *
+                        (absolutePitchHi - absolutePitchLo + 1));
+
+            }
+            if (starter4 != 0) {
+
+                graphics.drawLine((starter4 * BOX_OFFSET) + 5, 0, (starter4 * BOX_OFFSET) + 5, BOX_OFFSET *
+                        (absolutePitchHi - absolutePitchLo + 1));
+            }
+
         }
     }
 
