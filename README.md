@@ -1,1 +1,135 @@
 # MusicAssignments
+
+Brendan Rejevich (rejevichb)
+Jameson O'Connor (jameson7)
+19 June 2016
+Object Oriented Design
+
+cs3500.music
+
+Files
+  - Interface:   IMusicModel - interface providing operations that all music models should implement
+    -            CompositionBuilder - specifies methods for building a composition.
+    -            IMusicPieceView - specifies common operations that every view must support.
+    -            IGuiView        - sub-interface of IMusicPieceView specifying additional operations
+                                    that all GuiViews require.
+    -            IMidiView       - sub-interface that specifies additional operations for the MIDI
+                                    this allows us to call certain things on the midi from our
+                                    MidiGuiCombo class.
+
+  - Class:       MusicPieceModel - standard generic implementation of IMusicModel.
+    -            Note - final class to represent a note.
+    -            CompositionBuilderImpl - implements the composition builder specified by
+                                          IMusicModel and MusicPieceModel.
+    -            MusicReader - given complete class in starter code - has not been modified
+    -            FactoryView - a view factory, creating views based on string args.
+    -            ConsoleViewFrame - prints the notes in the model in console string form.
+    -            MidiViewImpl - plays the music using MIDIDevice specifications.
+    -            ConcreteGuiViewPanel - contains model data and draws a viewPanel. This class
+                                        extends JPanel.
+    -            GuiViewFrame - contains a ConcreteGuiViewPanel and initializes it and calls its
+                                overridden paintComponent(Graphics g) method. This class extends
+                                JFrame
+    -            MidiGuiCombo - seamlessly integrates visual cues with audio playback, allowing
+                                users to watch the red line trace the notes as the music plays.
+                                Users can add and remove notes.
+
+  - Enum:        Pitch - can be one of 12 pitch values
+
+
+****** NOTE: WHEN RUNNING THE PROGRAM, the first command line argument is the file to read from,
+the second command is the type of view desired (one of : visual, midi, console, or combo.) ****
+
+
+
+--  --  -- Change Log -- -- -- --
+    Added SoundUtils class to add audio cues when buttons are pressed.
+Added methods to IGuiView, void createPopup(ActionListener actionListener); void hidePopup();
+Note getNoteFromPopup(); void setTimeConstant(long t); void repaintFrame();
+void removeNote(MouseListener mouseListener);  Note getRemovedNote();
+boolean canRemoveNote(int x, int y); void playPause();
+
+    We also created a sub interface, IMidiView specifically for the MidiViewImpl and the
+MidiGuiCombo views. Allowing certain methods to be called from the controller specifically
+playing and pausing functionality and adding a MetaEventListener, which we use to redraw the red
+line at every beat.
+
+
+--  --  -- Guide to GUI Interaction -- -- -- --
+
+    To play or pause the music in the MidiGuiCombo view, press the play/pause button.
+To add a note, press the (+) button, fill in the required info, and press the add note button.
+If a user decides that he no longer wants to add a note, he can press the cancel button to cancel
+the operation. To remove a note, the user must first click the remove note button (-), click the
+note he wants to remove, and do the same exact operation twice to confirm the removal. To clarify,
+if a user wants to remove a button, he must first click the minus sign, click on the start beat
+of a note to remove, click the minus sign again, and click on the same note to confirm removal.  To
+reset or jump to the beginning of the composition the user must click the reset button. This button
+will bring the red ticker back to the zero beat and restart the music from the beginning.  Thank you
+and enjoy the Music Editor.
+
+
+
+
+
+
+
+--  --  -- Introduction -- -- -- --
+
+  We used an ArrayList to represent a list of notes in the MusicPieceModel. It also has an int that
+represents the total number of beats. When an element is added or removed via the addNote(Note n)
+or removeNote(Note n) methods, then the total number of beats for the model is adjusted when
+necessary. Likewise, editNote(Note find, Note replace) calls both addNote and removeNote so the
+total number of beats is always only as big as necessary. The controller has a model and a view,
+and the view is selected from the main method and passing the string args to the FactoryView. The \
+only method in the controller void Controller.modelToView() which calls
+IMusicPieceView.setModelToView(model). The set model in the view interface makes a defensive copy
+and then sets the defensive copy (via copy constructor) of the controller model to the model
+instance variable that each of the views has. In this way, the implementation details are preserved
+and cannot be modified by the views, instead they are given copies.
+
+
+
+
+
+
+-- -- -- -- Important Specifications/Notes -- -- -- --
+
+
+** USE OF SEQUENCER **
+
+  In our MidiView, we chose to to load a Sequence (generated from desired notes) into the Sequencer,
+which transmits to the receiver of the Synthesizer. In the MIDIView, initialize() has a
+primary purpose of playing the notes as audio from the computer speakers. It has a helper method,
+modelToSequencer(), which takes the notes from this model, creates a new Sequence containing one
+track of all notes in the model, and sets the sequence to the Sequencer. The resolution of the
+sequence is initially set to the model tempo, but will be overridden later by calling setTempoInMPQ
+and passing it the microseconds per quarter note.
+
+
+** MusicPieceModel.appendMusic(IMusicModel m) **
+
+   We creating and adding a new note p to go into this object's new list from the given
+list, however due to the overridden equals method in Note, if the following call is made
+       >>  musicPieceModel1.appendMusic(musicPieceModel2)   <<
+then the user can still edit and combine notes in the resulting new list of objects now in
+musicPieceModel1 that were previously in musicPieceModel2 by instantiating a new note (either
+manually, or to a call to musicPieceModel1.getNotes().get(someIndex). In our representation,
+after the call to musicPieceModel2, the internal states of the notes from musicPieceModel2
+that are now in musicPieceModel1 have been changed, and therefore it is not acceptable
+to allow the note to be mutated, leaving the notes in musicPieceModel2 unchanged, and instead
+creating new ones that go in musicPieceModel1 - the note class is final.
+
+
+
+
+
+
+
+-- -- -- --  Final Thoughts / Summary -- -- -- --
+
+
+    Abstraction, encapsulation, and coding to the interface were topics that we payed
+much attention to. Our model is open for extension, and closed for modification. We have tested
+thoroughly, and have provided javadoc for the model interface, and additional javadoc for the
+private methods of our implementation in the MusicPieceModel class.
